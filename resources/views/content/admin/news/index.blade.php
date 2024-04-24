@@ -1,6 +1,9 @@
-@section('title', 'Dashboard')
+@section('title', 'News')
 @extends('layout.admin.layout')
+@push('css')
+@endpush
 @section('content')
+    <h1>Ini Newss</h1>
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
@@ -24,6 +27,7 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection
+@push('js')
+@endpush

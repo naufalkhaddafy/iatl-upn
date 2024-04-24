@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,16 +17,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Auth without login
 Route::get('/login', [AuthController::class, 'login'])->name('user.login')->middleware('guest');
 Route::get('/register', [AuthController::class, 'register'])->name('user.register')->middleware('guest');
 Route::post('/login', LoginController::class)->name('login');
-Route::post('/logout', LogoutController::class)->name('logout');
 
+
+
+Route::middleware('auth')->group(function () {
+    // Auth with login
+    Route::post('/logout', LogoutController::class)->name('logout');
+
+    //dashboard
+    Route::get('/dashboard', function () {
+        return view('content.admin.dashboard.index');
+    })->name('dashboard')->middleware('auth');
+
+    //News
+    Route::resource('/news', NewsController::class);
+});
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard')->middleware('auth');
