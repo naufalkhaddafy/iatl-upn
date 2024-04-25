@@ -15,6 +15,8 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
     <!-- endinject -->
+    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+
     @stack('css')
 </head>
 
@@ -50,7 +52,6 @@
     <script src="{{ asset('dashboard-layout') }}/js/hoverable-collapse.js"></script>
     <script src="{{ asset('dashboard-layout') }}/js/template.js"></script>
     <!-- endinject -->
-
     @stack('js')
 </body>
 

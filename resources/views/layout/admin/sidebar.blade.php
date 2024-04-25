@@ -10,7 +10,7 @@
         <li class="nav-item {{ in_array(Route::currentRouteName(), ['news.index']) ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('news.index') }}">
                 <i class="mdi mdi-comment-text-outline menu-icon"></i>
-                <span class="menu-title">News</span>
+                <span class="menu-title">News/Article</span>
             </a>
         </li>
         <li class="nav-item {{ in_array(Route::currentRouteName(), ['']) ? 'active' : '' }}">
@@ -23,24 +23,28 @@
             <a class="nav-link" href="">
                 <i class="mdi mdi-disqus menu-icon"></i>
                 <span class="menu-title">Forum</span>
+                <div class="badge badge-opacity-success">DEV</div>
             </a>
         </li>
         <li class="nav-item {{ in_array(Route::currentRouteName(), ['']) ? 'active' : '' }}">
             <a class="nav-link" href="">
                 <i class="mdi mdi-play-box-outline menu-icon"></i>
                 <span class="menu-title">Youtube</span>
+                <div class="badge badge-opacity-success">DEV</div>
             </a>
         </li>
         <li class="nav-item {{ in_array(Route::currentRouteName(), ['']) ? 'active' : '' }}">
             <a class="nav-link" href="">
                 <i class="mdi mdi-database menu-icon"></i>
                 <span class="menu-title">File Manager</span>
+                <div class="badge badge-opacity-success">DEV</div>
             </a>
         </li>
         <li class="nav-item {{ in_array(Route::currentRouteName(), ['']) ? 'active' : '' }}">
             <a class="nav-link" href="">
                 <i class="mdi mdi-map-marker-multiple menu-icon"></i>
                 <span class="menu-title">Sebaran</span>
+                <div class="badge badge-opacity-success">DEV</div>
             </a>
         </li>
         <li class="nav-item nav-category">User Management</li>

@@ -3,7 +3,7 @@
 @push('css')
 @endpush
 @section('content')
-    <h1>Ini Newss</h1>
+    <h1 class="coba">Ini Newss</h1>
     <div class="row">
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
