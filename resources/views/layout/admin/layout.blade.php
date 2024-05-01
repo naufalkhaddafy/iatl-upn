@@ -15,7 +15,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    @vite(['resources/css/app.css', 'resources/sass/admin.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/admin.scss'])
 
     @stack('css')
 </head>

@@ -3,6 +3,9 @@
 @push('css')
 @endpush
 @section('content')
+
+    <h1 class="coba">NEWSS</h1>
+
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
