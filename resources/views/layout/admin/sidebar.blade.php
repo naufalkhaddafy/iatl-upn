@@ -48,33 +48,40 @@
             </a>
         </li>
         <li class="nav-item nav-category">User Management</li>
-        <li class="nav-item">
+        <li class="nav-item {{ in_array(Route::currentRouteName(), ['user.index', '']) ? 'active' : '' }}">
             <a class="nav-link" data-bs-toggle="collapse" href="#user-settings" aria-expanded="false"
                 aria-controls="user-settings">
                 <i class="menu-icon mdi mdi-account-box-outline"></i>
-                <span class="menu-title">User</span>
+                <span class="menu-title">Users</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse " id="user-settings">
+            <div class="collapse {{ in_array(Route::currentRouteName(), ['user.index']) ? 'show' : '' }}"
+                id="user-settings">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Users</a>
+                    <li class="nav-item"> <a
+                            class="nav-link {{ in_array(Route::currentRouteName(), ['user.index']) ? 'active' : '' }}"
+                            href="{{ route('user.index') }}">Admin</a>
                     </li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Create</a></li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Alumni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pengajuan Alumni</a>
+                    </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item nav-category">Web Settings</li>
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#web-settings" aria-expanded="false"
                 aria-controls="web-settings">
                 <i class="menu-icon mdi mdi-wrench"></i>
                 <span class="menu-title">Web Settings</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse show" id="web-settings">
+            <div class="collapse" id="web-settings">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link active" href="pages/ui-features/buttons.html">Banner</a>
+                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Banner</a>
                     </li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Tentang</a></li>
                     <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Visi & Misi</a>

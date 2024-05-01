@@ -1,27 +1,18 @@
-@section('title', 'News')
+@section('title', 'Users')
 @extends('layout.admin.layout')
 @push('css')
 @endpush
 @section('content')
+    {{-- <h1 class="coba">Ini Users</h1> --}}
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="d-flex justify-content-between align-content-center mb-2">
-                    <div>
-                        <h4 class="card-title">Daftar News/Articles</h4>
-                        <p class="card-description">
-                            Page kelola news/artikel
-                        </p>
-                    </div>
-                    <div>
-                        <button class="btn btn-icon-text btn-icon-append btn-success">
-                            <i class="mdi mdi-comment-plus-outline btn-icon-text"></i> Tambah Articles
-                        </button>
-                    </div>
-                </div>
-
+                <h4 class="card-title">Data Admin</h4>
+                <p class="card-description">
+                    Add class <code>.table-striped</code>
+                </p>
                 <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>
