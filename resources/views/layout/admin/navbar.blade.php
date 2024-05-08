@@ -47,7 +47,7 @@
                                 <div class="item p-3">
                                     <div class="row gx-2 justify-content-between align-items-center">
                                         <div class="col-auto">
-                                            <img class="profile-image" src="assets/images/profiles/profile-1.png"
+                                            <img class="profile-image" src="{{ asset('image/blank-user.png') }}"
                                                 alt="">
                                         </div><!--//col-->
                                         <div class="col">
@@ -109,7 +109,7 @@
                                 <div class="item p-3">
                                     <div class="row gx-2 justify-content-between align-items-center">
                                         <div class="col-auto">
-                                            <img class="profile-image" src="assets/images/profiles/profile-2.png"
+                                            <img class="profile-image" src="{{ asset('image/blank-user.png') }}"
                                                 alt="">
                                         </div><!--//col-->
                                         <div class="col">
@@ -152,7 +152,12 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="login.html">Log Out</a></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Log Out</button>
+                                </form>
+                            </li>
                         </ul>
                     </div><!--//app-user-dropdown-->
                 </div><!--//app-utilities-->

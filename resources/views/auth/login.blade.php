@@ -2,100 +2,96 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login | IATL UPN Veteran Jogja</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/feather/feather.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/typicons/typicons.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/css/vendor.bundle.base.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('dashboard-layout') }}/image/logo.png" />
-    @vite(['resources/sass/admin.scss'])
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Portal Sign in IATL UPN Veteran Jogja">
+    <link rel="shortcut icon" href="{{ asset('image/logo-sm.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('image/logo-sm.png') }} " type="image/x-icon">
+
+    <!-- FontAwesome JS-->
+    <script defer src="{{ asset('admin') }}/assets/plugins/fontawesome/js/all.min.js"></script>
+
+    <!-- App CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ asset('admin') }}/assets/css/portal.css">
 
 </head>
 
-<body>
-    <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper full-page-wrapper">
-            <div class="content-wrapper d-flex align-items-center auth px-0">
-                <div class="row w-100 mx-0">
-                    <div class="col-lg-4 mx-auto">
-                        <div class="auth-form-light text-center py-5 px-4 px-sm-5">
-                            <div class="logo mb-2">
-                                <img src="{{ asset('image') }}/logo.png" alt="logo"
-                                    style="width:180px; height:50px;" />
+<body class="app app-login p-0">
+    <div class="row g-0 app-auth-wrapper">
+        <div class="auth-main-col text-center p-5">
+            <div class="d-flex flex-column align-content-end">
+                <div class="app-auth-body mx-auto">
+                    <div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img
+                                class="logo-icon me-2" src="{{ asset('image/logo-sm.png') }}" alt="logo"></a></div>
+                    <h2 class="auth-heading text-center mb-5">Log in to Portal</h2>
+                    <div class="auth-form-container text-start">
+                        <form method="post" action="{{ route('login') }}"class="auth-form login-form">
+                            @if (session('failed'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('failed') }}
+                                </div>
+                                <br>
+                            @endif
+                            @csrf
+                            <div class="email mb-3">
+                                <label class="sr-only" for="email">Email</label>
+                                <input id="email" name="email" type="email" class="form-control signin-email"
+                                    placeholder="Email address" required="required">
+                            </div><!--//form-group-->
+                            <div class="password mb-3">
+                                <label class="sr-only" for="password">Password</label>
+                                <input id="password" name="password" type="password"
+                                    class="form-control signin-password" placeholder="Password" required="required">
+                                <div class="extra mt-3 row justify-content-between">
+                                    <div class="col-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="RememberPassword">
+                                            <label class="form-check-label" for="RememberPassword">
+                                                Remember me
+                                            </label>
+                                        </div>
+                                    </div><!--//col-6-->
+                                    <div class="col-6">
+                                        <div class="forgot-password text-end">
+                                            <a href="reset-password.html">Forgot password?</a>
+                                        </div>
+                                    </div><!--//col-6-->
+                                </div><!--//extra-->
+                            </div><!--//form-group-->
+                            <div class="text-center">
+                                <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Log
+                                    In</button>
                             </div>
-                            <h6 class="fw-light">Sign in to continue.</h6>
-                            <form method="post" action="{{ route('login') }}" class="pt-3">
-                                @if (session('failed'))
-                                    <div class="alert alert-danger" role="alert">
-                                        {{ session('failed') }}
-                                    </div>
-                                    <br>
-                                @endif
-                                @csrf
-                                <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-lg"
-                                        id="email" placeholder="Email">
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg"
-                                        id="password" placeholder="Password">
-                                </div>
-                                <div class="mt-3">
-                                    <button type="submit"
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN
-                                        IN</button>
-                                </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input">
-                                            Keep me signed in
-                                        </label>
-                                    </div>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                                </div>
-                                <div class="text-center mt-4 mb-2 fw-light">
-                                    Don't have an account? <a href="{{ route('user.register') }}"
-                                        class="text-primary">Create</a>
-                                </div>
-                                <a class="text-center fw-light" href="{{ route('root') }}">
-                                    ⬅ Back to Landing Page
-                                </a>
-                            </form>
-                        </div>
+                        </form>
+
+                        <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link"
+                                href="{{ route('user.register') }}">here</a>.</div>
+                    </div><!--//auth-form-container-->
+
+                </div><!--//auth-body-->
+                <footer class="app-auth-footer">
+                    <div class="container text-center py-3">
+                        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+                        <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
+                                style="color: #fb866a;"></i> by <a class="app-link"
+                                href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
+                            developers</small>
+
                     </div>
-                </div>
-            </div>
-            <!-- content-wrapper ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('dashboard-layout') }}/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('dashboard-layout') }}/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('dashboard-layout') }}/js/off-canvas.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/hoverable-collapse.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/template.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/settings.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/todolist.js"></script>
-    <!-- endinject -->
+                </footer><!--//app-auth-footer-->
+            </div><!--//flex-column-->
+        </div><!--//auth-main-col-->
+
+
+    </div><!--//row-->
+
+
 </body>
 
 </html>
