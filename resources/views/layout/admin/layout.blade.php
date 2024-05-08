@@ -2,59 +2,50 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@yield('title') | IATL Veteran Jogja </title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/vendors/simple-line-icons/css/simple-line-icons.css">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('image/logo-sm.png') }}" type="image/x-icon">
-    <link rel="icon" href="{{ asset('image/logo-sm.png') }} " type="image/x-icon">
-    @vite(['resources/sass/admin.scss'])
+    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
 
-    @stack('css')
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- FontAwesome JS-->
+    <script defer src="{{ asset('admin') }}/assets/plugins/fontawesome/js/all.min.js"></script>
+
+    <!-- App CSS -->
+    <link id="theme-style" rel="stylesheet" href="{{ asset('admin') }}/assets/css/portal.css">
+
 </head>
 
-<body>
-    <div class="container-scroller">
-        <!-- partial navbar -->
-        @include('layout.admin.navbar')
-        <!-- partial -->
-        <div class="container-fluid page-body-wrapper">
-            <!-- partial sidebar -->
-            @include('layout.admin.sidebar')
-            <!-- partial -->
-            <div class="main-panel">
-                <div class="content-wrapper">
-                    @yield('content')
-                </div>
-                <!-- content-wrapper ends -->
-                <!-- partial footer -->
-                @include('layout.admin.footer')
-                <!-- partial -->
-            </div>
-            <!-- main-panel ends -->
-        </div>
-        <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-    <!-- plugins:js -->
-    <script src="{{ asset('dashboard-layout') }}/vendors/js/vendor.bundle.base.js"></script>
-    <!-- endinject -->
+<body class="app">
+    <header class="app-header fixed-top">
+        @include('layout.admin.navbar')<!--//app-header-inner-->
+        @include('layout.admin.side')<!--//app-sidepanel-->
+    </header><!--//app-header-->
 
-    <!-- inject:js -->
-    <script src="{{ asset('dashboard-layout') }}/js/off-canvas.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/hoverable-collapse.js"></script>
-    <script src="{{ asset('dashboard-layout') }}/js/template.js"></script>
-    <!-- endinject -->
-    @stack('js')
+    <div class="app-wrapper">
+
+        <div class="app-content pt-3 p-md-3 p-lg-4">
+            @yield('content')
+        </div><!--//app-content-->
+
+        {{-- footer --}}
+        @include('layout.admin.footer')
+        {{-- footer end --}}
+    </div><!--//app-wrapper-->
+
+
+    <!-- Javascript -->
+    <script src="{{ asset('admin') }}/assets/plugins/popper.min.js"></script>
+    <script src="{{ asset('admin') }}/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Page Specific JS -->
+    <script src="{{ asset('admin') }}/assets/js/app.js"></script>
+
 </body>
 
 </html>
