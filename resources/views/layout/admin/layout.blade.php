@@ -15,6 +15,8 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
     <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('image/logo-sm.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('image/logo-sm.png') }} " type="image/x-icon">
     @vite(['resources/sass/admin.scss'])
 
     @stack('css')

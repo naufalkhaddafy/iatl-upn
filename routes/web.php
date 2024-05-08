@@ -42,4 +42,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('root');
+
+Route::get('/adexx', function () {
+    return view('layout.landing_page.layout');
+})->name('adex');

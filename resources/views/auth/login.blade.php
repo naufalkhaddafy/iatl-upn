@@ -20,6 +20,8 @@
     <link rel="stylesheet" href="{{ asset('dashboard-layout') }}/css/vertical-layout-light/style.css">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('dashboard-layout') }}/image/logo.png" />
+    @vite(['resources/sass/admin.scss'])
+
 </head>
 
 <body>
@@ -64,10 +66,13 @@
                                     </div>
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
                                 </div>
-                                <div class="text-center mt-4 fw-light">
+                                <div class="text-center mt-4 mb-2 fw-light">
                                     Don't have an account? <a href="{{ route('user.register') }}"
                                         class="text-primary">Create</a>
                                 </div>
+                                <a class="text-center fw-light" href="{{ route('root') }}">
+                                    ⬅ Back to Landing Page
+                                </a>
                             </form>
                         </div>
                     </div>
