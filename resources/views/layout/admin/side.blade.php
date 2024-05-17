@@ -22,7 +22,7 @@
 
                 <li class="nav-item ">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news.index']) ? 'active' : '' }}"
+                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news.index', 'news.create']) ? 'active' : '' }}"
                         href="{{ route('news.index') }}">
                         <span class="nav-icon">
                             <i class="fa-regular fa-newspaper"></i>
@@ -87,19 +87,12 @@
                 </li><!--//nav-item-->
                 <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse"
-                        data-bs-target="#submenu-1" aria-expanded="true" aria-controls="submenu-1">
+                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#user"
+                        aria-expanded="false" aria-controls="submenu-1">
                         <span class="nav-icon">
-                            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z" />
-                                <path
-                                    d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
-                            </svg>
+                            <i class="fa fa-users"></i>
                         </span>
-                        <span class="nav-link-text">Web Settings</span>
+                        <span class="nav-link-text">User Settings</span>
                         <span class="submenu-arrow">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -108,18 +101,15 @@
                             </svg>
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="submenu-1" class="collapse submenu submenu-1 show" data-bs-parent="#menu-accordion">
+                    <div id="user" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <li class="submenu-item"><a class="submenu-link active"
-                                    href="notifications.html">Notifications</a></li>
-                            <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a>
+                            <li class="submenu-item"><a class="submenu-link" href="notifications.html">Notifications</a>
                             </li>
+                            <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a></li>
                             <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a></li>
-
                         </ul>
                     </div>
                 </li><!--//nav-item-->
-
                 <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse"
@@ -134,7 +124,7 @@
                                     d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
                             </svg>
                         </span>
-                        <span class="nav-link-text">User Settings</span>
+                        <span class="nav-link-text">Web Settings</span>
                         <span class="submenu-arrow">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">

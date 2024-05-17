@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\NewsStatusEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +19,13 @@ class NewsFactory extends Factory
     {
         return [
             //
+            'user_id' => 1,
+            'title' => fake()->title(),
+            'description' => fake()->text(),
+            'slug' => fake()->slug(),
+            'status' => fake()->randomElement(NewsStatusEnum::cases())->value,
+            'image' => fake()->text(),
+
         ];
     }
 }

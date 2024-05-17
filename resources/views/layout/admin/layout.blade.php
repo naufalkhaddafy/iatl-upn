@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+    <title>@yield('title') | IATL Veteran Jogja</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -18,7 +18,9 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('admin') }}/assets/css/portal.css">
+    @vite(['resources/sass/admin.scss'])
 
+    @stack('css')
 </head>
 
 <body class="app">
@@ -46,6 +48,10 @@
     <!-- Page Specific JS -->
     <script src="{{ asset('admin') }}/assets/js/app.js"></script>
 
+    <!-- Jquery-3.7.1 -->
+    <script src="{{ asset('vendor') }}/jquery-3.7.1.min.js"></script>
+
+    @stack('js')
 </body>
 
 </html>

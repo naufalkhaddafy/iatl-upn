@@ -9,14 +9,15 @@
     <!--
     - primary meta tags
   -->
-    <title>Adex</title>
+    <title>IATL UPN Veteran Jogja</title>
     <meta name="title" content="Adex">
     <meta name="description" content="This is a business agency html template made by codewithsadee">
 
     <!--
     - favicon
   -->
-    <link rel="shortcut icon" href="{{ asset('adex') }}/favicon.svg" type="image/svg+xml">
+    <link rel="shortcut icon" href="{{ asset('image/logo-sm.png') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('image/logo-sm.png') }} " type="image/x-icon">
 
     <!--
     - google font link
@@ -158,17 +159,20 @@
           - #HERO
         -->
 
-            <section style="background: rgb(18, 218, 0);" class="section hero has-bg-image" aria-label="home"
+            <section class="section hero has-bg-image" aria-label="home"
                 style="background-image: url('{{ asset('adex') }}/assets/images/hero-bg.jpg')">
                 <div class="container">
 
                     <div class="hero-content">
 
-                        <h1 class="h1 hero-title">Crafting project specific solutions with expertise.</h1>
+                        <h1 class="h1 hero-title">Ikatan Alumni Teknik Lingkungan</h1>
 
                         <p class="hero-text">
-                            We’re a creative company that focuses on establishing long-term relationships with
-                            customers.
+                            IATL atau Ikatan Alumni Teknik Lingkungan adalah
+                            sebuah wadah berkumpulnya para alumni Jurusan Teknik Lingkungan Universitas Veteran
+                            Yogyakarta. Lahirnya Keluarga Alumni juga dilatar belakangi oleh adanya
+                            dorongan kuat untuk saling membantu sesama alumni, serta rasa tanggung jawab para alumni
+                            untuk ikut membina dan membangun almamaternya.
                         </p>
 
                         <div class="btn-wrapper">

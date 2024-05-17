@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('title');
+            $table->text('description');
+            $table->string('image');
+            $table->string('slug');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -3,18 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
-use App\Http\Requests\StoreNewsRequest;
-use App\Http\Requests\UpdateNewsRequest;
+use App\Http\Requests\NewsRequest;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('content.admin.news.index');
+        $paginate = $request->query('paginate') ?? 5;
+        $newss = News::query()->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')->latest()->paginate($paginate);
+        return view(
+            'content.admin.news.index',
+            ['newss' => $newss, 'search' => $request->search]
+        );
     }
 
     /**
@@ -23,14 +27,23 @@ class NewsController extends Controller
     public function create()
     {
         //
+        return view('content.admin.news.form', [
+            'news' => new News(),
+            'page_meta' => [
+                'title' => 'Tambah News/Artikel',
+                'description' => 'Tambahkan Data News/Artikel',
+                'method' => 'post',
+                'url' => route('news.store'),
+            ]
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreNewsRequest $request)
+    public function store(NewsRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**
@@ -52,7 +65,7 @@ class NewsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNewsRequest $request, News $news)
+    public function update(NewsRequest $request, News $news)
     {
         //
     }
