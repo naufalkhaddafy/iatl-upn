@@ -302,16 +302,26 @@
 
         let page = params.get('page');
         let search = params.get('search');
+        let paginate = params.get('paginate');
 
-        $("#paginate").on('change', function(e) {
-            const limit = e.target.value;
-            if (page == null && search == null) {
-                endpoint = `${baseUrl}?paginate=${limit}`
-                window.location.replace(endpoint);
+        $(document).ready(function() {
+            if (page !== null || search !== null || paginate !== null) {
+                console.log(`${page} - ${search} - ${paginate}`);
+
             } else {
-                endpoint = `${baseUrl}?search=${search}&paginate=${limit}&page=${page}`;
-                window.location.replace(endpoint);
+                console.log('null')
             }
-        })
+        });
+
+        // $("#paginate").on('change', function(e) {
+        //     const limit = e.target.value;
+        //     if (page == null && search == null) {
+        //         endpoint = `${baseUrl}?paginate=${limit}`
+        //         window.location.replace(endpoint);
+        //     } else {
+        //         endpoint = `${baseUrl}?search=${search}&paginate=${limit}&page=${page}`;
+        //         window.location.replace(endpoint);
+        //     }
+        // })
     </script>
 @endpush
