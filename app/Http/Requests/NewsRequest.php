@@ -21,11 +21,12 @@ class NewsRequest extends FormRequest
      */
     public function rules(): array
     {
-        dd(request()->method());
+        // dd(request()->method());
         return [
             'title' => 'required|',
             'description' => 'required|',
-            'image' => 'required|',
+            'image' => 'nullable|',
+            'status'=>'required|',
         ];
     }
 }

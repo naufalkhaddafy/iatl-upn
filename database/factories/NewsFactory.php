@@ -20,12 +20,10 @@ class NewsFactory extends Factory
         return [
             //
             'user_id' => 1,
-            'title' => fake()->title(),
+            'title' => fake()->text(50),
             'description' => fake()->text(),
             'slug' => fake()->slug(),
             'status' => fake()->randomElement(NewsStatusEnum::cases())->value,
-            'image' => fake()->text(),
-
         ];
     }
 }

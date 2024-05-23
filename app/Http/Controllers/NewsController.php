@@ -5,20 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\News;
 use App\Http\Requests\NewsRequest;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Enums\NewsStatusEnum;
 
 class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index(Request $request)
     {
         $paginate = $request->query('paginate') ?? 5;
-        $newss = News::query()->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')->latest()->paginate($paginate);
-        return view(
-            'content.admin.news.index',
-            ['newss' => $newss, 'search' => $request->search]
-        );
+        $status = $request->query('status');
+
+        if($status){
+            $newss = News::query()->with('user')
+            ->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')
+            ->where('status',$status)
+            ->latest()
+            ->paginate($paginate);
+        }else{
+            $newss = News::query()->with('user')
+            ->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')
+            ->latest()
+            ->paginate($paginate);
+        }
+
+        return view('content.admin.news.index', ['newss' => $newss, 'search' => $request->search]);
     }
 
     /**
@@ -34,7 +48,7 @@ class NewsController extends Controller
                 'description' => 'Tambahkan Data News/Artikel',
                 'method' => 'post',
                 'url' => route('news.store'),
-            ]
+            ],
         ]);
     }
 
@@ -43,7 +57,14 @@ class NewsController extends Controller
      */
     public function store(NewsRequest $request)
     {
-        dd($request);
+        $file = $request->file('image');
+        $request
+            ->user()
+            ->news()
+            ->create([...$request->validated(), 'image' => $file->store('images/news')]);
+
+        Alert::toast('Create success', 'success');
+        return to_route('news.index');
     }
 
     /**
@@ -59,7 +80,15 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        //
+        return view('content.admin.news.form', [
+            'news' => $news,
+            'page_meta' => [
+                'title' => 'Update News/Artikel',
+                'description' => 'Mengubah Data News/Artikel ' .$news->title,
+                'method' => 'put',
+                'url' => route('news.update', $news->id),
+            ],
+        ]);
     }
 
     /**

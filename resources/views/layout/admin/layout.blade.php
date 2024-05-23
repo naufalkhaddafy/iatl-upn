@@ -19,11 +19,11 @@
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ asset('admin') }}/assets/css/portal.css">
     @vite(['resources/sass/admin.scss'])
-
     @stack('css')
 </head>
 
 <body class="app">
+
     <header class="app-header fixed-top">
         @include('layout.admin.navbar')<!--//app-header-inner-->
         @include('layout.admin.side')<!--//app-sidepanel-->
@@ -51,6 +51,7 @@
     <!-- Jquery-3.7.1 -->
     <script src="{{ asset('vendor') }}/jquery-3.7.1.min.js"></script>
 
+    @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     @stack('js')
 </body>
 

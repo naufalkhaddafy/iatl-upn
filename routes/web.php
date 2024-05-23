@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard')->middleware('auth');
 
     //News
-    Route::resource('/news', NewsController::class);
+    Route::resource('/news', NewsController::class)->parameters([
+        'news' => 'news:slug',
+    ]);;
     //Users
     Route::resource('/user', UserController::class);
 });
