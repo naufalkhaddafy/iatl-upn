@@ -12,4 +12,9 @@ class NewsObserver
         $news->slug = str()->slug($news->title);
 
     }
+    public function updating (News $news) : void
+    {
+        $news->slug = str()->slug($news->title);
+
+    }
 }

@@ -34,7 +34,7 @@
                                 <option value="10" {{ Request()->paginate == 10 ? 'selected' : '' }}>10</option>
                                 <option value="20" {{ Request()->paginate == 20 ? 'selected' : '' }}>20</option>
                                 <option value="50" {{ Request()->paginate == 50 ? 'selected' : '' }}>50</option>
-                                <option value="">All</option>
+                                <option value="100" {{ Request()->paginate == 50 ? 'selected' : '' }}>100</option>
 
                             </select>
                         </div>
@@ -52,13 +52,12 @@
 
         <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
             <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == null ? 'active' : '' }}" id="statusAll"
-                data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all"
-                aria-selected="true">All</a>
+                data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
             <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == 'publish' ? 'active' : '' }}"
-                id="statusPublish" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all"
+                id="statusPublish" data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all"
                 aria-selected="true">Publish</a>
             <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == 'archived' ? 'active' : '' }}"
-                id="statusArchived" data-bs-toggle="tab" href="#orders-all" role="tab" aria-controls="orders-all"
+                id="statusArchived" data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all"
                 aria-selected="true">Archived</a>
 
 
@@ -133,11 +132,11 @@
                                                 class="note">{{ $news->created_at->format('H:i') }}</span>
                                         </td>
                                         <td class="cell"><span
-                                                class="badge bg-{{ $news->status == 'publish' ? 'success' : 'warning' }}">{{ $news->status == $news->status ? $news->status : 'warning' }}</span>
+                                                class="badge bg-{{ $news->status->value == 'publish' ? 'primary' : 'warning' }}">{{ $news->status->name }}</span>
                                         </td>
                                         <td class="cell">
                                             <a class="btn-sm app-btn-secondary"
-                                                href="{{ route('news.edit', $news->slug) }}">View</a>
+                                                href="{{ route('news.edit', $news->id) }}">View</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -189,6 +188,10 @@
             }
         })
 
+        $("#statusAll").on("click", function() {
+            window.location.replace(baseUrl);
+        })
+
         $("#statusPublish").on("click", function() {
             if (page == null || search == null || paginate == null) {
                 endpoint = `${baseUrl}?status=publish`
@@ -199,9 +202,6 @@
             }
         })
 
-        $("#statusAll").on("click", function() {
-            window.location.replace(baseUrl);
-        })
         $("#statusArchived").on('click', function() {
             if (page == null || search == null || paginate == null) {
                 endpoint = `${baseUrl}?status=archived`

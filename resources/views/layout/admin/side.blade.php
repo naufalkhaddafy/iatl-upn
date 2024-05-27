@@ -22,7 +22,7 @@
 
                 <li class="nav-item ">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news.index', 'news.create']) ? 'active' : '' }}"
+                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news.index', 'news.create', 'news.edit']) ? 'active' : '' }}"
                         href="{{ route('news.index') }}">
                         <span class="nav-icon">
                             <i class="fa-regular fa-newspaper"></i>

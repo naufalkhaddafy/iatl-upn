@@ -7,6 +7,8 @@ use App\Http\Requests\NewsRequest;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Enums\NewsStatusEnum;
+use Illuminate\Support\Facades\Storage;
+
 
 class NewsController extends Controller
 {
@@ -24,12 +26,12 @@ class NewsController extends Controller
             ->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')
             ->where('status',$status)
             ->latest()
-            ->paginate($paginate);
+            ->paginate($paginate)->withQueryString();
         }else{
             $newss = News::query()->with('user')
             ->whereAny(['title', 'slug', 'status', 'description', 'created_at', 'updated_at'], 'like', '%' . $request->search . '%')
             ->latest()
-            ->paginate($paginate);
+            ->paginate($paginate)->withQueryString();
         }
 
         return view('content.admin.news.index', ['newss' => $newss, 'search' => $request->search]);
@@ -96,7 +98,20 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, News $news)
     {
-        //
+        // dd($request);
+        $file = $request->file('image');
+
+        if($file){
+            if (Storage::exists($news->image)) {
+                Storage::delete($news->image);
+            }
+            $news->update([$request->validated(),'image'=> $file->store('images/news')]);
+        }else{
+            $news->update($request->validated());
+        }
+
+        Alert::toast('Edit success', 'success');
+        return back();
     }
 
     /**
@@ -104,6 +119,8 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+        Alert::toast('Berhasil Menghapus Data '. $news->title , 'success');
+        return to_route('news.index');
     }
 }

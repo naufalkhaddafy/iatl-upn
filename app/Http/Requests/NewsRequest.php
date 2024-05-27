@@ -21,7 +21,7 @@ class NewsRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd(request()->method());
+        // dd($this->method());
         return [
             'title' => 'required|',
             'description' => 'required|',
