@@ -20,9 +20,11 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Admin',
             'email' => 'admin@iatl.com',
-            'password' => Hash::make('password'),
+            'role' => true,
+            'password' => Hash::make('admin'),
         ]);
 
         $this->call(NewsSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     // Auth with login
     Route::post('/logout', LogoutController::class)->name('logout');
 
-    //dashboard
+    //Dashboard
     Route::get('/dashboard', function () {
         return view('content.admin.dashboard.index');
     })->name('dashboard')->middleware('auth');
@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
     //Users
     Route::resource('/user', UserController::class);
+    Route::get('/profile', [UserController::class,'profile'])->name('profile');
 });
 
 Route::get('/', function () {

@@ -14,7 +14,11 @@
                     <a class="nav-link {{ in_array(Route::currentRouteName(), ['dashboard']) ? 'active' : '' }}"
                         href="{{ route('dashboard') }}">
                         <span class="nav-icon">
-                            <i class="fa-solid fa-house"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-house-door" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                            </svg>
                         </span>
                         <span class="nav-link-text">Dashboard</span>
                     </a><!--//nav-link-->
@@ -85,10 +89,11 @@
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
                 </li><!--//nav-item-->
-                <li class="nav-item has-submenu">
+                {{-- <li class="nav-item has-submenu">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link submenu-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#user"
-                        aria-expanded="false" aria-controls="submenu-1">
+                    <a class="nav-link submenu-toggle {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
+                        href="#" data-bs-toggle="collapse" data-bs-target="#user" aria-expanded="false"
+                        aria-controls="submenu-1">
                         <span class="nav-icon">
                             <i class="fa fa-users"></i>
                         </span>
@@ -101,30 +106,41 @@
                             </svg>
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="user" class="collapse submenu submenu-1" data-bs-parent="#menu-accordion">
+                    <div id="user"
+                        class="collapse submenu submenu-1 {{ in_array(Route::currentRouteName(), ['news']) ? 'show' : '' }}"
+                        data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <li class="submenu-item"><a class="submenu-link" href="notifications.html">Notifications</a>
+                            <li class="submenu-item"><a
+                                    class="submenu-link {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
+                                    href="notifications.html">Notifications</a>
                             </li>
                             <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a></li>
                             <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a></li>
                         </ul>
                     </div>
-                </li><!--//nav-item-->
+                </li><!--//nav-item--> --}}
                 <li class="nav-item has-submenu">
-                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse"
-                        data-bs-target="#submenu-1" aria-expanded="true" aria-controls="submenu-1">
-                        <span class="nav-icon">
-                            <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-files"
+                    <a class="nav-link submenu-toggle {{ in_array(Route::currentRouteName(), ['user.index']) ? 'active' : '' }}"
+                        href="#" data-bs-toggle="collapse" data-bs-target="#users"
+                        aria-expanded="{{ in_array(Route::currentRouteName(), ['user.index']) ? 'true' : 'false' }}"
+                        aria-controls="users">
+                        <span class="submenu-arrow">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-up"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd"
-                                    d="M4 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4z" />
+                                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </span><!--//submenu-arrow-->
+                        <span class="nav-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-person-vcard" viewBox="0 0 16 16">
                                 <path
-                                    d="M6 0h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1H4a2 2 0 0 1 2-2z" />
+                                    d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
+                                <path
+                                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z" />
                             </svg>
                         </span>
-                        <span class="nav-link-text">Web Settings</span>
+                        <span class="nav-link-text">Users Settings</span>
                         <span class="submenu-arrow">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-down"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -133,70 +149,75 @@
                             </svg>
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
-                    <div id="submenu-1" class="collapse submenu submenu-1 show" data-bs-parent="#menu-accordion">
+                    <div id="users"
+                        class="collapse submenu users {{ in_array(Route::currentRouteName(), ['user.index']) ? 'show' : '' }}"
+                        data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
-                            <li class="submenu-item"><a class="submenu-link active"
-                                    href="notifications.html">Notifications</a></li>
-                            <li class="submenu-item"><a class="submenu-link" href="account.html">Account</a>
+                            <li class="submenu-item"><a
+                                    class="submenu-link {{ in_array(Route::currentRouteName(), ['user.index']) ? 'active' : '' }}"
+                                    href="{{ route('user.index') }}">Alumni</a></li>
+                            <li class="submenu-item"><a class="submenu-link" href="settings.html">Pengajuan
+                                    Alumni</a>
+                            <li class="submenu-item"><a class="submenu-link"
+                                    href="{{ route('user.index') }}">Admin</a>
                             </li>
-                            <li class="submenu-item"><a class="submenu-link" href="settings.html">Settings</a></li>
-
-                        </ul>
-                    </div>
+                </li>
+            </ul>
+    </div>
+    </li><!--//nav-item-->
+    </ul><!--//app-menu-->
+    </nav><!--//app-nav-->
+    <div class="app-sidepanel-footer">
+        <nav class="app-nav app-nav-footer">
+            <ul class="app-menu footer-menu list-unstyled">
+                <li class="nav-item">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <a class="nav-link" href="settings.html">
+                        <span class="nav-icon">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />
+                                <path fill-rule="evenodd"
+                                    d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Settings</span>
+                    </a><!--//nav-link-->
                 </li><!--//nav-item-->
-            </ul><!--//app-menu-->
-        </nav><!--//app-nav-->
-        <div class="app-sidepanel-footer">
-            <nav class="app-nav app-nav-footer">
-                <ul class="app-menu footer-menu list-unstyled">
-                    <li class="nav-item">
-                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link" href="settings.html">
-                            <span class="nav-icon">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8.837 1.626c-.246-.835-1.428-.835-1.674 0l-.094.319A1.873 1.873 0 0 1 4.377 3.06l-.292-.16c-.764-.415-1.6.42-1.184 1.185l.159.292a1.873 1.873 0 0 1-1.115 2.692l-.319.094c-.835.246-.835 1.428 0 1.674l.319.094a1.873 1.873 0 0 1 1.115 2.693l-.16.291c-.415.764.42 1.6 1.185 1.184l.292-.159a1.873 1.873 0 0 1 2.692 1.116l.094.318c.246.835 1.428.835 1.674 0l.094-.319a1.873 1.873 0 0 1 2.693-1.115l.291.16c.764.415 1.6-.42 1.184-1.185l-.159-.291a1.873 1.873 0 0 1 1.116-2.693l.318-.094c.835-.246.835-1.428 0-1.674l-.319-.094a1.873 1.873 0 0 1-1.115-2.692l.16-.292c.415-.764-.42-1.6-1.185-1.184l-.291.159A1.873 1.873 0 0 1 8.93 1.945l-.094-.319zm-2.633-.283c.527-1.79 3.065-1.79 3.592 0l.094.319a.873.873 0 0 0 1.255.52l.292-.16c1.64-.892 3.434.901 2.54 2.541l-.159.292a.873.873 0 0 0 .52 1.255l.319.094c1.79.527 1.79 3.065 0 3.592l-.319.094a.873.873 0 0 0-.52 1.255l.16.292c.893 1.64-.902 3.434-2.541 2.54l-.292-.159a.873.873 0 0 0-1.255.52l-.094.319c-.527 1.79-3.065 1.79-3.592 0l-.094-.319a.873.873 0 0 0-1.255-.52l-.292.16c-1.64.893-3.433-.902-2.54-2.541l.159-.292a.873.873 0 0 0-.52-1.255l-.319-.094c-1.79-.527-1.79-3.065 0-3.592l.319-.094a.873.873 0 0 0 .52-1.255l-.16-.292c-.892-1.64.902-3.433 2.541-2.54l.292.159a.873.873 0 0 0 1.255-.52l.094-.319z" />
-                                    <path fill-rule="evenodd"
-                                        d="M8 5.754a2.246 2.246 0 1 0 0 4.492 2.246 2.246 0 0 0 0-4.492zM4.754 8a3.246 3.246 0 1 1 6.492 0 3.246 3.246 0 0 1-6.492 0z" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-text">Settings</span>
-                        </a><!--//nav-link-->
-                    </li><!--//nav-item-->
-                    <li class="nav-item">
-                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link"
-                            href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
-                            <span class="nav-icon">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
-                                    <path fill-rule="evenodd"
-                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-text">Download</span>
-                        </a><!--//nav-link-->
-                    </li><!--//nav-item-->
-                    <li class="nav-item">
-                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link"
-                            href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
-                            <span class="nav-icon">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person"
-                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
-                                    <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                </svg>
-                            </span>
-                            <span class="nav-link-text">License</span>
-                        </a><!--//nav-link-->
-                    </li><!--//nav-item-->
-                </ul><!--//footer-menu-->
-            </nav>
-        </div><!--//app-sidepanel-footer-->
-    </div><!--//sidepanel-inner-->
+                <li class="nav-item">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <a class="nav-link"
+                        href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
+                        <span class="nav-icon">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">Download</span>
+                    </a><!--//nav-link-->
+                </li><!--//nav-item-->
+                <li class="nav-item">
+                    <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                    <a class="nav-link"
+                        href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
+                        <span class="nav-icon">
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-person"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M12 1H4a1 1 0 0 0-1 1v10.755S4 11 8 11s5 1.755 5 1.755V2a1 1 0 0 0-1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                                <path fill-rule="evenodd" d="M8 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-text">License</span>
+                    </a><!--//nav-link-->
+                </li><!--//nav-item-->
+            </ul><!--//footer-menu-->
+        </nav>
+    </div><!--//app-sidepanel-footer-->
+</div><!--//sidepanel-inner-->
 </div>

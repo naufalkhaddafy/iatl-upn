@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('nim')->unique()->nullable();
+            $table->string('image')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('role')->default(1);
-            $table->enum('status', ['paid', 'unpaid'])->default('unpaid');
+            $table->boolean('role')->default(false);
+            $table->boolean('isPremium')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

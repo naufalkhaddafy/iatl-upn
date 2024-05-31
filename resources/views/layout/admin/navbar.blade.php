@@ -147,7 +147,7 @@
                             href="#" role="button" aria-expanded="false"><img
                                 src="{{ asset('image/blank-user.png') }}" alt="user profile" class="rounded-5"></a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                            <li><a class="dropdown-item" href="account.html">Account</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile') }}">Account</a></li>
                             <li><a class="dropdown-item" href="settings.html">Settings</a></li>
                             <li>
                                 <hr class="dropdown-divider">
