@@ -39,6 +39,8 @@
     <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-slide-2.jpg">
     <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-slide-3.jpg">
 
+    @vite(['resources/sass/landing.scss'])
+
 </head>
 
 <body>
@@ -618,140 +620,55 @@
             <section class="section project" aria-labelledby="project-label">
                 <div class="container">
 
-                    <p class="section-subtitle" id="project-label">Case Studies</p>
+                    <p class="section-subtitle" id="project-label">Berita Terkini</p>
 
                     <h2 class="h2 section-title">
                         Check out some of our awesome projects with creative ideas and great design.
                     </h2>
 
                     <ul class="grid-list">
+                        @foreach ($news as $value)
+                            <li>
+                                <div class="project-card">
 
-                        <li>
-                            <div class="project-card">
+                                    <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
+                                        <img src="{{ asset('storage/' . $value->image) }}" width="560"
+                                            height="350" loading="lazy" alt="{{ $value->title }}"
+                                            class="img-cover">
+                                    </figure>
 
-                                <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
-                                    <img src="{{ asset('adex') }}/assets/images/blog-1.jpg" width="560"
-                                        height="350" loading="lazy" alt="Ligula tristique quis risus"
-                                        class="img-cover">
-                                </figure>
+                                    <div class="card-content">
 
-                                <div class="card-content">
+                                        <h3 class="h3">
+                                            <a href="#" class="card-title">{{ $value->title }}</a>
+                                        </h3>
 
-                                    <h3 class="h3">
-                                        <a href="#" class="card-title">Ligula tristique quis risus</a>
-                                    </h3>
+                                        <p class="card-text">
+                                            {!! $value->description !!}
+                                        </p>
 
-                                    <p class="card-text">
-                                        Mauris convallis non ligula non interdum. Gravida vulputate convallis tempus
-                                        vestibulum cras
-                                        imperdiet nun eu dolor.
-                                    </p>
+                                        <ul class="card-meta-list">
 
-                                    <ul class="card-meta-list">
+                                            <li class="card-meta-item">
+                                                <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
 
-                                        <li class="card-meta-item">
-                                            <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
+                                                <time class="meta-text"
+                                                    datetime="2022-04-14">{{ $value->created_at->diffForHumans() }}</time>
+                                            </li>
 
-                                            <time class="meta-text" datetime="2022-04-14">14 Apr 2022</time>
-                                        </li>
+                                            <li class="card-meta-item">
+                                                <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
 
-                                        <li class="card-meta-item">
-                                            <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
+                                                <span class="meta-text">Coding</span>
+                                            </li>
 
-                                            <span class="meta-text">Coding</span>
-                                        </li>
+                                        </ul>
 
-                                    </ul>
-
-                                </div>
-
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="project-card">
-
-                                <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
-                                    <img src="{{ asset('adex') }}/assets/images/blog-2.jpg" width="560"
-                                        height="350" loading="lazy" alt="Nullam id dolor elit id nibh"
-                                        class="img-cover">
-                                </figure>
-
-                                <div class="card-content">
-
-                                    <h3 class="h3">
-                                        <a href="#" class="card-title">Nullam id dolor elit id nibh</a>
-                                    </h3>
-
-                                    <p class="card-text">
-                                        Mauris convallis non ligula non interdum. Gravida vulputate convallis tempus
-                                        vestibulum cras
-                                        imperdiet nun eu dolor.
-                                    </p>
-
-                                    <ul class="card-meta-list">
-
-                                        <li class="card-meta-item">
-                                            <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-
-                                            <time class="meta-text" datetime="2022-03-29">29 Mar 2022</time>
-                                        </li>
-
-                                        <li class="card-meta-item">
-                                            <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
-
-                                            <span class="meta-text">Workspace</span>
-                                        </li>
-
-                                    </ul>
+                                    </div>
 
                                 </div>
-
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="project-card">
-
-                                <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
-                                    <img src="{{ asset('adex') }}/assets/images/blog-3.jpg" width="560"
-                                        height="350" loading="lazy" alt="Ultricies fusce porta elit"
-                                        class="img-cover">
-                                </figure>
-
-                                <div class="card-content">
-
-                                    <h3 class="h3">
-                                        <a href="#" class="card-title">Ultricies fusce porta elit</a>
-                                    </h3>
-
-                                    <p class="card-text">
-                                        Mauris convallis non ligula non interdum. Gravida vulputate convallis tempus
-                                        vestibulum cras
-                                        imperdiet nun eu dolor.
-                                    </p>
-
-                                    <ul class="card-meta-list">
-
-                                        <li class="card-meta-item">
-                                            <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-
-                                            <time class="meta-text" datetime="2022-02-26">26 Feb 2022</time>
-                                        </li>
-
-                                        <li class="card-meta-item">
-                                            <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
-
-                                            <span class="meta-text">Meeting</span>
-                                        </li>
-
-                                    </ul>
-
-                                </div>
-
-                            </div>
-                        </li>
-
+                            </li>
+                        @endforeach
                     </ul>
 
                 </div>

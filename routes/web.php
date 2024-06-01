@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Models\News;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,5 @@ Route::get('/', function () {
 })->name('root');
 
 Route::get('/adexx', function () {
-    return view('layout.landing_page.layout');
+    return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
 })->name('adex');
