@@ -1,42 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="{{ asset('image/logo.png') }}" style="width:170px; height: 40px" alt="Brand">
+<header class="header" data-header>
+    <div class="container">
+        <a href="#" class="logo">
+            <img src="{{ asset('image') }}/logo-white.png" width="170" height="70" alt="Adex home" class="logo-light">
+            <img src="{{ asset('image') }}/logo.png" width="170" height="70" alt="Adex home" class="logo-dark">
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 bold">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+
+        <nav class="navbar" data-navbar>
+            <div class="navbar-top">
+                <a href="#" class="logo">
+                    <img src="{{ asset('image') }}/logo.png" width="74" height="24" alt="Adex home">
+                </a>
+                <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+            </div>
+            <ul class="navbar-list">
+                <li>
+                    <a href="#" class="navbar-link">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                <li>
+                    <a href="#" class="navbar-link">About</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                <li>
+                    <a href="#" class="navbar-link">Projects</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <li>
+                    <a href="#" class="navbar-link">Blog</a>
+                </li>
+                <li>
+                    <a href="#" class="navbar-link">Contact</a>
                 </li>
             </ul>
-            <form class="d-flex" style="gap:10px;">
-                <a href="{{ route('user.login') }}" class="btn btn-outline-success px-4" type="submit">Sign In</a>
-                <a href="{{ route('user.register') }}" class="btn btn-success px-4" type="submit">Sign Up</a>
-            </form>
-        </div>
+            <div class="wrapper">
+                <a href="mailto:info@email.com" class="contact-link">info@email.com</a>
+                <a href="tel:001234567890" class="contact-link">00 (123) 456 78 90</a>
+            </div>
+            <ul class="social-list">
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-dribbble"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="social-link">
+                        <ion-icon name="logo-youtube"></ion-icon>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <a href="{{ route('user.login') }}" class="btn btn-outline">Sign In</a>
+        <a href="{{ route('user.register') }}" class="btn btn-primary">Sign Up</a>
+
+        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+            <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <div class="overlay" data-nav-toggler data-overlay></div>
     </div>
-</nav>
+</header>

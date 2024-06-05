@@ -48,112 +48,7 @@
     <!--
       - #HEADER
     -->
-
-    <header class="header" data-header>
-        <div class="container">
-
-            <a href="#" class="logo">
-                <img src="{{ asset('image') }}/logo.png" width="74" height="24" alt="Adex home"
-                    class="logo-light">
-
-                <img src="{{ asset('image') }}/logo.png"" width="74" height="24" alt="Adex home"
-                    class="logo-dark">
-            </a>
-
-            <nav class="navbar" data-navbar>
-
-                <div class="navbar-top">
-                    <a href="#" class="logo">
-                        <img src="./assets/images/logo-light.svg" width="74" height="24" alt="Adex home">
-                    </a>
-
-                    <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
-                        <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
-                    </button>
-                </div>
-
-                <ul class="navbar-list">
-
-                    <li>
-                        <a href="#" class="navbar-link">Home</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="navbar-link">About</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="navbar-link">Projects</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="navbar-link">Blog</a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="navbar-link">Contact</a>
-                    </li>
-
-                </ul>
-
-                <div class="wrapper">
-                    <a href="mailto:info@email.com" class="contact-link">info@email.com</a>
-
-                    <a href="tel:001234567890" class="contact-link">00 (123) 456 78 90</a>
-                </div>
-
-                <ul class="social-list">
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-twitter"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-dribbble"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-youtube"></ion-icon>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </nav>
-
-            <a href="#" class="btn btn-primary">Free Trial</a>
-            <a href="#" class="btn btn-primary">Free Trial</a>
-
-            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-                <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
-            </button>
-
-            <div class="overlay" data-nav-toggler data-overlay></div>
-
-        </div>
-    </header>
-
-
-
-
-
+    @include('layout.landing_page.navbar')
     <main>
         <article>
 
@@ -205,8 +100,8 @@
 
                                     <div class="hero-card">
                                         <figure class="img-holder" style="--width: 575; --height: 550;">
-                                            <img src="{{ asset('adex') }}/assets/images/hero-slide-2.jpg"
-                                                width="575" height="550" alt="hero banner" class="img-cover">
+                                            <img src="{{ asset('adex') }}/assets/images/hero-slide-2.jpg" width="575"
+                                                height="550" alt="hero banner" class="img-cover">
                                         </figure>
 
                                         <button class="play-btn" aria-label="play adex intro">
@@ -629,26 +524,25 @@
                     <ul class="grid-list">
                         @foreach ($news as $value)
                             <li>
+
                                 <div class="project-card">
-
-                                    <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
-                                        <img src="{{ asset('storage/' . $value->image) }}" width="560"
-                                            height="350" loading="lazy" alt="{{ $value->title }}"
-                                            class="img-cover">
-                                    </figure>
-
+                                    @if ($value->image)
+                                        <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
+                                            <img src="{{ asset('storage/' . $value->image) }}" width="560"
+                                                height="350" loading="lazy" alt="{{ $value->title }}"
+                                                class="img-cover">
+                                        </figure>
+                                    @endif
                                     <div class="card-content">
-
                                         <h3 class="h3">
-                                            <a href="#" class="card-title">{{ $value->title }}</a>
+                                            <a href="{{ route('news.show', $value->id) }}"
+                                                class="card-title">{{ $value->title }}</a>
                                         </h3>
 
                                         <p class="card-text">
-                                            {!! $value->description !!}
+                                            {{ $value->description }}
                                         </p>
-
                                         <ul class="card-meta-list">
-
                                             <li class="card-meta-item">
                                                 <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
 
@@ -661,11 +555,8 @@
 
                                                 <span class="meta-text">Coding</span>
                                             </li>
-
                                         </ul>
-
                                     </div>
-
                                 </div>
                             </li>
                         @endforeach
@@ -697,137 +588,10 @@
         </article>
     </main>
 
-
-
-
-
     <!--
       - #FOOTER
     -->
-
-    <footer class="footer">
-        <div class="container grid-list">
-
-            <div class="footer-brand">
-
-                <a href="#" class="logo">
-                    <img src="{{ asset('image/logo.png') }}" width="74" height="24" alt="Adex home">
-                </a>
-
-                <p class="footer-text">
-                    &copy; 2022 codewithsadee. <br> All rights reserved.
-                </p>
-
-                <ul class="social-list">
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-twitter"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-dribbble"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-instagram"></ion-icon>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="#" class="social-link">
-                            <ion-icon name="logo-youtube"></ion-icon>
-                        </a>
-                    </li>
-
-                </ul>
-
-            </div>
-
-            <ul class="footer-list">
-
-                <li>
-                    <p class="h4 footer-list-title">Get in Touch</p>
-                </li>
-
-                <li>
-                    <address class="footer-text">
-                        Moonshine St. 14/05 Light City, London, United Kingdom
-                    </address>
-                </li>
-
-                <li>
-                    <a href="mailto:info@email.com" class="footer-link">info@email.com</a>
-                </li>
-
-                <li>
-                    <a href="tel:001234567890" class="footer-link">00 (123) 456 78 90</a>
-                </li>
-
-            </ul>
-
-            <ul class="footer-list">
-
-                <li>
-                    <p class="h4 footer-list-title">Learn More</p>
-                </li>
-
-                <li>
-                    <a href="#" class="footer-link">About Us</a>
-                </li>
-
-                <li>
-                    <a href="#" class="footer-link">Our Story</a>
-                </li>
-
-                <li>
-                    <a href="#" class="footer-link">Projects</a>
-                </li>
-
-                <li>
-                    <a href="#" class="footer-link">Terms of Use</a>
-                </li>
-
-                <li>
-                    <a href="#" class="footer-link">Privacy Policy</a>
-                </li>
-
-            </ul>
-
-            <div class="footer-list">
-
-                <p class="h4 footer-list-title">Our Newsletter</p>
-
-                <p class="footer-text">
-                    Subscribe to our newsletter to get our news & deals delivered to you.
-                </p>
-
-                <form action="" class="input-wrapper">
-                    <input type="email" name="email_address" placeholder="Email Address" required
-                        class="input-field">
-
-                    <button type="submit" class="submit-btn">Join</button>
-                </form>
-
-            </div>
-
-        </div>
-    </footer>
-
-
-
-
-
+    @include('layout.landing_page.footer')
     <!--
       - custom js link
     -->
