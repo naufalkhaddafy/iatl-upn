@@ -35,22 +35,21 @@
                         <div class="mb-3">
                             <label for="status" class="form-label">Foto Profil</label>
                             @if ($user->image)
-                                <div class=" position-relative">
+                                <div class="position-relative">
                                     <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->title }}"
                                         class="img-thumbnail img-size">
-                                    <div id="set-button"
-                                        class="position-absolute bg-white w-100 h-100  top-50 start-50 translate-middle">
-                                        TEss
-                                    </div>
                                 </div>
                             @else
-                                <div id="file-group" class="file-group border-primary row justify-center">
-                                    <i class="far fa-folder-open fs-1 text-primary mb-2"></i>
-                                    <span class="filename">Drop Your File Here or <span class="text-primary">Browse</span>
-                                    </span>
-                                    <input type="file" class="file-input form-control" id="image" name="image">
+                                <div id="avatar-profile" class="d-block inline-block text-center">
+                                    <figure class="">
+                                        <img src="{{ asset('image/blank-user.png') }}" alt="blank-image"
+                                            class="img-thumbnail rounded-circle" style="width:200px; height:200px">
+                                    </figure>
+                                    <div class="">
+                                        <button type="button" class="btn btn-warning text-white">Edit</button>
+                                        <button type="button" class="btn btn-danger text-white">Hapus</button>
+                                    </div>
                                 </div>
-                                <img id="imgPreview" src="#" alt="pic" class="img-thumbnail img-size d-none" />
                             @endif
                             <x-forms.error type="danger" :messages="$errors->get('image')" />
                         </div>
@@ -67,7 +66,7 @@
                             </label>
                             <input type="number" class="form-control @error('nim') is-invalid @enderror" id="nim"
                                 name="nim" placeholder="Masukan NIM Alumni.."
-                                value="{{ $page_meta['method'] == 'put' ? $user->name : '' }}">
+                                value="{{ $page_meta['method'] == 'put' ? $user->nim : '' }}">
                             <x-forms.error type="danger" :messages="$errors->get('nim')" />
                         </div>
                         <div class="mb-3">

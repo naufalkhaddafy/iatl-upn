@@ -25,10 +25,6 @@
                                             <div class=" position-relative">
                                                 <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}"
                                                     class="img-thumbnail img-size">
-                                                <div id="set-button"
-                                                    class="position-absolute bg-white w-100 h-100  top-50 start-50 translate-middle">
-                                                    TEss
-                                                </div>
                                             </div>
                                         @else
                                             <div id="file-group" class="file-group border-primary row justify-center">
@@ -42,6 +38,11 @@
                                             <img id="imgPreview" src="#" alt="pic"
                                                 class="img-thumbnail img-size d-none" />
                                         @endif
+                                        <div id="actiop-group" class="d-none d-flex justify-content-start my-3"
+                                            style="gap: 10px">
+                                            <button class="btn btn-info text-white">Edit</button>
+                                            <button class="btn btn-danger text-white">Hapus</button>
+                                        </div>
                                         <x-forms.error type="danger" :messages="$errors->get('image')" />
                                     </div>
                                 </div>
@@ -104,8 +105,6 @@
                 $('#summernote').summernote('code', {!! json_encode($news->description) !!});
             });
 
-
-
             $('#image').on('change', function() {
                 file = this.files[0];
                 if (file) {
@@ -113,6 +112,7 @@
                     reader.onload = function(event) {
                         $("#imgPreview").removeClass('d-none').attr("src", event.target.result);
                         $("#file-group").addClass("d-none");
+                        $('#action-group').addClass('d-block')
                     };
                     reader.readAsDataURL(file);
                 }

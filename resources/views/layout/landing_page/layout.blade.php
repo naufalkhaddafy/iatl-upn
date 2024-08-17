@@ -144,7 +144,7 @@
           - #SERVICE
         -->
 
-            <section class="section service" aria-labelledby="service-label">
+            {{-- <section class="section service" aria-labelledby="service-label">
                 <div class="container">
 
                     <p class="section-subtitle" id="service-label">What We Do?</p>
@@ -254,7 +254,7 @@
                     </ul>
 
                 </div>
-            </section>
+            </section> --}}
 
 
 
@@ -264,7 +264,7 @@
           - #ABOUT
         -->
 
-            <section class="about" aria-labelledby="about-label">
+            {{-- <section class="about" aria-labelledby="about-label">
                 <div class="container">
 
                     <figure class="about-banner">
@@ -356,7 +356,7 @@
                     </div>
 
                 </div>
-            </section>
+            </section> --}}
 
 
 
@@ -366,12 +366,12 @@
           - #FEATURE
         -->
 
-            <section class="section feature" aria-labelledby="feature-label">
+            {{-- <section class="section feature" aria-labelledby="feature-label">
                 <div class="container">
 
                     <figure class="feature-banner">
-                        <img src="{{ asset('adex') }}/assets/images/feature-banner.png" width="800"
-                            height="531" loading="lazy" alt="feature banner" class="w-100">
+                        <img src="{{ asset('adex') }}/assets/images/feature-banner.png" width="800" height="531"
+                            loading="lazy" alt="feature banner" class="w-100">
                     </figure>
 
                     <div class="feature-content">
@@ -451,7 +451,7 @@
                     </div>
 
                 </div>
-            </section>
+            </section> --}}
 
 
 
@@ -461,7 +461,7 @@
           - #STATS
         -->
 
-            <section class="stats" aria-label="our stats">
+            {{-- <section class="stats" aria-label="our stats">
                 <div class="container">
 
                     <ul class="stats-card has-bg-image"
@@ -502,7 +502,7 @@
                     </ul>
 
                 </div>
-            </section>
+            </section> --}}
 
 
 

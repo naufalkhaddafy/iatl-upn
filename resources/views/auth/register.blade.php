@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
+    <title>Register | IATL UPN Veteran Jogja</title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -75,12 +75,7 @@
 
                 <footer class="app-auth-footer">
                     <div class="container text-center py-3">
-                        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-                        <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
-                                style="color: #fb866a;"></i> by <a class="app-link"
-                                href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for
-                            developers</small>
-
+                        <small class="copyright">Copyright 2024 &copy; Ikatan Alumni Teknik Lingkungan UPNYK </small>
                     </div>
                 </footer><!--//app-auth-footer-->
             </div><!--//flex-column-->

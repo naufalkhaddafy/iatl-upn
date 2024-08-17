@@ -93,9 +93,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if (Storage::exists($user->image)) {
-            Storage::delete($user->image);
-        }
+        // if (Storage::exists($user->image)) {
+        //     Storage::delete($user->image);
+        // }
         $user->delete();
         Alert::toast('Data Alumni Berhasil dihapus', 'success');
         return to_route('user.index');

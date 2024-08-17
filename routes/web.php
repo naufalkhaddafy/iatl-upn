@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -41,12 +42,15 @@ Route::middleware('auth')->group(function () {
     //Users
     Route::resource('/user', UserController::class);
     Route::get('/profile', [UserController::class,'profile'])->name('profile');
+
+    //Web Settings
+    Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
 });
 
 Route::get('/', function () {
-    return redirect()->route('adex');
+    return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
 })->name('root');
 
-Route::get('/adexx', function () {
-    return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
-})->name('adex');
+// Route::get('/adexx', function () {
+//     return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
+// })->name('adex');

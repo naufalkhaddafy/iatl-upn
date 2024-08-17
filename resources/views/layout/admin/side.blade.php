@@ -172,7 +172,7 @@
             <ul class="app-menu footer-menu list-unstyled">
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link" href="settings.html">
+                    <a class="nav-link" href="{{ route('web.settings') }}">
                         <span class="nav-icon">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -185,7 +185,7 @@
                         <span class="nav-link-text">Settings</span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link"
                         href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
@@ -200,8 +200,8 @@
                         </span>
                         <span class="nav-link-text">Download</span>
                     </a><!--//nav-link-->
-                </li><!--//nav-item-->
-                <li class="nav-item">
+                </li><!--//nav-item--> --}}
+                {{-- <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link"
                         href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/">
@@ -215,7 +215,7 @@
                         </span>
                         <span class="nav-link-text">License</span>
                     </a><!--//nav-link-->
-                </li><!--//nav-item-->
+                </li><!--//nav-item--> --}}
             </ul><!--//footer-menu-->
         </nav>
     </div><!--//app-sidepanel-footer-->
