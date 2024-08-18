@@ -10,8 +10,8 @@
     - primary meta tags
   -->
     <title>IATL UPN Veteran Jogja</title>
-    <meta name="title" content="Adex">
-    <meta name="description" content="This is a business agency html template made by codewithsadee">
+    <meta name="title" content="IATL UPNYK">
+    <meta name="description" content=" Page official of IATL UPNYK">
 
     <!--
     - favicon
@@ -29,15 +29,15 @@
     <!--
     - custom css link
   -->
-    <link rel="stylesheet" href="{{ asset('adex') }}/assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('landing_page/assets/css/style.css') }}">
 
     <!--
     - preload images
   -->
-    <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-bg.jpg">
-    <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-slide-1.jpg">
-    <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-slide-2.jpg">
-    <link rel="preload" as="image" href="{{ asset('adex') }}/assets/images/hero-slide-3.jpg">
+    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-bg.jpg">
+    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-1.jpg">
+    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg">
+    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg">
 
     @vite(['resources/sass/landing.scss'])
 
@@ -57,7 +57,7 @@
         -->
 
             <section class="section hero has-bg-image" aria-label="home"
-                style="background-image: url('{{ asset('adex') }}/assets/images/hero-bg.jpg')">
+                style="background-image: url('{{ asset('landing_page') }}/assets/images/hero-bg.jpg')">
                 <div class="container">
 
                     <div class="hero-content">
@@ -90,8 +90,8 @@
                                 <li class="slider-item">
 
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
-                                        <img src="{{ asset('adex') }}/assets/images/hero-slide-1.jpg" width="575"
-                                            height="550" alt="" class="img-cover">
+                                        <img src="{{ asset('landing_page') }}/assets/images/hero-slide-1.jpg"
+                                            width="575" height="550" alt="" class="img-cover">
                                     </figure>
 
                                 </li>
@@ -100,11 +100,11 @@
 
                                     <div class="hero-card">
                                         <figure class="img-holder" style="--width: 575; --height: 550;">
-                                            <img src="{{ asset('adex') }}/assets/images/hero-slide-2.jpg" width="575"
-                                                height="550" alt="hero banner" class="img-cover">
+                                            <img src="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg"
+                                                width="575" height="550" alt="hero banner" class="img-cover">
                                         </figure>
 
-                                        <button class="play-btn" aria-label="play adex intro">
+                                        <button class="play-btn" aria-label="play landing_page intro">
                                             <ion-icon name="play" aria-hidden="true"></ion-icon>
                                         </button>
                                     </div>
@@ -114,8 +114,8 @@
                                 <li class="slider-item">
 
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
-                                        <img src="{{ asset('adex') }}/assets/images/hero-slide-3.jpg" width="575"
-                                            height="550" alt="" class="img-cover">
+                                        <img src="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg"
+                                            width="575" height="550" alt="" class="img-cover">
                                     </figure>
 
                                 </li>
@@ -268,7 +268,7 @@
                 <div class="container">
 
                     <figure class="about-banner">
-                        <img src="{{ asset('adex') }}/assets/images/about-banner.png" width="800" height="580"
+                        <img src="{{ asset('landing_page') }}/assets/images/about-banner.png" width="800" height="580"
                             loading="lazy" alt="about banner" class="w-100">
                     </figure>
 
@@ -370,7 +370,7 @@
                 <div class="container">
 
                     <figure class="feature-banner">
-                        <img src="{{ asset('adex') }}/assets/images/feature-banner.png" width="800" height="531"
+                        <img src="{{ asset('landing_page') }}/assets/images/feature-banner.png" width="800" height="531"
                             loading="lazy" alt="feature banner" class="w-100">
                     </figure>
 
@@ -465,7 +465,7 @@
                 <div class="container">
 
                     <ul class="stats-card has-bg-image"
-                        style="background-image: url('{{ asset('adex') }}/assets/images/stats-bg.jpg')">
+                        style="background-image: url('{{ asset('landing_page') }}/assets/images/stats-bg.jpg')">
 
                         <li>
                             <p class="card-text">
@@ -595,7 +595,7 @@
     <!--
       - custom js link
     -->
-    <script src="{{ asset('adex') }}/assets/js/script.js"></script>
+    <script src="{{ asset('landing_page') }}/assets/js/script.js"></script>
 
     <!--
       - ionicon

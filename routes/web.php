@@ -54,3 +54,4 @@ Route::get('/', function () {
 // Route::get('/adexx', function () {
 //     return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
 // })->name('adex');
+    
