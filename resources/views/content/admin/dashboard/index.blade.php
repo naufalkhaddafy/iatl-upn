@@ -14,10 +14,9 @@
                     <div class="row gx-5 gy-3">
                         <div class="col-12 col-lg-9">
 
-                            <div>Portal is a free Bootstrap 5 admin dashboard template. The design is simple, clean and
-                                modular so it's a great base for building any modern web app.</div>
+                            <div>Portal Web Ikatan Alumni Teknik Lingkungan UPNVYK</div>
                         </div><!--//col-->
-                        <div class="col-12 col-lg-3">
+                        {{-- <div class="col-12 col-lg-3">
                             <a class="btn app-btn-primary"
                                 href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"><svg
                                     width="1em" height="1em" viewBox="0 0 16 16"
@@ -29,7 +28,7 @@
                                     <path fill-rule="evenodd"
                                         d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z" />
                                 </svg>Free Download</a>
-                        </div><!--//col-->
+                        </div><!--//col--> --}}
                     </div><!--//row-->
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div><!--//app-card-body-->
@@ -41,8 +40,8 @@
             <div class="col-6 col-lg-3">
                 <div class="app-card app-card-stat shadow-sm h-100">
                     <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Total Sales</h4>
-                        <div class="stats-figure">$12,628</div>
+                        <h4 class="stats-type mb-1">Alumni</h4>
+                        <div class="stats-figure">1000</div>
                         <div class="stats-meta text-success">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-up"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -58,8 +57,8 @@
             <div class="col-6 col-lg-3">
                 <div class="app-card app-card-stat shadow-sm h-100">
                     <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Expenses</h4>
-                        <div class="stats-figure">$2,250</div>
+                        <h4 class="stats-type mb-1">Blogs</h4>
+                        <div class="stats-figure">100</div>
                         <div class="stats-meta text-success">
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-down"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +73,7 @@
             <div class="col-6 col-lg-3">
                 <div class="app-card app-card-stat shadow-sm h-100">
                     <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Projects</h4>
+                        <h4 class="stats-type mb-1">Agenda</h4>
                         <div class="stats-figure">23</div>
                         <div class="stats-meta">
                             Open</div>
@@ -85,7 +84,7 @@
             <div class="col-6 col-lg-3">
                 <div class="app-card app-card-stat shadow-sm h-100">
                     <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Invoices</h4>
+                        <h4 class="stats-type mb-1">Pengajuan Alumni</h4>
                         <div class="stats-figure">6</div>
                         <div class="stats-meta">New</div>
                     </div><!--//app-card-body-->
