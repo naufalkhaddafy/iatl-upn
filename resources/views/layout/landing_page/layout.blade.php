@@ -518,7 +518,7 @@
                     <p class="section-subtitle" id="project-label">Berita Terkini</p>
 
                     <h2 class="h2 section-title">
-                        Check out some of our awesome projects with creative ideas and great design.
+                        Lihat beberapa blog yang menarik dari kami.
                     </h2>
 
                     <ul class="grid-list">
@@ -547,13 +547,13 @@
                                                 <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
 
                                                 <time class="meta-text"
-                                                    datetime="2022-04-14">{{ $value->created_at->diffForHumans() }}</time>
+                                                    datetime="">{{ $value->created_at->diffForHumans() }}</time>
                                             </li>
 
                                             <li class="card-meta-item">
                                                 <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
 
-                                                <span class="meta-text">Coding</span>
+                                                <span class="meta-text">Social</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -577,10 +577,10 @@
                 <div class="container">
 
                     <h2 class="h2 section-title">
-                        Join our community by using our services and grow your business.
+                        Daftarkan diri anda sebagai bagian Alumni Teknik Lingkungan UPNYK
                     </h2>
 
-                    <a href="#" class="btn btn-primary">Try it For Free</a>
+                    <a href="#" class="btn btn-primary">Join with us</a>
 
                 </div>
             </section>

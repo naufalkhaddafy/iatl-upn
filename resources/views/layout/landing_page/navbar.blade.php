@@ -21,9 +21,9 @@
                 <li>
                     <a href="#" class="navbar-link">About</a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="#" class="navbar-link">Projects</a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="#" class="navbar-link">Blog</a>
                 </li>

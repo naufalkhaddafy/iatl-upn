@@ -4,11 +4,11 @@
         <div class="footer-brand">
 
             <a href="#" class="logo">
-                <img src="{{ asset('image/logo.png') }}" width="74" height="24" alt="Adex home">
+                <img src="{{ asset('image/logo.png') }}" width="150" height="50" alt="IATL LOGO">
             </a>
 
             <p class="footer-text">
-                &copy; 2022 codewithsadee. <br> All rights reserved.
+                &copy; 2024 IATL UPNVYK <br> All rights reserved.
             </p>
 
             <ul class="social-list">
