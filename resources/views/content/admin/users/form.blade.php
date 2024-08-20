@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('user.index') }}" class="btn app-btn-secondary">Kembali</a>
+                            <a href="{{ route('admin.index.alumni') }}" class="btn app-btn-secondary">Kembali</a>
                             <button type="submit" class="btn app-btn-primary px-3">Simpan</button>
                         </div>
                     </form>

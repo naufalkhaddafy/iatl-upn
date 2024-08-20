@@ -580,7 +580,7 @@
                         Daftarkan diri anda sebagai bagian Alumni Teknik Lingkungan UPNYK
                     </h2>
 
-                    <a href="#" class="btn btn-primary">Join with us</a>
+                    <a href="{{ route('user.register') }}" class="btn btn-primary">Join with us</a>
 
                 </div>
             </section>

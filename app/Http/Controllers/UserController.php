@@ -7,22 +7,46 @@ use App\Models\User;
 use App\Http\Requests\UserRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
-
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function indexAlumni()
     {
         //
-        $users = User::query()->where('role', false)->latest()->paginate(10);
+        // $users = User::with('roles')->where('name', 'user')->paginate(10);
+        $users = User::role('user')->latest()->paginate(10);
+
         return view('content.admin.users.index', [
             'users' => $users,
+            'page_meta' => [
+                'title' => 'Daftar Alumni',
+                'description' => 'Data Alumni yang terdaftar di sistem',
+                'role' => 'Alumni',
+                // 'method' => 'post',
+                // 'url' => route('user.store'),
+            ],
         ]);
     }
 
+    public function indexAdmin()
+    {
+        $users = User::role('admin')->latest()->paginate(10);
+
+        return view('content.admin.users.index', [
+            'users' => $users,
+            'page_meta' => [
+                'title' => 'Daftar Admin',
+                'description' => 'Data Admin yang terdaftar di sistem',
+                'role' => 'Admin',
+                // 'method' => 'post',
+                // 'url' => route('user.store'),
+            ],
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -30,13 +54,13 @@ class UserController extends Controller
     {
         return view('content.admin.users.form', [
             'user' => new User(),
-            'page_meta'=> [
-                'title'=>'Tambah Alumni',
-                'description'=> 'Daftarkan Data Alumni',
-                'method'=> 'post',
-                'url'=> route('user.store'),
-            ]
-        ] );
+            'page_meta' => [
+                'title' => 'Tambah Alumni',
+                'description' => 'Daftarkan Data Alumni',
+                'method' => 'post',
+                'url' => route('user.store'),
+            ],
+        ]);
     }
 
     /**
@@ -45,9 +69,9 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $image = $request->file('image');
-        if($image){
-            User::create([...$request->validated(),'image'=> $image->storeAs('images/users', $request->nim .'.'. $image->getClientOriginalExtension())]);
-        }else{
+        if ($image) {
+            User::create([...$request->validated(), 'image' => $image->storeAs('images/users', $request->nim . '.' . $image->getClientOriginalExtension())]);
+        } else {
             User::create($request->validated());
         }
         Alert::toast('Data Alumni Berhasil ditambahkan', 'success');
@@ -71,13 +95,13 @@ class UserController extends Controller
 
         return view('content.admin.users.form', [
             'user' => $user,
-            'page_meta'=> [
-                'title'=>'Edit Alumni',
-                'description'=> 'Edit Data Alumni ' . $user->name,
-                'method'=> 'put',
-                'url'=> route('user.update',$user->id),
-            ]
-        ] );
+            'page_meta' => [
+                'title' => 'Edit Alumni',
+                'description' => 'Edit Data Alumni ' . $user->name,
+                'method' => 'put',
+                'url' => route('user.update', $user->id),
+            ],
+        ]);
     }
 
     /**

@@ -16,13 +16,20 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('nim')->unique()->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone_number')->nullable();
             $table->string('image')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('motto')->nullable();
+            $table->string('goal')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('company_address')->nullable();
+            $table->string('position')->nullable();
             $table->string('password');
-            $table->bigInt('role')->default(1);
+            // $table->bigInt('role')->default(1);
             $table->boolean('isPremium')->default(false);
             $table->date('premium_at')->nullable();
-            $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
+            // $table->rememberToken();
             $table->timestamps();
         });
     }

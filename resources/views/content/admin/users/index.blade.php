@@ -1,4 +1,4 @@
-@section('title', 'Daftar Alumni')
+@section('title', $page_meta['title'])
 @extends('layout.admin.layout')
 @push('css')
 @endpush
@@ -8,7 +8,7 @@
 
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0">Daftar Alumni </h1>
+                <h1 class="app-page-title mb-0">{{ $page_meta['title'] }}</h1>
             </div>
             <div class="col-auto">
                 <div class="page-utilities">
@@ -41,7 +41,7 @@
                         <div class="col-auto">
                             <a class="btn app-btn-primary" href="{{ route('user.create') }}">
                                 <i class="fa fa-plus"></i>
-                                Tambah Alumni
+                                Tambah {{ $page_meta['role'] }}
                             </a>
                             <a class="btn app-btn-secondary" href="#">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download"
@@ -59,17 +59,16 @@
             </div><!--//col-auto-->
         </div><!--//row-->
 
-
-        <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-            <a class="flex-sm-fill text-sm-center nav-link active   " id="statusAll" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-            <a class="flex-sm-fill text-sm-center nav-link " id="statusPublish" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">Premium</a>
-            <a class="flex-sm-fill text-sm-center nav-link " id="statusArchived" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">Non Premium</a>
-
-
-        </nav>
+        @if ($page_meta['role'] !== 'Admin')
+            <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
+                <a class="flex-sm-fill text-sm-center nav-link active   " id="statusAll" data-bs-toggle="tab" href="#"
+                    role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+                <a class="flex-sm-fill text-sm-center nav-link " id="statusPublish" data-bs-toggle="tab" href="#"
+                    role="tab" aria-controls="orders-all" aria-selected="true">Premium</a>
+                <a class="flex-sm-fill text-sm-center nav-link " id="statusArchived" data-bs-toggle="tab" href="#"
+                    role="tab" aria-controls="orders-all" aria-selected="true">Non Premium</a>
+            </nav>
+        @endif
 
         <div class="app-card app-card-orders-table shadow-sm mb-4">
             <div class="app-card-body">

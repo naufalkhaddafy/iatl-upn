@@ -28,7 +28,7 @@
                 <div class="app-auth-body mx-auto">
                     <div class="app-auth-branding mb-4"><a class="app-logo" href="index.html"><img
                                 class="logo-icon me-2" src="{{ asset('image/logo-sm.png') }}" alt="logo"></a></div>
-                    <h2 class="auth-heading text-center mb-4">Sign up to Portal</h2>
+                    <h2 class="auth-heading text-center mb-4">Daftar Alumni IATL UPNVYK</h2>
 
                     <div class="auth-form-container text-start mx-auto">
                         <form class="auth-form auth-signup-form">
@@ -42,13 +42,39 @@
                                 <input id="signup-email" name="signup-email" type="email"
                                     class="form-control signup-email" placeholder="Email" required="required">
                             </div>
+                            <div class="nim mb-3">
+                                <label class="sr-only" for="nim">NIM</label>
+                                <input id="nim" name="nim" type="text" class="form-control nim"
+                                    placeholder="NIM" required="required">
+                            </div>
+                            <div class="phone_number mb-3">
+                                <label class="sr-only" for="phone_number">NO. HP</label>
+                                <input id="phone_number" name="phone_number" type="text"
+                                    class="form-control phone_number" placeholder="No. HP" required="required">
+                            </div>
+                            <div class="address mb-3">
+                                <label class="sr-only" for="address">Alamat</label>
+                                <input id="address" name="address" type="text" class="form-control address"
+                                    placeholder="Alamat" required="required">
+                            </div>
+                            <div class="goal mb-3">
+                                <label class="sr-only" for="goal">Cita-Cita</label>
+                                <input id="goal" name="goal" type="text" class="form-control goal"
+                                    placeholder="Cita-Cita" required="required">
+                            </div>
                             <div class="password mb-3">
                                 <label class="sr-only" for="signup-password">Password</label>
                                 <input id="signup-password" name="signup-password" type="password"
-                                    class="form-control signup-password" placeholder="Create a password"
+                                    class="form-control signup-password" placeholder="Masukan password"
                                     required="required">
                             </div>
-                            <div class="extra mb-3">
+                            <div class="password mb-3">
+                                <label class="sr-only" for="confirm-password">Konfirmasi Password</label>
+                                <input id="confirm-password" name="confirm-password" type="password"
+                                    class="form-control confirm-password" placeholder="Konfirmasi password"
+                                    required="required">
+                            </div>
+                            {{-- <div class="extra mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value=""
                                         id="RememberPassword">
@@ -57,7 +83,7 @@
                                         <a href="#" class="app-link">Privacy Policy</a>.
                                     </label>
                                 </div>
-                            </div><!--//extra-->
+                            </div><!--//extra--> --}}
 
                             <div class="text-center">
                                 <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Sign

@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
 
     //Users
     Route::resource('/user', UserController::class);
+    Route::get('/list-alumni', [UserController::class,'indexAlumni'])->name('admin.index.alumni');
+    Route::get('/list-admin', [UserController::class,'indexAdmin'])->name('admin.index.admin');
     Route::get('/profile', [UserController::class,'profile'])->name('profile');
 
     //Web Settings
@@ -54,4 +56,3 @@ Route::get('/', function () {
 // Route::get('/adexx', function () {
 //     return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
 // })->name('adex');
-    
