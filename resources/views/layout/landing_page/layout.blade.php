@@ -9,7 +9,7 @@
     <!--
     - primary meta tags
   -->
-    <title>IATL UPN Veteran Jogja</title>
+    <title>IATL UPNVYK</title>
     <meta name="title" content="IATL UPNYK">
     <meta name="description" content=" Page official of IATL UPNYK">
 

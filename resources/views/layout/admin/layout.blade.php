@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>@yield('title') | IATL Veteran Jogja</title>
+    <title>@yield('title') | IATL UPNVYK</title>
 
     <!-- Meta -->
     <meta charset="utf-8">

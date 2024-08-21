@@ -22,8 +22,10 @@ use App\Models\News;
 
 //Auth without login
 Route::get('/login', [AuthController::class, 'login'])->name('user.login')->middleware('guest');
-Route::get('/register', [AuthController::class, 'register'])->name('user.register')->middleware('guest');
+Route::get('/register', [AuthController::class, 'register'])->name('user.register');
 Route::post('/login', LoginController::class)->name('login');
+
+Route::post('/register',[UserController::class,'store'])->name('register.alumni');
 
 
 
@@ -49,10 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
 });
 
+
 Route::get('/', function () {
     return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
 })->name('root');
-
-// Route::get('/adexx', function () {
-//     return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
-// })->name('adex');

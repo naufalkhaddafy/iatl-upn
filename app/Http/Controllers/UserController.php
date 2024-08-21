@@ -25,7 +25,7 @@ class UserController extends Controller
             'page_meta' => [
                 'title' => 'Daftar Alumni',
                 'description' => 'Data Alumni yang terdaftar di sistem',
-                'role' => 'Alumni',
+            'role' => 'Alumni',
                 // 'method' => 'post',
                 // 'url' => route('user.store'),
             ],
@@ -68,14 +68,19 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        // dd($request->all());
+
         $image = $request->file('image');
         if ($image) {
-            User::create([...$request->validated(), 'image' => $image->storeAs('images/users', $request->nim . '.' . $image->getClientOriginalExtension())]);
+            $user = User::create([...$request->validated(), 'image' => $image->storeAs('images/users', $request->nim . '.' . $image->getClientOriginalExtension())]);
         } else {
-            User::create($request->validated());
+            $user = User::create($request->validated());
         }
+        $user->assignRole('user');
+
         Alert::toast('Data Alumni Berhasil ditambahkan', 'success');
-        return to_route('user.index');
+        // return to_route('admin.index.alumni');
+        return redirect()->back();
     }
 
     /**
@@ -122,7 +127,7 @@ class UserController extends Controller
         // }
         $user->delete();
         Alert::toast('Data Alumni Berhasil dihapus', 'success');
-        return to_route('user.index');
+        return redirect()->back();
     }
 
     public function profile()
