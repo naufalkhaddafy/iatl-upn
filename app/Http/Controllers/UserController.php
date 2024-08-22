@@ -79,8 +79,8 @@ class UserController extends Controller
         $user->assignRole('user');
 
         Alert::toast('Data Alumni Berhasil ditambahkan', 'success');
-        // return to_route('admin.index.alumni');
-        return redirect()->back();
+        return to_route('admin.index.alumni');
+        // return redirect()->back();
     }
 
     /**

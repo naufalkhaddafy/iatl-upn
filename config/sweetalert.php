@@ -80,7 +80,7 @@ return [
     | for particular modal just use the width() helper method.
     */
 
-    'width' => env('SWEET_ALERT_WIDTH', '32rem'),
+    'width' => env('SWEET_ALERT_WIDTH', 'auto'),
 
     /*
     |--------------------------------------------------------------------------
@@ -159,7 +159,7 @@ return [
     | For specific modal just use the showCloseButton() helper method.
     |
     */
- 
+
     'show_close_button' => env('SWEET_ALERT_CLOSE_BUTTON', false),
 
     /*

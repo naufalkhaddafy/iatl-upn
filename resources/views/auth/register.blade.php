@@ -37,26 +37,27 @@
                             <div class="email mb-3">
                                 <label class="sr-only" for="name">Your Name</label>
                                 <input id="name" name="name" type="text" class="form-control name"
-                                    placeholder="Full name" required="required">
+                                    placeholder="Full name" required="required" value="{{ old('name') }}">
                                 <x-forms.error type="danger" :messages="$errors->get('name')" />
 
                             </div>
                             <div class="email mb-3">
                                 <label class="sr-only" for="email">Your Email</label>
                                 <input id="email" name="email" type="email" class="form-control email"
-                                    placeholder="Email" required="required">
+                                    placeholder="Email" required="required" value="{{ old('email') }}">
                                 <x-forms.error type="danger" :messages="$errors->get('email')" />
                             </div>
                             <div class="nim mb-3">
                                 <label class="sr-only" for="nim">NIM</label>
-                                <input id="nim" name="nim" type="text" class="form-control nim"
-                                    placeholder="NIM" required="required">
+                                <input id="nim" name="nim" type="number" class="form-control nim"
+                                    placeholder="NIM" required="required" value="{{ old('nim') }}">
                                 <x-forms.error type="danger" :messages="$errors->get('nim')" />
                             </div>
                             <div class="phone_number mb-3">
                                 <label class="sr-only" for="phone_number">NO. HP</label>
                                 <input id="phone_number" name="phone_number" type="text"
-                                    class="form-control phone_number" placeholder="No. HP" required="required">
+                                    class="form-control phone_number" placeholder="No. HP" required="required"
+                                    value="{{ old('phone_number') }}">
                                 <x-forms.error type="danger" :messages="$errors->get('phone_number')" />
 
                             </div>

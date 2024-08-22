@@ -150,7 +150,7 @@
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
                     <div id="users"
-                        class="collapse submenu users {{ in_array(Route::currentRouteName(), ['admin.index.alumni', 'admin.index.admin']) ? 'show' : '' }}"
+                        class="collapse submenu users {{ in_array(Route::currentRouteName(), ['admin.index.alumni', 'admin.index.admin', 'user.create']) ? 'show' : '' }}"
                         data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a

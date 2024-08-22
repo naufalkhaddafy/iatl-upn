@@ -25,7 +25,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('user.login')->midd
 Route::get('/register', [AuthController::class, 'register'])->name('user.register');
 Route::post('/login', LoginController::class)->name('login');
 
-Route::post('/register',[UserController::class,'store'])->name('register.alumni');
+Route::post('/register',[AuthController::class,'registerAlumni'])->name('register.alumni');
 
 
 

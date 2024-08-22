@@ -25,7 +25,6 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('position')->nullable();
             $table->string('password');
-            // $table->bigInt('role')->default(1);
             $table->boolean('isPremium')->default(false);
             $table->date('premium_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
