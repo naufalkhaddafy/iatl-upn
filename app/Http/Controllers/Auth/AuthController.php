@@ -25,7 +25,6 @@ class AuthController extends Controller
     public function registerAlumni(UserRequest $request)
     {
         $user = User::create($request->validated());
-
         $user->assignRole('user');
 
         Alert::toast('Akun berhasil ditambahkan, Silahkan login', 'success');

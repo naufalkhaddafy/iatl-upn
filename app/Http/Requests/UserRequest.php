@@ -28,7 +28,7 @@ class UserRequest extends FormRequest
             // 'email'=> ['required','email','unique:users,email,id'.$this->user?->id],
             'nim'=> 'required|unique:users',
             'address' => 'nullable|max:255',
-            'number_phone'=> 'nullable|unique:users|min:6|max:15|numeric',
+            'phone_number'=> 'nullable|unique:users|digits_between:7,15|numeric',
             'image'=>'nullable',
             'motto'=>'nullable',
             'goal'=>'nullable',
@@ -36,6 +36,7 @@ class UserRequest extends FormRequest
             'company_address'=>'nullable',
             'position'=>'nullable',
             'password'=> 'required|min:5|confirmed',
+            'new_password' => 'confirmed|max:5|different:password',
         ];
     }
 }

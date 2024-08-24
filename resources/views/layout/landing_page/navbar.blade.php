@@ -64,8 +64,7 @@
             </ul>
         </nav>
 
-        <a href="{{ route('user.login') }}" class="btn btn-outline">Sign In</a>
-        <a href="{{ route('user.register') }}" class="btn btn-primary">Sign Up</a>
+        <a href="{{ route('user.login') }}" class="btn btn-outline">Login</a>
 
         <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
             <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>

@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/user', UserController::class);
     Route::get('/list-alumni', [UserController::class,'indexAlumni'])->name('admin.index.alumni');
     Route::get('/list-admin', [UserController::class,'indexAdmin'])->name('admin.index.admin');
-    Route::get('/profile', [UserController::class,'profile'])->name('profile');
+    Route::get('/settings/profile', [UserController::class,'profile'])->name('profile');
 
     //Web Settings
     Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
@@ -53,5 +53,5 @@ Route::middleware('auth')->group(function () {
 
 
 Route::get('/', function () {
-    return view('layout.landing_page.layout',['news'=>News::query()->latest()->where('status','publish')->paginate(3)]);
+    return view('layout.landing_page.layout',['news'=>News::with('user')->latest()->where('status','publish')->paginate(3)]);
 })->name('root');

@@ -4,9 +4,9 @@
 @endpush
 @section('content')
     <div class="container-xl">
-        <h1 class="app-page-title">Profile Saya</h1>
+        <h1 class="app-page-title">Account Settings</h1>
         <div class="row gy-4">
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-12">
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
                     <div class="app-card-header p-3 border-bottom-0">
                         <div class="row align-items-center gx-3">
@@ -25,157 +25,174 @@
                             </div><!--//col-->
                         </div><!--//row-->
                     </div><!--//app-card-header-->
-                    <div class="app-card-body px-4 w-100">
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label mb-2"><strong>Photo</strong></div>
-                                    <div class="item-data"><img class="profile-image" src="assets/images/user.png"
-                                            alt=""></div>
-                                </div><!--//col-->
-                                <div class="col text-end">
+                    <div class="row app-card-body px-4 w-100">
+                        <div class="item border-bottom py-3 mb-2">
+                            <div class="item-label mb-2"><strong>Photo</strong></div>
+                            <div class="text-center">
+                                <div class="">
+                                    @if ($user->image == null)
+                                        <img class="img-thumbnail rounded-circle" src="{{ asset('image/blank-user.png') }}"
+                                            alt="{{ $user->name }}" width="150" height="150">
+                                    @else
+                                        <img class="img-thumbnail rounded-circle"
+                                            src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}"
+                                            width="150" height="150">
+                                    @endif
+                                </div>
+                                <div class="py-2">
                                     <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
+                                    <a class="btn-sm app-btn-secondary" href="#">Delete</a>
+                                </div>
+                            </div>
                         </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Name</strong></div>
-                                    <div class="item-data">{{ $user->name }}</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Email</strong></div>
-                                    <div class="item-data">james.doe@website.com</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Website</strong></div>
-                                    <div class="item-data">
-                                        https://johndoewebsite.com
-                                    </div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Location</strong></div>
-                                    <div class="item-data">
-                                        New York
-                                    </div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
+                        <div class="col-lg-6 col-12">
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="name" class="form-label"><strong>Nama</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                            id="name" name="name" placeholder="Masukan Nama.."
+                                            value="{{ old('name', $user->name) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('name')" />
+                                    </div><!--//col-->
+
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="email" class="form-label"><strong>Email</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            id="email" name="email" placeholder="Masukan email.."
+                                            value="{{ old('email', $user->email) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('email')" />
+
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="nim" class="form-label"><strong>NIM</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                                            id="nim" name="text" placeholder="Masukan nim.."
+                                            value="{{ old('nim', $user->nim) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('nim')" />
+
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="phone_number" class="form-label"><strong>No.Hp</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <input type="text"
+                                            class="form-control @error('phone_number') is-invalid @enderror"
+                                            id="phone_number" name="text" placeholder="Masukan No.Hp.."
+                                            value="{{ old('phone_number', $user->phone_number) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('phone_number')" />
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="goal" class="form-label"><strong>Cita-Cita</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control @error('goal') is-invalid @enderror"
+                                            id="goal" name="goal" placeholder="Masukan Cita-Cita.."
+                                            value="{{ old('goal', $user->goal) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('goal')" />
+
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="motto" class="form-label"><strong>Motto</strong><span
+                                                class="text-danger">*</span>
+                                        </label>
+                                        <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
+                                            placeholder="Masukan Motto.." value="{{ old('motto', $user->motto) }}" style="height: auto;"> </textarea>
+                                        <x-forms.error type="danger" :messages="$errors->get('motto')" />
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                        </div>
+                        <div class="col-lg-6 col-12">
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="company_name" class="form-label"><strong>Perusahaan</strong><span
+                                                class="ms-2" data-bs-container="body" data-bs-toggle="popover"
+                                                data-bs-trigger="hover focus" data-bs-placement="top"
+                                                data-bs-content="Isi jika bekerja di salah satu perusahaan"><svg
+                                                    width="1em" height="1em" viewBox="0 0 16 16"
+                                                    class="bi bi-info-circle" fill="currentColor"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                    <path
+                                                        d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
+                                                    <circle cx="8" cy="4.5" r="1" />
+                                                </svg></span></span>
+                                        </label>
+                                        <input type="text"
+                                            class="form-control @error('company_name') is-invalid @enderror"
+                                            id="company_name" name="text" placeholder="Masukan Perusahaan.."
+                                            value="{{ old('company_name', $user->company_name) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('company_name')" />
+
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="company_address" class="form-label"><strong>Alamat
+                                                Perusahaan</strong>
+                                        </label>
+                                        <input type="text"
+                                            class="form-control @error('company_address') is-invalid @enderror"
+                                            id="company_address" name="text" placeholder="Masukan Alamat Perusahaan"
+                                            value="{{ old('company_address', $user->company_address) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('company_address')" />
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                            <div class="item py-2">
+                                <div class="row justify-content-between align-items-center">
+                                    <div class="col">
+                                        <label for="position" class="form-label"><strong>Jabatan</strong>
+                                        </label>
+                                        <input type="text" class="form-control @error('position') is-invalid @enderror"
+                                            id="position" name="text" placeholder="Masukan Jabatan.."
+                                            value="{{ old('position', $user->position) }}">
+                                        <x-forms.error type="danger" :messages="$errors->get('position')" />
+                                    </div><!--//col-->
+                                </div><!--//row-->
+                            </div><!--//item-->
+                        </div>
+
                     </div><!--//app-card-body-->
                     <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-secondary" href="#">Manage Profile</a>
+                        <a class="btn app-btn-primary px-4" href="#">Simpan</a>
                     </div><!--//app-card-footer-->
 
                 </div><!--//app-card-->
             </div><!--//col-->
-            <div class="col-12 col-lg-6">
-                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
-                    <div class="app-card-header p-3 border-bottom-0">
-                        <div class="row align-items-center gx-3">
-                            <div class="col-auto">
-                                <div class="app-icon-holder">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
-                                    </svg>
-                                </div><!--//icon-holder-->
 
-                            </div><!--//col-->
-                            <div class="col-auto">
-                                <h4 class="app-card-title">Preferences</h4>
-                            </div><!--//col-->
-                        </div><!--//row-->
-                    </div><!--//app-card-header-->
-                    <div class="app-card-body px-4 w-100">
 
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Language </strong></div>
-                                    <div class="item-data">English</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Time Zone</strong></div>
-                                    <div class="item-data">Central Standard Time (UTC-6)</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Currency</strong></div>
-                                    <div class="item-data">$(US Dollars)</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Email Subscription</strong></div>
-                                    <div class="item-data">Off</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>SMS Notifications</strong></div>
-                                    <div class="item-data">On</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                    </div><!--//app-card-body-->
-                    <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-secondary" href="#">Manage Preferences</a>
-                    </div><!--//app-card-footer-->
-
-                </div><!--//app-card-->
-            </div><!--//col-->
             <div class="col-12 col-lg-6">
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
                     <div class="app-card-header p-3 border-bottom-0">
@@ -193,95 +210,61 @@
 
                             </div><!--//col-->
                             <div class="col-auto">
-                                <h4 class="app-card-title">Security</h4>
+                                <h4 class="app-card-title">Ganti Password</h4>
                             </div><!--//col-->
                         </div><!--//row-->
                     </div><!--//app-card-header-->
                     <div class="app-card-body px-4 w-100">
-
-                        <div class="item border-bottom py-3">
+                        <div class="item py-2">
                             <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Password</strong></div>
-                                    <div class="item-data">••••••••</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
+                                <div class="col">
+                                    <label for="name" class="form-label"><strong>Password Lama</strong><span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" placeholder="Masukan Password Lama"
+                                        value="{{ old('password') }}">
+                                    <x-forms.error type="danger" :messages="$errors->get('password')" />
                                 </div><!--//col-->
                             </div><!--//row-->
                         </div><!--//item-->
-                        <div class="item border-bottom py-3">
+                        <div class="item py-2">
                             <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><strong>Two-Factor Authentication</strong></div>
-                                    <div class="item-data">You haven't set up two-factor authentication. </div>
+                                <div class="col">
+                                    <label for="name" class="form-label"><strong>Password Baru</strong><span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <input type="password"
+                                        class="form-control @error('new_password') is-invalid @enderror"
+                                        id="new_password" name="new_password" placeholder="Masukan Password Baru"
+                                        value="{{ old('new_password') }}">
                                 </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Set up</a>
+                            </div><!--//row-->
+                        </div><!--//item-->
+                        <div class="item py-2">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col">
+                                    <label for="name" class="form-label"><strong>Konfirmasi Password
+                                            Baru</strong><span class="text-danger">*</span>
+                                    </label>
+                                    <input type="password"
+                                        class="form-control @error('new_password_confirmation') is-invalid @enderror"
+                                        id="new_password_confirmation" name="new_password_confirmation"
+                                        placeholder="Masukan Ulang Password baru"
+                                        value="{{ old('new_password_confirmation') }}">
+                                    <x-forms.error type="danger" :messages="$errors->get('new_password')" />
                                 </div><!--//col-->
                             </div><!--//row-->
                         </div><!--//item-->
                     </div><!--//app-card-body-->
 
                     <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-secondary" href="#">Manage Security</a>
+                        <a class="btn app-btn-primary" href="#">Simpan</a>
                     </div><!--//app-card-footer-->
 
                 </div><!--//app-card-->
             </div>
-            <div class="col-12 col-lg-6">
-                <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
-                    <div class="app-card-header p-3 border-bottom-0">
-                        <div class="row align-items-center gx-3">
-                            <div class="col-auto">
-                                <div class="app-icon-holder">
-                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-credit-card"
-                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
-                                        <path d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
-                                    </svg>
-                                </div><!--//icon-holder-->
 
-                            </div><!--//col-->
-                            <div class="col-auto">
-                                <h4 class="app-card-title">Payment methods</h4>
-                            </div><!--//col-->
-                        </div><!--//row-->
-                    </div><!--//app-card-header-->
-                    <div class="app-card-body px-4 w-100">
-
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><i class="fab fa-cc-visa me-2"></i><strong>Credit/Debit Card
-                                        </strong></div>
-                                    <div class="item-data">1234*******5678</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Edit</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item border-bottom py-3">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-auto">
-                                    <div class="item-label"><i class="fab fa-paypal me-2"></i><strong>PayPal</strong>
-                                    </div>
-                                    <div class="item-data">Not connected</div>
-                                </div><!--//col-->
-                                <div class="col text-end">
-                                    <a class="btn-sm app-btn-secondary" href="#">Connect</a>
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                    </div><!--//app-card-body-->
-                    <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-secondary" href="#">Manage Payment</a>
-                    </div><!--//app-card-footer-->
-
-                </div><!--//app-card-->
-            </div>
         </div><!--//row-->
 
     </div><!--//container-fluid-->
