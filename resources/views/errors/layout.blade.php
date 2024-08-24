@@ -28,15 +28,15 @@
         <div class="row">
             <div class="col-12 col-md-11 col-lg-7 col-xl-6 mx-auto">
                 <div class="app-branding text-center mb-5">
-                    <a class="app-logo" href="/"><img class="logo-icon me-2"
-                            src="{{ asset('image/logo-sm.png') }}" alt="logo"></a>
+                    <a class="app-logo" href="/"><img class=" me-2" src="{{ asset('image/logo-sm.png') }}"
+                            alt="logo" width="70" height="70"></a>
 
                 </div><!--//app-branding-->
                 <div class="app-card p-5 text-center shadow-sm">
                     <h1 class="page-title mb-4">@yield('code')<br><span
                             class="font-weight-light">@yield('message')</span></h1>
                     <div class="mb-4">
-                        Sorry, we can't find the page you're looking for.
+                        Sorry, halaman tidak dapat di proses.
                     </div>
                     <a class="btn app-btn-primary" href="{{ url()->previous() }}">Go to home page</a>
                 </div>
