@@ -27,11 +27,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
     <!--
-    - custom css link
-  -->
-    <link rel="stylesheet" href="{{ asset('landing_page/assets/css/style.css') }}">
-
-    <!--
     - preload images
   -->
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-bg.jpg">
@@ -103,16 +98,12 @@
                                             <img src="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg"
                                                 width="575" height="550" alt="hero banner" class="img-cover">
                                         </figure>
-
                                         <button class="play-btn" aria-label="play landing_page intro">
                                             <ion-icon name="play" aria-hidden="true"></ion-icon>
                                         </button>
                                     </div>
-
                                 </li>
-
                                 <li class="slider-item">
-
                                     <figure class="img-holder" style="--width: 575; --height: 550;">
                                         <img src="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg"
                                             width="575" height="550" alt="" class="img-cover">
@@ -544,16 +535,13 @@
                                         </p>
                                         <ul class="card-meta-list">
                                             <li class="card-meta-item">
+                                                <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
+                                                <span class="meta-text">{{ $value->user->name }}</span>
+                                            </li>
+                                            <li class="card-meta-item">
                                                 <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-
                                                 <time class="meta-text"
                                                     datetime="">{{ $value->created_at->diffForHumans() }}</time>
-                                            </li>
-
-                                            <li class="card-meta-item">
-                                                <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
-
-                                                <span class="meta-text">Social</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -577,7 +565,7 @@
                 <div class="container">
 
                     <h2 class="h2 section-title">
-                        Daftarkan diri anda sebagai bagian Alumni Teknik Lingkungan UPNYK
+                        Daftarkan diri anda untuk pendataan Alumni Teknik Lingkungan UPNYK
                     </h2>
 
                     <a href="{{ route('user.register') }}" class="btn btn-primary">Join with us</a>
