@@ -38,7 +38,7 @@
                     <div class="mb-4">
                         Sorry, we can't find the page you're looking for.
                     </div>
-                    <a class="btn app-btn-primary" href="/">Go to home page</a>
+                    <a class="btn app-btn-primary" href="{{ url()->previous() }}">Go to home page</a>
                 </div>
             </div><!--//col-->
         </div><!--//row-->
