@@ -6,7 +6,7 @@
     <div class="container-xl">
         <h1 class="app-page-title">Account Settings</h1>
         <div class="row gy-4">
-            <div class="col-12 col-lg-12">
+            <div class="col-12">
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
                     <div class="app-card-header p-3 border-bottom-0">
                         <div class="row align-items-center gx-3">
@@ -25,163 +25,168 @@
                             </div><!--//col-->
                         </div><!--//row-->
                     </div><!--//app-card-header-->
-                    <div class="row app-card-body px-4 w-100">
-                        <div class="item border-bottom py-3 mb-2">
-                            <div class="item-label mb-2"><strong>Photo</strong></div>
-                            <div class="text-center">
-                                <div class="">
-                                    @if ($user->image == null)
-                                        <img class="img-thumbnail rounded-circle" src="{{ asset('image/blank-user.png') }}"
-                                            alt="{{ $user->name }}" width="150" height="150">
-                                    @else
-                                        <img class="img-thumbnail rounded-circle"
-                                            src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}"
-                                            width="150" height="150">
-                                    @endif
+                    <div class="app-card-body px-4 w-100">
+                        <div class="row">
+                            <div class="item border-bottom py-3 mb-2">
+                                <div class="item-label mb-2"><strong>Photo</strong></div>
+                                <div class="text-center">
+                                    <div class="">
+                                        @if ($user->image == null)
+                                            <img class="img-thumbnail rounded-circle"
+                                                src="{{ asset('image/blank-user.png') }}" alt="{{ $user->name }}"
+                                                width="150" height="150">
+                                        @else
+                                            <img class="img-thumbnail rounded-circle"
+                                                src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}"
+                                                width="150" height="150">
+                                        @endif
+                                    </div>
+                                    <div class="py-2">
+                                        <a class="btn-sm app-btn-secondary" href="#">Change</a>
+                                        <a class="btn-sm app-btn-secondary-danger" href="#">Delete</a>
+                                    </div>
                                 </div>
-                                <div class="py-2">
-                                    <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                    <a class="btn-sm app-btn-secondary" href="#">Delete</a>
-                                </div>
+                            </div><!--//item-->
+                            <div class="col-lg-6 col-12">
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="name" class="form-label"><strong>Nama</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                                id="name" name="name" placeholder="Masukan Nama.."
+                                                value="{{ old('name', $user->name) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('name')" />
+                                        </div><!--//col-->
+
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="email" class="form-label"><strong>Email</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                                id="email" name="email" placeholder="Masukan email.."
+                                                value="{{ old('email', $user->email) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('email')" />
+
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="nim" class="form-label"><strong>NIM</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                                                id="nim" name="text" placeholder="Masukan nim.."
+                                                value="{{ old('nim', $user->nim) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('nim')" />
+
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="phone_number" class="form-label"><strong>No.Hp</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('phone_number') is-invalid @enderror"
+                                                id="phone_number" name="text" placeholder="Masukan No.Hp.."
+                                                value="{{ old('phone_number', $user->phone_number) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('phone_number')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="goal" class="form-label"><strong>Cita-Cita</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="text" class="form-control @error('goal') is-invalid @enderror"
+                                                id="goal" name="goal" placeholder="Masukan Cita-Cita.."
+                                                value="{{ old('goal', $user->goal) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('goal')" />
+
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="motto" class="form-label"><strong>Motto</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
+                                                placeholder="Masukan Motto.." value="{{ old('motto', $user->motto) }}" style="height: auto;"> </textarea>
+                                            <x-forms.error type="danger" :messages="$errors->get('motto')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
                             </div>
-                        </div><!--//item-->
-                        <div class="col-lg-6 col-12">
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="name" class="form-label"><strong>Nama</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                            id="name" name="name" placeholder="Masukan Nama.."
-                                            value="{{ old('name', $user->name) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('name')" />
-                                    </div><!--//col-->
+                            <div class="col-lg-6 col-12">
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="company_name" class="form-label"><strong>Perusahaan</strong><span
+                                                    class="ms-2" data-bs-container="body" data-bs-toggle="popover"
+                                                    data-bs-trigger="hover focus" data-bs-placement="top"
+                                                    data-bs-content="Isi jika bekerja di salah satu perusahaan"><svg
+                                                        width="1em" height="1em" viewBox="0 0 16 16"
+                                                        class="bi bi-info-circle" fill="currentColor"
+                                                        xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                            d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                        <path
+                                                            d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
+                                                        <circle cx="8" cy="4.5" r="1" />
+                                                    </svg></span></span>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('company_name') is-invalid @enderror"
+                                                id="company_name" name="text" placeholder="Masukan Perusahaan.."
+                                                value="{{ old('company_name', $user->company_name) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('company_name')" />
 
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="email" class="form-label"><strong>Email</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                            id="email" name="email" placeholder="Masukan email.."
-                                            value="{{ old('email', $user->email) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('email')" />
-
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="nim" class="form-label"><strong>NIM</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control @error('nim') is-invalid @enderror"
-                                            id="nim" name="text" placeholder="Masukan nim.."
-                                            value="{{ old('nim', $user->nim) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('nim')" />
-
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="phone_number" class="form-label"><strong>No.Hp</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <input type="text"
-                                            class="form-control @error('phone_number') is-invalid @enderror"
-                                            id="phone_number" name="text" placeholder="Masukan No.Hp.."
-                                            value="{{ old('phone_number', $user->phone_number) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('phone_number')" />
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="goal" class="form-label"><strong>Cita-Cita</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <input type="text" class="form-control @error('goal') is-invalid @enderror"
-                                            id="goal" name="goal" placeholder="Masukan Cita-Cita.."
-                                            value="{{ old('goal', $user->goal) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('goal')" />
-
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="motto" class="form-label"><strong>Motto</strong><span
-                                                class="text-danger">*</span>
-                                        </label>
-                                        <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
-                                            placeholder="Masukan Motto.." value="{{ old('motto', $user->motto) }}" style="height: auto;"> </textarea>
-                                        <x-forms.error type="danger" :messages="$errors->get('motto')" />
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                        </div>
-                        <div class="col-lg-6 col-12">
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="company_name" class="form-label"><strong>Perusahaan</strong><span
-                                                class="ms-2" data-bs-container="body" data-bs-toggle="popover"
-                                                data-bs-trigger="hover focus" data-bs-placement="top"
-                                                data-bs-content="Isi jika bekerja di salah satu perusahaan"><svg
-                                                    width="1em" height="1em" viewBox="0 0 16 16"
-                                                    class="bi bi-info-circle" fill="currentColor"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd"
-                                                        d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                                    <path
-                                                        d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z" />
-                                                    <circle cx="8" cy="4.5" r="1" />
-                                                </svg></span></span>
-                                        </label>
-                                        <input type="text"
-                                            class="form-control @error('company_name') is-invalid @enderror"
-                                            id="company_name" name="text" placeholder="Masukan Perusahaan.."
-                                            value="{{ old('company_name', $user->company_name) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('company_name')" />
-
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="company_address" class="form-label"><strong>Alamat
-                                                Perusahaan</strong>
-                                        </label>
-                                        <input type="text"
-                                            class="form-control @error('company_address') is-invalid @enderror"
-                                            id="company_address" name="text" placeholder="Masukan Alamat Perusahaan"
-                                            value="{{ old('company_address', $user->company_address) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('company_address')" />
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
-                            <div class="item py-2">
-                                <div class="row justify-content-between align-items-center">
-                                    <div class="col">
-                                        <label for="position" class="form-label"><strong>Jabatan</strong>
-                                        </label>
-                                        <input type="text" class="form-control @error('position') is-invalid @enderror"
-                                            id="position" name="text" placeholder="Masukan Jabatan.."
-                                            value="{{ old('position', $user->position) }}">
-                                        <x-forms.error type="danger" :messages="$errors->get('position')" />
-                                    </div><!--//col-->
-                                </div><!--//row-->
-                            </div><!--//item-->
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="company_address" class="form-label"><strong>Alamat
+                                                    Perusahaan</strong>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('company_address') is-invalid @enderror"
+                                                id="company_address" name="text"
+                                                placeholder="Masukan Alamat Perusahaan"
+                                                value="{{ old('company_address', $user->company_address) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('company_address')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="position" class="form-label"><strong>Jabatan</strong>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('position') is-invalid @enderror"
+                                                id="position" name="text" placeholder="Masukan Jabatan.."
+                                                value="{{ old('position', $user->position) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('position')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                            </div>
                         </div>
 
                     </div><!--//app-card-body-->
