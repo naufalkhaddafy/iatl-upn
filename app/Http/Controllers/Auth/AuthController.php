@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Illuminate\Support\Facades\Hash;
 
 
 class AuthController extends Controller
@@ -31,5 +31,29 @@ class AuthController extends Controller
         return to_route('login');
     }
 
+    public function profile()
+    {
+        return view('content.admin.users.profile', ['user' => auth()->user()]);
+    }
+
+    public function update(UserRequest $request)
+    {
+        dd($request->all());
+    }
+
+    public function updatePassword(Request $request)
+    {
+        // dd(Request()->all());
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'min:5', 'confirmed'],
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+        Alert::toast('Berhasil Merubah Password', 'success');
+        return back();
+    }
 
 }

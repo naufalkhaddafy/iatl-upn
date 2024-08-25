@@ -32,6 +32,9 @@ Route::post('/register',[AuthController::class,'registerAlumni'])->name('registe
 Route::middleware('auth')->group(function () {
     // Auth with login
     Route::post('/logout', LogoutController::class)->name('logout');
+    Route::get('/settings/profile', [AuthController::class,'profile'])->name('settings.profile');
+    Route::put('/settings/profile',[AuthController::class,'update'])->name('settings.profile.update');
+    Route::put('/settings/profile/password',[AuthController::class,'updatePassword'])->name('settings.profile.update.password');
 
     //Dashboard
     Route::get('/dashboard', function () {
@@ -45,8 +48,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/user', UserController::class);
     Route::get('/list-alumni', [UserController::class,'indexAlumni'])->name('admin.index.alumni');
     Route::get('/list-admin', [UserController::class,'indexAdmin'])->name('admin.index.admin');
-    Route::get('/settings/profile', [UserController::class,'profile'])->name('profile');
-
     //Web Settings
     Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
 });

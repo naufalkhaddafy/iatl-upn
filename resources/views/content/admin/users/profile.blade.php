@@ -193,13 +193,15 @@
                     <div class="app-card-footer p-4 mt-auto">
                         <a class="btn app-btn-primary px-4" href="#">Simpan</a>
                     </div><!--//app-card-footer-->
-
                 </div><!--//app-card-->
             </div><!--//col-->
-
-
-            <div class="col-12 col-lg-6">
+            <!--// Security -->
+            <form class="col-12 col-lg-6" action="{{ route('settings.profile.update.password') }}"
+                enctype="multipart/form-data" method="post">
+                @method('put')
+                @csrf
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+
                     <div class="app-card-header p-3 border-bottom-0">
                         <div class="row align-items-center gx-3">
                             <div class="col-auto">
@@ -223,53 +225,48 @@
                         <div class="item py-2">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col">
-                                    <label for="name" class="form-label"><strong>Password Lama</strong><span
+                                    <label for="current_password" class="form-label"><strong>Password Lama</strong><span
+                                            class="text-danger">*</span>
+                                    </label>
+                                    <input type="password"
+                                        class="form-control @error('current_password') is-invalid @enderror"
+                                        id="current_password" name="current_password"
+                                        placeholder="Masukan Password Lama">
+                                    <x-forms.error type="danger" :messages="$errors->get('current_password')" />
+                                </div><!--//col-->
+                            </div><!--//row-->
+                        </div><!--//item-->
+                        <div class="item py-2">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col">
+                                    <label for="password" class="form-label"><strong>Password Baru</strong><span
                                             class="text-danger">*</span>
                                     </label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Masukan Password Lama"
-                                        value="{{ old('password') }}">
+                                        id="password" name="password" placeholder="Masukan Password Baru">
+                                </div><!--//col-->
+                            </div><!--//row-->
+                        </div><!--//item-->
+                        <div class="item py-2">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col">
+                                    <label for="password_confimation" class="form-label"><strong>Konfirmasi Password
+                                            Baru</strong><span class="text-danger">*</span>
+                                    </label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password_confirmation" name="password_confirmation"
+                                        placeholder="Masukan Ulang Password baru">
                                     <x-forms.error type="danger" :messages="$errors->get('password')" />
                                 </div><!--//col-->
                             </div><!--//row-->
                         </div><!--//item-->
-                        <div class="item py-2">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col">
-                                    <label for="name" class="form-label"><strong>Password Baru</strong><span
-                                            class="text-danger">*</span>
-                                    </label>
-                                    <input type="password"
-                                        class="form-control @error('new_password') is-invalid @enderror"
-                                        id="new_password" name="new_password" placeholder="Masukan Password Baru"
-                                        value="{{ old('new_password') }}">
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
-                        <div class="item py-2">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col">
-                                    <label for="name" class="form-label"><strong>Konfirmasi Password
-                                            Baru</strong><span class="text-danger">*</span>
-                                    </label>
-                                    <input type="password"
-                                        class="form-control @error('new_password_confirmation') is-invalid @enderror"
-                                        id="new_password_confirmation" name="new_password_confirmation"
-                                        placeholder="Masukan Ulang Password baru"
-                                        value="{{ old('new_password_confirmation') }}">
-                                    <x-forms.error type="danger" :messages="$errors->get('new_password')" />
-                                </div><!--//col-->
-                            </div><!--//row-->
-                        </div><!--//item-->
                     </div><!--//app-card-body-->
-
                     <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-primary" href="#">Simpan</a>
+                        <button type="submit" class="btn app-btn-primary">Simpan</a>
                     </div><!--//app-card-footer-->
-
                 </div><!--//app-card-->
-            </div>
-
+            </form>
+            <!--// Security End-->
         </div><!--//row-->
 
     </div><!--//container-fluid-->

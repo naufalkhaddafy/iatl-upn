@@ -129,9 +129,4 @@ class UserController extends Controller
         Alert::toast('Data Alumni Berhasil dihapus', 'success');
         return redirect()->back();
     }
-
-    public function profile()
-    {
-        return view('content.admin.users.profile', ['user' => auth()->user()]);
-    }
 }

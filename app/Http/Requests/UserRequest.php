@@ -35,8 +35,7 @@ class UserRequest extends FormRequest
             'company_name'=>'nullable',
             'company_address'=>'nullable',
             'position'=>'nullable',
-            'password'=> 'required|min:5|confirmed',
-            'new_password' => 'confirmed|max:5|different:password',
+            'password'=>[ $this->method() ==='post' ? 'required' : 'nullable', 'min:5', 'confirmed'],
         ];
     }
 }
