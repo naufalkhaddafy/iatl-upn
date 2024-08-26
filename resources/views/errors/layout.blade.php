@@ -17,8 +17,7 @@
     <!-- FontAwesome JS-->
     <script defer src="{{ asset('admin') }}/assets/plugins/fontawesome/js/all.min.js"></script>
 
-    <!-- App CSS -->
-    <link id="theme-style" rel="stylesheet" href="{{ asset('admin') }}/assets/css/portal.css">
+    @vite(['resources/sass/admin.scss'])
 
 </head>
 
