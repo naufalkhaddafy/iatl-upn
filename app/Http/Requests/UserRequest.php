@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -23,12 +24,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name'=> 'required|',
-            'email'=> 'required|email|unique:users',
-            // 'email'=> ['required','email', Rule::unique('users','email')->ignore($this->user?->id)],
+            // 'email'=> 'required|email|unique:users',
+            'email'=> ['required','email', Rule::unique('users','email')->ignore($this->user()->id)],
             // 'email'=> ['required','email','unique:users,email,id'.$this->user?->id],
-            'nim'=> 'required|unique:users',
+            'nim'=> [$this->user()->getRoleNames() !== 'admin' ? 'required' : 'nullable', Rule::unique('users','nim')->ignore($this->user()->id)],
             'address' => 'nullable|max:255',
-            'phone_number'=> 'nullable|unique:users|digits_between:7,15|numeric',
+            'phone_number'=> 'nullable|digits_between:7,15|numeric',
             'image'=>'nullable',
             'motto'=>'nullable',
             'goal'=>'nullable',

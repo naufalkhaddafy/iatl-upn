@@ -8,7 +8,7 @@ use Database\Factories\NewsFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -21,13 +21,21 @@ class DatabaseSeeder extends Seeder
 
         $roleAdmin = Role::create(['name' => 'admin']);
         $roleUser = Role::create(['name' => 'user']);
-        $admin= \App\Models\User::create([
+        $admin=User::create([
             'name' => 'Admin',
             'email' => 'admin@iatl.com',
             'isPremium' =>1,
             'password' => Hash::make('admin'),
         ]);
+        $user=User::create([
+            'name' => 'Alumni IATL',
+            'email' => 'alumni@iatl.com',
+            'isPremium' =>0,
+            'nim'=>'12345',
+            'password' => Hash::make('alumni'),
+        ]);
          $admin->assignRole($roleAdmin);
+         $user->assignRole($roleUser);
 
         $this->call(NewsSeeder::class);
         $this->call(UserSeeder::class);

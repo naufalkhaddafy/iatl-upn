@@ -6,7 +6,9 @@
     <div class="container-xl">
         <h1 class="app-page-title">Account Settings</h1>
         <div class="row gy-4">
-            <div class="col-12">
+            <form class="col-12" action="{{ route('settings.profile.update') }}" enctype="multipart/form-data" method="post">
+                @method('put')
+                @csrf
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
                     <div class="app-card-header p-3 border-bottom-0">
                         <div class="row align-items-center gx-3">
@@ -32,18 +34,23 @@
                                 <div class="text-center">
                                     <div class="">
                                         @if ($user->image == null)
-                                            <img class="img-thumbnail rounded-circle"
+                                            <img id='imgPreview' class="rounded-circle"
                                                 src="{{ asset('image/blank-user.png') }}" alt="{{ $user->name }}"
                                                 width="150" height="150">
                                         @else
-                                            <img class="img-thumbnail rounded-circle"
-                                                src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}"
-                                                width="150" height="150">
+                                            <img id='imgPreview' class="rounded-circle"
+                                                src="{{ asset('storage/' . $user->image ?? 'image/blank-user.png') }}"
+                                                alt="{{ $user->name }}" width="150" height="150">
                                         @endif
                                     </div>
-                                    <div class="py-2">
-                                        <a class="btn-sm app-btn-secondary" href="#">Change</a>
-                                        <a class="btn-sm app-btn-secondary-danger" href="#">Delete</a>
+                                    <div>
+                                        <x-forms.error type="danger" :messages="$errors->get('image')" />
+                                    </div>
+                                    <div class="py-3">
+                                        <label class="btn-sm app-btn-secondary cursor-pointer"><input type="file"
+                                                id="image" name="image" hidden>Change</label>
+                                        <label class="btn-sm app-btn-secondary-danger cursor-pointer"
+                                            href="#">Delete</label>
                                     </div>
                                 </div>
                             </div><!--//item-->
@@ -83,7 +90,7 @@
                                                     class="text-danger">*</span>
                                             </label>
                                             <input type="text" class="form-control @error('nim') is-invalid @enderror"
-                                                id="nim" name="text" placeholder="Masukan nim.."
+                                                id="nim" name="nim" placeholder="Masukan nim.."
                                                 value="{{ old('nim', $user->nim) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('nim')" />
 
@@ -96,9 +103,9 @@
                                             <label for="phone_number" class="form-label"><strong>No.Hp</strong><span
                                                     class="text-danger">*</span>
                                             </label>
-                                            <input type="text"
+                                            <input type="number"
                                                 class="form-control @error('phone_number') is-invalid @enderror"
-                                                id="phone_number" name="text" placeholder="Masukan No.Hp.."
+                                                id="phone_number" name="phone_number" placeholder="Masukan No.Hp.."
                                                 value="{{ old('phone_number', $user->phone_number) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('phone_number')" />
                                         </div><!--//col-->
@@ -125,7 +132,7 @@
                                                     class="text-danger">*</span>
                                             </label>
                                             <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
-                                                placeholder="Masukan Motto.." value="{{ old('motto', $user->motto) }}" style="height: auto;"> </textarea>
+                                                placeholder="Masukan Motto.." style="height: auto;">{{ old('motto', $user->motto) }}</textarea>
                                             <x-forms.error type="danger" :messages="$errors->get('motto')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
@@ -151,7 +158,7 @@
                                             </label>
                                             <input type="text"
                                                 class="form-control @error('company_name') is-invalid @enderror"
-                                                id="company_name" name="text" placeholder="Masukan Perusahaan.."
+                                                id="company_name" name="company_name" placeholder="Masukan Perusahaan.."
                                                 value="{{ old('company_name', $user->company_name) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('company_name')" />
 
@@ -166,7 +173,7 @@
                                             </label>
                                             <input type="text"
                                                 class="form-control @error('company_address') is-invalid @enderror"
-                                                id="company_address" name="text"
+                                                id="company_address" name="company_address"
                                                 placeholder="Masukan Alamat Perusahaan"
                                                 value="{{ old('company_address', $user->company_address) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('company_address')" />
@@ -180,7 +187,7 @@
                                             </label>
                                             <input type="text"
                                                 class="form-control @error('position') is-invalid @enderror"
-                                                id="position" name="text" placeholder="Masukan Jabatan.."
+                                                id="position" name="position" placeholder="Masukan Jabatan.."
                                                 value="{{ old('position', $user->position) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('position')" />
                                         </div><!--//col-->
@@ -191,10 +198,10 @@
 
                     </div><!--//app-card-body-->
                     <div class="app-card-footer p-4 mt-auto">
-                        <a class="btn app-btn-primary px-4" href="#">Simpan</a>
+                        <button class="btn app-btn-primary px-4" type="submit">Simpan</button>
                     </div><!--//app-card-footer-->
                 </div><!--//app-card-->
-            </div><!--//col-->
+            </form>
             <!--// Security -->
             <form class="col-12 col-lg-6" action="{{ route('settings.profile.update.password') }}"
                 enctype="multipart/form-data" method="post">
@@ -272,4 +279,18 @@
     </div><!--//container-fluid-->
 @endsection
 @push('js')
+    <script>
+        $('#image').on('change', function() {
+            file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#imgPreview").removeClass('d-none').attr("src", event.target.result);
+                    // $("#file-group").addClass("d-none");
+                    // $('#action-group').addClass('d-block');
+                };
+                reader.readAsDataURL(file);
+            }
+        })
+    </script>
 @endpush

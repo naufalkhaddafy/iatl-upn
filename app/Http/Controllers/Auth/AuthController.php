@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class AuthController extends Controller
@@ -38,7 +39,20 @@ class AuthController extends Controller
 
     public function update(UserRequest $request)
     {
-        dd($request->all());
+
+
+        $image = $request->file('image');
+        if ($image) {
+            $userUpdate = $request->user()->update([...$request->validated(), 'image' => $image->storeAs('images/users/', $request->nim . '.' . $image->getClientOriginalExtension())]);
+            if (Storage::exists($request->image)) {
+                Storage::delete($request->image);
+            }
+        } else {
+            $userUpdate = $request->user()->update($request->validated());
+        }
+
+        Alert::toast('Berhasil Merubah Data', 'success');
+        return back();
     }
 
     public function updatePassword(Request $request)
@@ -55,5 +69,4 @@ class AuthController extends Controller
         Alert::toast('Berhasil Merubah Password', 'success');
         return back();
     }
-
 }
