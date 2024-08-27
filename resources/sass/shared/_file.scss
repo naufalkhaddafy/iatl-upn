@@ -30,18 +30,3 @@
         }
     }
 }
-
-.img-size {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-}
-
-#set-button {
-    display: none;
-}
-.img-thumbnail:hover {
-    #set-button {
-        display: block;
-    }
-}

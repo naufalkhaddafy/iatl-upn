@@ -39,18 +39,19 @@
                                                 width="150" height="150">
                                         @else
                                             <img id='imgPreview' class="rounded-circle"
-                                                src="{{ asset('storage/' . $user->image ?? 'image/blank-user.png') }}"
-                                                alt="{{ $user->name }}" width="150" height="150">
+                                                src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}"
+                                                width="150" height="150">
                                         @endif
                                     </div>
                                     <div>
                                         <x-forms.error type="danger" :messages="$errors->get('image')" />
                                     </div>
                                     <div class="py-3">
-                                        <label class="btn-sm app-btn-secondary cursor-pointer"><input type="file"
-                                                id="image" name="image" hidden>Change</label>
+                                        <label for="image" class="btn-sm app-btn-secondary cursor-pointer"><input
+                                                type="file" id="image" name="image" hidden>Change</label>
                                         <label class="btn-sm app-btn-secondary-danger cursor-pointer"
-                                            href="#">Delete</label>
+                                            id="deleteImagePreview">Delete</label>
+                                        <input type="hidden" name="deleteImage" id="deleteImage">
                                     </div>
                                 </div>
                             </div><!--//item-->
@@ -269,7 +270,7 @@
                         </div><!--//item-->
                     </div><!--//app-card-body-->
                     <div class="app-card-footer p-4 mt-auto">
-                        <button type="submit" class="btn app-btn-primary">Simpan</a>
+                        <button type="submit" class="btn app-btn-primary px-4">Simpan</a>
                     </div><!--//app-card-footer-->
                 </div><!--//app-card-->
             </form>
@@ -281,16 +282,20 @@
 @push('js')
     <script>
         $('#image').on('change', function() {
+            $('#deleteImage').val(null)
             file = this.files[0];
             if (file) {
                 let reader = new FileReader();
                 reader.onload = function(event) {
                     $("#imgPreview").removeClass('d-none').attr("src", event.target.result);
-                    // $("#file-group").addClass("d-none");
-                    // $('#action-group').addClass('d-block');
                 };
                 reader.readAsDataURL(file);
             }
+        })
+
+        $('#deleteImagePreview').on('click', function() {
+            $('#imgPreview').attr("src", '{{ asset('image/blank-user.png') }}')
+            $('#deleteImage').val(true)
         })
     </script>
 @endpush

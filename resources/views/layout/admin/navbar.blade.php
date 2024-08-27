@@ -143,9 +143,16 @@
                     </div><!--//app-utility-item-->
 
                     <div class="app-utility-item app-user-dropdown dropdown">
-                        <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown"
-                            href="#" role="button" aria-expanded="false"><img
-                                src="{{ asset('image/blank-user.png') }}" alt="user profile" class="rounded-5"></a>
+                        <a class="dropdown pr-5" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                            role="button" aria-expanded="false">
+                            @if (auth()->user()->image)
+                                <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                                    alt="{{ auth()->user()->name }}" class="rounded-5">
+                            @else
+                                <img src="{{ asset('image/blank-user.png') }}" alt="{{ auth()->user()->name }}"
+                                    class="rounded-5">
+                            @endif
+                        </a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                             <li><a class="dropdown-item" href="{{ route('settings.profile') }}">Profile</a></li>
                             <li>

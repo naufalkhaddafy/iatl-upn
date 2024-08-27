@@ -68,19 +68,12 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        // dd($request->all());
-
         $image = $request->file('image');
-        if ($image) {
-            $user = User::create([...$request->validated(), 'image' => $image->storeAs('images/users', $request->nim . '.' . $image->getClientOriginalExtension())]);
-        } else {
-            $user = User::create($request->validated());
-        }
+        $user = User::create([...$request->validated(), 'image' => $image?->storeAs('images/users', $request->register_code . '.' . $image->getClientOriginalExtension())]);
         $user->assignRole('user');
 
         Alert::toast('Data Alumni Berhasil ditambahkan', 'success');
         return to_route('admin.index.alumni');
-        // return redirect()->back();
     }
 
     /**

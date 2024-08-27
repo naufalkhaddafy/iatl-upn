@@ -29,7 +29,8 @@ class UserFactory extends Factory
             'nim' => fake()->unique()->numerify('##########'),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
-            'isPremium' =>fake()->boolean()
+            'isPremium' =>fake()->boolean(),
+            'register_code' =>fake()->unique()->asciify('***************')
         ];
     }
 

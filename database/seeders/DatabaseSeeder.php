@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@iatl.com',
             'isPremium' =>1,
+            'register_code'=>'admin',
             'password' => Hash::make('admin'),
         ]);
         $user=User::create([
@@ -32,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'alumni@iatl.com',
             'isPremium' =>0,
             'nim'=>'12345',
+            'register_code'=>'alumni',
             'password' => Hash::make('alumni'),
         ]);
          $admin->assignRole($roleAdmin);
