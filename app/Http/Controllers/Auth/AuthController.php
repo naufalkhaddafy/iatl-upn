@@ -39,18 +39,19 @@ class AuthController extends Controller
 
     public function update(UserRequest $request)
     {
+        // dd(Storage::exists(!$request->image));
         $image = $request->file('image');
         if ($image) {
-            if (Storage::exists($request->image)) {
+            if (Storage::exists(!$request->image)) {
                 Storage::delete($request->image);
             }
-            $userUpdate = $request->user()->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $request->user()->register_code )]);
+            $userUpdate = $request->user()->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $request->user()->register_code .'.'. $image->getClientOriginalExtension()  )]);
 
         } else {
             $rmImage = $request->deleteImage;
             if($rmImage){
+                Storage::delete($request->user()->image);
                 $userUpdate = $request->user()->update([...$request->validated(),'image'=> null]);
-                Storage::delete($request->user()->image ?? '');
             }else{
                 $userUpdate = $request->user()->update($request->validated());
             }

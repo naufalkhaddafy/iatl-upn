@@ -296,6 +296,7 @@
         $('#deleteImagePreview').on('click', function() {
             $('#imgPreview').attr("src", '{{ asset('image/blank-user.png') }}')
             $('#deleteImage').val(true)
+            $('#image').val('');
         })
     </script>
 @endpush
