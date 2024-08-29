@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
         return view('content.admin.dashboard.index');
     })->name('dashboard')->middleware('auth');
 
+
+    
     //News
     Route::resource('/news', NewsController::class);
 

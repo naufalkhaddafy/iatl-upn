@@ -8,6 +8,7 @@ use App\Http\Requests\UserRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -68,11 +69,15 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+
+        // dd($request->all());
+        $register_code = $request->register_code = 'REG-' . date('YmdHis') . Str::random(3);
+
         $image = $request->file('image');
-        $user = User::create([...$request->validated(), 'image' => $image?->storeAs('images/users', $request->register_code . '.' . $image->getClientOriginalExtension())]);
+        $user = User::create([...$request->validated(), 'register_code'=>$register_code ,'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
         $user->assignRole('user');
 
-        Alert::toast('Data Alumni Berhasil ditambahkan', 'success');
+        Alert::toast('Data alumni berhasil ditambahkan', 'success');
         return to_route('admin.index.alumni');
     }
 
@@ -95,7 +100,7 @@ class UserController extends Controller
             'user' => $user,
             'page_meta' => [
                 'title' => 'Edit Alumni',
-                'description' => 'Edit Data Alumni ' . $user->name,
+                'description' => 'Data Alumni ' . $user->name,
                 'method' => 'put',
                 'url' => route('user.update', $user->id),
             ],
@@ -105,9 +110,26 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, User $user)
     {
-        //
+        $image = $request->file('image');
+        if ($image) {
+            if (Storage::exists(!$user->image)) {
+                Storage::delete($user->image);
+            }
+            $userUpdate = $user->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $user->register_code .'.'. $image->getClientOriginalExtension()  )]);
+
+        } else {
+            $rmImage = $request->deleteImage;
+            if($rmImage){
+                Storage::delete($user->image);
+                $userUpdate = $user->update([...$request->validated(),'image'=> null]);
+            }else{
+                $userUpdate = $user->update($request->validated());
+            }
+        }
+        Alert::toast('Berhasil Merubah Data', 'success');
+        return back();
     }
 
     /**
@@ -119,7 +141,7 @@ class UserController extends Controller
         //     Storage::delete($user->image);
         // }
         $user->delete();
-        Alert::toast('Data Alumni Berhasil dihapus', 'success');
+        Alert::toast('Data alumni berhasil dihapus', 'success');
         return redirect()->back();
     }
 }
