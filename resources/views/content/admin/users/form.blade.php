@@ -229,7 +229,9 @@
                         </div>
 
                     </div><!--//app-card-body-->
-                    <div class="app-card-footer p-4 mt-auto">
+                    <div class="app-card-footer p-4 mt-auto d-flex justify-content-between align-content-center"
+                        style="gap:10px;">
+                        <a class="btn app-btn-secondary px-4" href="{{ route('admin.index.alumni') }}">Kembali</a>
                         <button class="btn app-btn-primary px-4" type="submit">Simpan</button>
                     </div><!--//app-card-footer-->
                 </div><!--//app-card-->

@@ -6,7 +6,7 @@
     <div class="container-xl">
         <h1 class="app-page-title">Account Settings</h1>
         <div class="row gy-4">
-            <form class="col-12" action="{{ route('settings.profile.update') }}" enctype="multipart/form-data" method="post">
+            <form class="col-12" action="{{ route('settings.profile.update', $user->id) }}" enctype="multipart/form-data" method="post">
                 @method('put')
                 @csrf
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">

@@ -9,6 +9,6 @@ class UserObserver
     //
     public function creating(User $user): void
     {
-        !$user->image ? $user->register_code = 'REG-' . date('YmdHis') . Str::random(3): '';
+        !$user->image ? $user->register_code = 'REG-' . date('YmdHis-') . $user->nim : '';
     }
 }

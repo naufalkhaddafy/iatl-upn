@@ -37,16 +37,14 @@ class AuthController extends Controller
         return view('content.admin.users.profile', ['user' => auth()->user()]);
     }
 
-    public function update(UserRequest $request)
+    public function update(UserRequest $request, User $user)
     {
-        // dd(Storage::exists(!$request->image));
         $image = $request->file('image');
         if ($image) {
             if (Storage::exists(!$request->image)) {
                 Storage::delete($request->image);
             }
-            $userUpdate = $request->user()->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $request->user()->register_code .'.'. $image->getClientOriginalExtension()  )]);
-
+            $userUpdate = $request->user()->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $request->user()->register_code .'.'. $image->getClientOriginalExtension())]);
         } else {
             $rmImage = $request->deleteImage;
             if($rmImage){
