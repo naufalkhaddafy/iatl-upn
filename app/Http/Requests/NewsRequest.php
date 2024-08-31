@@ -25,7 +25,7 @@ class NewsRequest extends FormRequest
         return [
             'title' => 'required|',
             'description' => 'required|',
-            'image' => 'nullable|',
+            'image' => 'nullable|max:2000|mimes:png,jpg,jpeg',
             'status'=>'required|',
         ];
     }

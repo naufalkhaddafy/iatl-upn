@@ -29,7 +29,7 @@ class UserRequest extends FormRequest
             'nim'=> ['numeric', $this->user()?->getRoleNames()[0] == 'admin'  ? 'nullable' : 'required', Rule::unique('users','nim')->ignore($this->user?->id)],
             'address' => 'nullable|max:255',
             'phone_number'=> 'nullable|digits_between:7,15|numeric',
-            'image'=>'nullable',
+            'image'=>'nullable|max:2000|mimes:png,jpg,jpeg',
             'motto'=>'nullable',
             'goal'=>'nullable',
             'company_name'=>'nullable',

@@ -63,9 +63,9 @@ class NewsController extends Controller
         $request
             ->user()
             ->news()
-            ->create([...$request->validated(), 'image' => $file->store('images/news')]);
+            ->create([...$request->validated(), 'image' => $file?->store('images/news')]);
 
-        Alert::toast('Create success', 'success');
+        Alert::toast('Berhasil menambahkan berita', 'success');
         return to_route('news.index');
     }
 
@@ -98,19 +98,18 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, News $news)
     {
-        // dd($request);
         $file = $request->file('image');
 
         if($file){
             if (Storage::exists($news->image)) {
                 Storage::delete($news->image);
             }
-            $news->update([$request->validated(),'image'=> $file->store('images/news')]);
+            $news->update([$request->validated(),'image'=> $file?->store('images/news')]);
         }else{
             $news->update($request->validated());
         }
 
-        Alert::toast('Edit success', 'success');
+        Alert::toast('Berhasil merubah berita', 'success');
         return back();
     }
 
@@ -119,8 +118,12 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
+        if (Storage::exists(!$news->image))
+        {
+            Storage::delete($news->image);
+        }
         $news->delete();
-        Alert::toast('Berhasil Menghapus Data '. $news->title , 'success');
+        Alert::toast('Berhasil menghapus data '. $news->title , 'success');
         return to_route('news.index');
     }
 }
