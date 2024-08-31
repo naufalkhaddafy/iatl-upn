@@ -22,27 +22,22 @@
                                     <div class="mb-3">
                                         <label for="status" class="form-label">Thumbnails</label>
                                         @if ($news->image)
-                                            <div class=" position-relative">
+                                            <div class=" ">
                                                 <img src="{{ asset('storage/' . $news->image) }}" alt="{{ $news->title }}"
-                                                    class="img-thumbnail img-size">
+                                                    class="img-thumbnail">
                                             </div>
                                         @else
                                             <div id="file-group" class="file-group border-primary row justify-center">
                                                 <i class="far fa-folder-open fs-1 text-primary mb-2"></i>
-                                                <span class="filename">Drop Your File Here or <span
+                                                <span class="filename text-center p-2">Drop Your File Here or <span
                                                         class="text-primary">Browse</span>
                                                 </span>
                                                 <input type="file" class="file-input form-control" id="image"
                                                     name="image">
                                             </div>
                                             <img id="imgPreview" src="#" alt="pic"
-                                                class="img-thumbnail img-size d-none" />
+                                                class="img-thumbnail d-none image-size" />
                                         @endif
-                                        <div id="actiop-group" class="d-none d-flex justify-content-start my-3"
-                                            style="gap: 10px">
-                                            <button class="btn btn-info text-white">Edit</button>
-                                            <button class="btn btn-danger text-white">Hapus</button>
-                                        </div>
                                         <x-forms.error type="danger" :messages="$errors->get('image')" />
                                     </div>
                                 </div>

@@ -137,6 +137,13 @@
                                         <td class="cell">
                                             <a class="btn-sm app-btn-secondary"
                                                 href="{{ route('news.edit', $news->id) }}">View</a>
+                                            <form action="{{ route('news.destroy', $news->id) }}" method="post"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn-sm  app-btn-secondary"
+                                                    href="{{ route('user.destroy', $news->id) }}">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
