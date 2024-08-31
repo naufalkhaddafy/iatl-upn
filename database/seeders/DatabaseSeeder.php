@@ -21,24 +21,26 @@ class DatabaseSeeder extends Seeder
 
         $roleAdmin = Role::create(['name' => 'admin']);
         $roleUser = Role::create(['name' => 'user']);
-        $admin=User::create([
+        $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@iatl.com',
-            'isPremium' =>1,
-            'register_code'=>'admin',
+            'isPremium' => 1,
+            'register_code' => 'admin',
             'password' => Hash::make('admin'),
         ]);
-        $user=User::create([
+        $user = User::create([
             'name' => 'Alumni IATL',
             'email' => 'alumni@iatl.com',
-            'isPremium' =>0,
-            'nim'=>'12345',
-            'register_code'=>'alumni',
+            'isPremium' => 0,
+            'nim' => '12345',
+            'register_code' => 'alumni',
             'password' => Hash::make('alumni'),
         ]);
-         $admin->assignRole($roleAdmin);
-         $user->assignRole($roleUser);
+        $admin->assignRole($roleAdmin);
+        $user->assignRole($roleUser);
 
+        $this->call(ProvinceSeeder::class);
+        $this->call(RegencySeeder::class);
         $this->call(NewsSeeder::class);
         $this->call(UserSeeder::class);
     }
