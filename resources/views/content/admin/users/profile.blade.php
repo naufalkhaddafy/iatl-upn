@@ -170,10 +170,9 @@
                                                 class="form-select select2  @error('province') is-invalid @enderror"
                                                 data-placeholder="Pilih Provinsi">
                                                 <option></option>
-                                                <option value="asd">Provinsi2</option>
-                                                <option value="asd">Provinsi3</option>
-                                                <option value="asd">Provinsi4</option>
-                                                <option value="">Provinsi5</option>
+                                                @foreach (App\Models\Province::all() as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->name }}</option>
+                                                @endforeach
                                             </select>
                                             <x-forms.error type="danger" :messages="$errors->get('province')" />
                                         </div><!--//col-->
@@ -187,12 +186,8 @@
                                             </label>
                                             <select id="domicile_id"
                                                 class="form-select select2 @error('domicile_id') is-invalid @enderror"
-                                                data-placeholder="Pilih Kabupate/Kota">
+                                                data-placeholder="Pilih Kabupaten/Kota" disabled>
                                                 <option></option>
-                                                <option value="asd">Provinsi2</option>
-                                                <option value="asd">Provinsi3</option>
-                                                <option value="asd">Provinsi4</option>
-                                                <option value="">Provinsi5</option>
                                             </select>
                                             <x-forms.error type="danger" :messages="$errors->get('domicile_id')" />
                                         </div><!--//col-->
@@ -344,7 +339,6 @@
             $('.select2').select2({
                 theme: "bootstrap-5",
                 width: "auto",
-                height: "40"
             });
         });
         $('#image').on('change', function() {
@@ -364,5 +358,19 @@
             $('#deleteImage').val(true)
             $('#image').val('');
         })
+
+        let province = @json(App\Models\Province::all());
+        let regency = @json(App\Models\Regency::all());
+
+        $('#province').on('change', function() {
+            $('#domicile_id').prop('disabled', false);
+            // $('#domicile_id').;
+            let filterRegency = regency.filter((r) => r.province_id == this.value)
+            console.log(filterRegency)
+            filterRegency.map(function(value) {
+                $('#domicile_id').append((`<option value="${value.id}">${value.name}</option>`));
+            });
+        })
+        console.log(province, regency);
     </script>
 @endpush
