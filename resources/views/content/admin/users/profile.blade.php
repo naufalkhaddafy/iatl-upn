@@ -1,12 +1,17 @@
 @extends('layout.admin.layout')
 @section('title', 'Profile')
 @push('css')
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 @section('content')
     <div class="container-xl">
         <h1 class="app-page-title">Account Settings</h1>
         <div class="row gy-4">
-            <form class="col-12" action="{{ route('settings.profile.update', $user->id) }}" enctype="multipart/form-data" method="post">
+            <form class="col-12" action="{{ route('settings.profile.update', $user->id) }}" enctype="multipart/form-data"
+                method="post">
                 @method('put')
                 @csrf
                 <div class="app-card app-card-account shadow-sm d-flex flex-column align-items-start">
@@ -140,6 +145,59 @@
                                 </div><!--//item-->
                             </div>
                             <div class="col-lg-6 col-12">
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="domicile" class="form-label"><strong>Alamat
+                                                    Domisili</strong>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('domicile') is-invalid @enderror"
+                                                id="domicile" name="domicile"
+                                                placeholder="Masukan Alamat Domisii Cth. Jalan "
+                                                value="{{ old('domicile', $user->domicile) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('domicile')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="province" class="form-label"><strong>Provinsi
+                                                    Domisili</strong>
+                                            </label>
+                                            <select id="province"
+                                                class="form-select select2  @error('province') is-invalid @enderror"
+                                                data-placeholder="Pilih Provinsi">
+                                                <option></option>
+                                                <option value="asd">Provinsi2</option>
+                                                <option value="asd">Provinsi3</option>
+                                                <option value="asd">Provinsi4</option>
+                                                <option value="">Provinsi5</option>
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('province')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="domicile_id" class="form-label disabled"><strong>Kabupaten/Kota
+                                                    Domisili</strong>
+                                            </label>
+                                            <select id="domicile_id"
+                                                class="form-select select2 @error('domicile_id') is-invalid @enderror"
+                                                data-placeholder="Pilih Kabupate/Kota">
+                                                <option></option>
+                                                <option value="asd">Provinsi2</option>
+                                                <option value="asd">Provinsi3</option>
+                                                <option value="asd">Provinsi4</option>
+                                                <option value="">Provinsi5</option>
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('domicile_id')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
@@ -280,7 +338,15 @@
     </div><!--//container-fluid-->
 @endsection
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: "bootstrap-5",
+                width: "auto",
+                height: "40"
+            });
+        });
         $('#image').on('change', function() {
             $('#deleteImage').val(null)
             file = this.files[0];
