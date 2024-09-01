@@ -39,6 +39,7 @@ class AuthController extends Controller
 
     public function update(UserRequest $request, User $user)
     {
+        // dd($request->all());
         $image = $request->file('image');
         if ($image) {
             if (Storage::exists(!$request->image)) {

@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProvinceSeeder::class);
         $this->call(RegencySeeder::class);
-        $this->call(NewsSeeder::class);
-        $this->call(UserSeeder::class);
+        // $this->call(NewsSeeder::class);
+        // $this->call(UserSeeder::class);
     }
 }

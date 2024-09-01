@@ -49,13 +49,13 @@ class User extends Authenticatable
         return $this->hasMany(News::class);
     }
 
-    public function domicile()
-    {
-        return $this->belongsTo(Regency::class, 'regency_id', 'domicile_id');
-    }
-
     public function regency()
     {
-        return $this->belongsTo(Regency::class, 'regency_id', 'regency_id');
+        return $this->belongsTo(Regency::class, 'domicile_id');
+    }
+
+    public function regencyNow()
+    {
+        return $this->belongsTo(Regency::class, 'regency_id');
     }
 }

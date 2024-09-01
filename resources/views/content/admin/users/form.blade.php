@@ -1,6 +1,10 @@
 @extends('layout.admin.layout')
 @section('title', $page_meta['title'])
 @push('css')
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 @endpush
 @section('content')
     <div class="container-xl">
@@ -119,26 +123,117 @@
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
-                                            <label for="goal" class="form-label"><strong>Cita-Cita</strong><span
-                                                    class="text-danger">*</span>
+                                            <label for="domicile" class="form-label"><strong>Alamat
+                                                    Domisili<span class="text-danger">*</span></strong>
                                             </label>
-                                            <input type="text" class="form-control @error('goal') is-invalid @enderror"
-                                                id="goal" name="goal" placeholder="Masukan Cita-Cita.."
-                                                value="{{ old('goal', $user->goal) }}">
-                                            <x-forms.error type="danger" :messages="$errors->get('goal')" />
-
+                                            <input type="text"
+                                                class="form-control @error('domicile') is-invalid @enderror"
+                                                id="domicile" name="domicile" placeholder="Contoh Jl. Apel No.xx RT.xx "
+                                                value="{{ old('domicile', $user->domicile) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('domicile')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
-                                            <label for="motto" class="form-label"><strong>Motto</strong><span
-                                                    class="text-danger">*</span>
+                                            <label for="province_domicile" class="form-label"><strong>Provinsi
+                                                    Domisili<span class="text-danger">*</span></strong>
                                             </label>
-                                            <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
-                                                placeholder="Masukan Motto.." style="height: auto;">{{ old('motto', $user->motto) }}</textarea>
-                                            <x-forms.error type="danger" :messages="$errors->get('motto')" />
+                                            <select id="province_domicile"
+                                                class="form-select select2 @error('province_domicile') is-invalid @enderror"
+                                                data-placeholder="Pilih Provinsi">
+                                                <option></option>
+                                                @foreach (App\Models\Province::all() as $province)
+                                                    <option value="{{ $province->id }}"
+                                                        {{ $province->id == $user->regency?->province_id ? 'selected' : '' }}>
+                                                        {{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('province_domicile')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="domicile_id" class="form-label disabled"><strong>Kabupaten/Kota
+                                                    Domisili<span class="text-danger">*</span></strong>
+                                            </label>
+                                            <select id="domicile_id" name="domicile_id"
+                                                class="form-select select2 @error('domicile_id') is-invalid @enderror"
+                                                data-placeholder="Pilih Kabupaten/Kota"
+                                                {{ $user->domicile_id ? '' : 'disabled' }}>
+                                                <option></option>
+                                                @foreach (App\Models\Regency::where('province_id', $user->regency?->province_id)->get() as $regency)
+                                                    <option value="{{ $regency->id }}"
+                                                        {{ $regency->id == $user->domicile_id ? 'selected' : '' }}>
+                                                        {{ $regency->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('domicile_id')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="address_now" class="form-label"><strong>Alamat
+                                                    Sekarang <span class="text-danger">*</span></strong>
+                                            </label>
+                                            <div id="check-same-domicile" class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="same_domicile">
+                                                <label class="form-check-label text-xs" for="same_domicile">Sama dengan
+                                                    Alamat
+                                                    Domisili</label>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('address_now') is-invalid @enderror"
+                                                id="address_now" name="address_now"
+                                                placeholder="Contoh Jl. Apel No.xx RT.xx "
+                                                value="{{ old('address_now', $user->address_now) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('address_now')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="province_now" class="form-label"><strong>Provinsi
+                                                    Sekarang<span class="text-danger">*</span></strong>
+                                            </label>
+                                            <select id="province_now"
+                                                class="form-select select2  @error('province_now') is-invalid @enderror"
+                                                data-placeholder="Pilih Provinsi Sekarang">
+                                                <option></option>
+                                                @foreach (App\Models\Province::all() as $province)
+                                                    <option value="{{ $province->id }}"
+                                                        {{ $province->id == $user->regencyNow?->province_id ? 'selected' : '' }}>
+                                                        {{ $province->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('province_now')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="regency_id" class="form-label disabled"><strong>Kabupaten/Kota
+                                                    Sekarang<span class="text-danger">*</span></strong>
+                                            </label>
+                                            <select id="regency_id" name="regency_id"
+                                                class="form-select select2 @error('regency_id') is-invalid @enderror"
+                                                data-placeholder="Pilih Kabupaten/Kota Sekarang"
+                                                {{ $user->regency_id ? '' : 'disabled' }}>
+                                                <option></option>
+                                                @foreach (App\Models\Regency::where('province_id', $user->regencyNow?->province_id)->get() as $regency)
+                                                    <option value="{{ $regency->id }}"
+                                                        {{ $regency->id == $user->regency_id ? 'selected' : '' }}>
+                                                        {{ $regency->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            <x-forms.error type="danger" :messages="$errors->get('regency_id')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
@@ -201,6 +296,31 @@
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
+                                            <label for="goal" class="form-label"><strong>Cita-Cita</strong>
+                                            </label>
+                                            <input type="text"
+                                                class="form-control @error('goal') is-invalid @enderror" id="goal"
+                                                name="goal" placeholder="Masukan Cita-Cita.."
+                                                value="{{ old('goal', $user->goal) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('goal')" />
+
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="motto" class="form-label"><strong>Motto</strong>
+                                            </label>
+                                            <textarea type="text" class="form-control @error('motto') is-invalid @enderror" id="motto" name="motto"
+                                                placeholder="Masukan Motto.." style="height: auto;">{{ old('motto', $user->motto) }}</textarea>
+                                            <x-forms.error type="danger" :messages="$errors->get('motto')" />
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
                                             <label for="password" class="form-label"><strong>Password</strong><span
                                                     class="text-danger">*</span>
                                             </label>
@@ -243,7 +363,19 @@
 
 @endsection
 @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.full.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('.select2').select2({
+                theme: "bootstrap-5",
+                width: "auto",
+            });
+
+            let domicile = $('#domicile_id').val();
+            let regency = $('#regency_id').val();
+
+            domicile == regency ? $('#same_domicile').prop('checked', true) : ''
+        });
         $('#image').on('change', function() {
             $('#deleteImage').val(null)
             file = this.files[0];
@@ -261,5 +393,59 @@
             $('#deleteImage').val(true)
             $('#image').val('');
         })
+
+        let province = @json(App\Models\Province::all());
+        let regency = @json(App\Models\Regency::all());
+
+        $('#province_domicile').on('change', function() {
+            let option = $("#domicile_id > option");
+            for (let i = 1; i < option.length; i++) {
+                option[i].remove();
+            }
+            $('#domicile_id').prop('disabled', false);
+            let filterRegency = regency.filter((r) => r.province_id == this.value)
+            filterRegency.map(function(value) {
+                $('#domicile_id').append((`<option value="${value.id}">${value.name}</option>`));
+            });
+        })
+        $('#province_now').on('change', function() {
+            let option = $("#regency_id > option");
+            for (let i = 1; i < option.length; i++) {
+                option[i].remove();
+            }
+            $('#regency_id').prop('disabled', false);
+            $('#regency_id').prop('disabled', false);
+            let filterRegency = regency.filter((r) => r.province_id == this.value)
+            filterRegency.map(function(value) {
+                $('#regency_id').append((`<option value="${value.id}">${value.name}</option>`));
+            });
+        })
+
+        $("#same_domicile").change(function() {
+            if (this.checked) {
+                $('#address_now').val($('#domicile').val());
+                $('#address_now').prop('readonly', true);
+                $('#province_now').val($('#province_domicile').val()).change();
+                // $('#province_now').prop('disabled', true);
+                $('#regency_id').val($('#domicile_id').val()).change();
+                // $('#regency_id').prop('disabled', true);
+            } else {
+                $('#address_now').val('');
+                $('#address_now').prop('readonly', false);
+                $('#province_now').val('').change();
+                $('#province_now').prop('disabled', false);
+                $('#regency_id').val('').change();
+                $('#regency_id').val() ? $('#regency_id').prop('disabled', false) : $('#regency_id').prop(
+                    'disabled', true)
+
+            }
+        });
+
+        let domicile = $('#domicile').val();
+        let domicile_id = $('#domicile_id').val();
+
+        if (domicile && domicile_id) {
+            console.log(true);
+        }
     </script>
 @endpush
