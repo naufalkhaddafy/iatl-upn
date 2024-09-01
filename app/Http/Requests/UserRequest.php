@@ -22,7 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $password = $this->password && $this->method() !== 'POST' ? ['password' => ['required' , 'min:5', 'confirmed']] : ['password' => ['nullable' , 'min:5', 'confirmed']];
+        $password = $this->password && $this->method() == 'POST' ? ['password' => ['required' , 'min:5', 'confirmed']] : ['password' => ['nullable' , 'min:5', 'confirmed']];
         return [
             'name'=> 'required|min:2|max:255',
             'email'=> ['required','email', Rule::unique('users','email')->ignore($this->user?->id)],
