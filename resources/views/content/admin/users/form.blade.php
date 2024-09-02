@@ -318,7 +318,7 @@
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
-                                <div class="item py-2">
+                                {{-- <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
                                             <label for="password" class="form-label"><strong>Password</strong><span
@@ -339,12 +339,12 @@
                                             </label>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                id="password_confirmation" name="password_confirmation"
+                                                id="password_confirmation" name="password_confirmation" type="password"
                                                 placeholder="Masukan Ulang Password">
                                             <x-forms.error type="danger" :messages="$errors->get('password')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
-                                </div><!--//item-->
+                                </div><!--//item--> --}}
                             </div>
                         </div>
 
@@ -371,10 +371,14 @@
                 width: "auto",
             });
 
-            let domicile = $('#domicile_id').val();
-            let regency = $('#regency_id').val();
+            let domicileID = $('#domicile_id').val();
+            let domicile = $('#domicile').val();
+            let regencyID = $('#regency_id').val();
+            let regency = $('#address_now').val();
 
-            domicile == regency ? $('#same_domicile').prop('checked', true) : ''
+            regency && domicileID == regencyID && domicile == regency ? $('#same_domicile').prop('checked',
+                true) : $(
+                '#same_domicile').prop('checked', false)
         });
         $('#image').on('change', function() {
             $('#deleteImage').val(null)

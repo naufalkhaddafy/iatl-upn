@@ -410,10 +410,12 @@
                 width: "auto",
             });
 
-            let domicile = $('#domicile_id').val();
-            let regency = $('#regency_id').val();
+            let domicileID = $('#domicile_id').val();
+            let domicile = $('#domicile').val();
+            let regencyID = $('#regency_id').val();
+            let regency = $('#address_now').val();
 
-            domicile !== regency && domicile !== null && regency !== null ? $('#same_domicile').prop('checked',
+            regency && domicileID == regencyID && domicile == regency ? $('#same_domicile').prop('checked',
                 true) : $(
                 '#same_domicile').prop('checked', false)
         });

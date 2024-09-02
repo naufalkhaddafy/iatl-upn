@@ -22,8 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
-        $password = $this->password && $this->method() == 'POST' ? ['password' => ['required' , 'min:5', 'confirmed']] : ['password' => ['nullable' , 'min:5', 'confirmed']];
-        return [
+         return [
             'name'=> 'required|min:2|max:255',
             'email'=> ['required','email', Rule::unique('users','email')->ignore($this->user?->id)],
             'nim'=> ['numeric', $this->user()?->getRoleNames()[0] == 'admin'  ? 'nullable' : 'required', Rule::unique('users','nim')->ignore($this->user?->id)],
@@ -38,7 +37,7 @@ class UserRequest extends FormRequest
             'company_name'=>'nullable',
             'company_address'=>'nullable',
             'position'=>'nullable',
-            ...$password,
+            'password' => ['sometimes','required','min:5', 'confirmed'],
         ];
 
     }

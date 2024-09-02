@@ -69,9 +69,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-
-        // dd($request->all());
-        $register_code = $request->register_code = 'REG-' . date('YmdHis') . Str::random(3);
+        $register_code = $request->register_code = 'REG-' . date('YmdHis') . $request->nim;
 
         $image = $request->file('image');
         $user = User::create([...$request->validated(), 'register_code'=>$register_code ,'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
@@ -113,6 +111,7 @@ class UserController extends Controller
     public function update(UserRequest $request, User $user)
     {
         $image = $request->file('image');
+
         if ($image) {
             if (Storage::exists(!$user->image)) {
                 Storage::delete($user->image);
