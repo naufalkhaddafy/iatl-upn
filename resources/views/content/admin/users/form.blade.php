@@ -318,7 +318,7 @@
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
-                                {{-- <div class="item py-2">
+                                <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
                                             <label for="password" class="form-label"><strong>Password</strong><span
@@ -344,7 +344,7 @@
                                             <x-forms.error type="danger" :messages="$errors->get('password')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
-                                </div><!--//item--> --}}
+                                </div><!--//item-->
                             </div>
                         </div>
 
