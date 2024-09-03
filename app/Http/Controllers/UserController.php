@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Exports\AlumniExport;
 use App\Http\Requests\UserRequest;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -142,5 +144,9 @@ class UserController extends Controller
         $user->delete();
         Alert::toast('Data alumni berhasil dihapus', 'success');
         return redirect()->back();
+    }
+
+    public function export($type){
+        return Excel::download(new AlumniExport, 'Data Alumni.xlsx' );
     }
 }

@@ -40,9 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('content.admin.dashboard.index');
     })->name('dashboard')->middleware('auth');
-
-
-
     //News
     Route::resource('/news', NewsController::class);
 
@@ -50,6 +47,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/user', UserController::class);
     Route::get('/list-alumni', [UserController::class,'indexAlumni'])->name('admin.index.alumni');
     Route::get('/list-admin', [UserController::class,'indexAdmin'])->name('admin.index.admin');
+
+    Route::get('/admin/export/alumni/{type}', [UserController::class,'export'])->name('admin.export.alumni');
     //Web Settings
     Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
 });

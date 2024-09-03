@@ -43,7 +43,7 @@
                                 <i class="fa fa-plus"></i>
                                 Tambah {{ $page_meta['role'] }}
                             </a>
-                            <a class="btn app-btn-secondary" href="#">
+                            <a class="btn app-btn-secondary" href="{{ route('admin.export.alumni', 'xlsx') }}">
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-download"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
