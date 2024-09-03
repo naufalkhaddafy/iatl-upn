@@ -150,11 +150,11 @@
                         </span><!--//submenu-arrow-->
                     </a><!--//nav-link-->
                     <div id="users"
-                        class="collapse submenu users {{ in_array(Route::currentRouteName(), ['admin.index.alumni', 'admin.index.admin', 'user.create']) ? 'show' : '' }}"
+                        class="collapse submenu users {{ in_array(Route::currentRouteName(), ['admin.index.alumni', 'admin.index.admin', 'user.create', 'user.edit']) ? 'show' : '' }}"
                         data-bs-parent="#menu-accordion">
                         <ul class="submenu-list list-unstyled">
                             <li class="submenu-item"><a
-                                    class="submenu-link {{ in_array(Route::currentRouteName(), ['admin.index.alumni']) ? 'active' : '' }}"
+                                    class="submenu-link {{ in_array(Route::currentRouteName(), ['admin.index.alumni', 'user.create', 'user.edit']) ? 'active' : '' }}"
                                     href="{{ route('admin.index.alumni') }}">Alumni</a></li>
                             <li class="submenu-item"><a class="submenu-link" href="settings.html">Pengajuan
                                     Alumni</a>

@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('register_code')->unique();
             $table->string('email')->unique();
             $table->string('nim')->unique()->nullable();
+            $table->string('generation')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('domicile')->nullable();
             $table->string('address_now')->nullable();
             $table->foreignId('domicile_id')->nullable()->constrained('regencies')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('regency_id')->nullable()->constrained('regencies')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('address_now_id')->nullable()->constrained('regencies')->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('image')->nullable();
             $table->string('motto')->nullable();
             $table->string('goal')->nullable();

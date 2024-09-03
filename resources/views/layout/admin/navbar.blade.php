@@ -25,7 +25,7 @@
                 </div><!--//app-search-box-->
 
                 <div class="app-utilities col-auto">
-                    <div class="app-utility-item app-notifications-dropdown dropdown">
+                    {{-- <div class="app-utility-item app-notifications-dropdown dropdown">
                         <a class="dropdown-toggle no-toggle-arrow" id="notifications-dropdown-toggle"
                             data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"
                             title="Notifications">
@@ -128,9 +128,9 @@
                             </div>
 
                         </div><!--//dropdown-menu-->
-                    </div><!--//app-utility-item-->
+                    </div><!--//app-utility-item--> --}}
                     <div class="app-utility-item">
-                        <a href="settings.html" title="Settings">
+                        <a href="{{ route('web.settings') }}" title="Settings">
                             <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
                                 fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -98,10 +98,25 @@
                                             <label for="nim" class="form-label"><strong>NIM</strong><span
                                                     class="text-danger">*</span>
                                             </label>
-                                            <input type="text" class="form-control @error('nim') is-invalid @enderror"
+                                            <input type="number" class="form-control @error('nim') is-invalid @enderror"
                                                 id="nim" name="nim" placeholder="Masukan nim.."
                                                 value="{{ old('nim', $user->nim) }}">
                                             <x-forms.error type="danger" :messages="$errors->get('nim')" />
+
+                                        </div><!--//col-->
+                                    </div><!--//row-->
+                                </div><!--//item-->
+                                <div class="item py-2">
+                                    <div class="row justify-content-between align-items-center">
+                                        <div class="col">
+                                            <label for="generation" class="form-label"><strong>Angkatan</strong><span
+                                                    class="text-danger">*</span>
+                                            </label>
+                                            <input type="number"
+                                                class="form-control @error('generation') is-invalid @enderror"
+                                                id="generation" name="generation" placeholder="Masukan angkatan.."
+                                                value="{{ old('generation', $user->generation) }}">
+                                            <x-forms.error type="danger" :messages="$errors->get('generation')" />
 
                                         </div><!--//col-->
                                     </div><!--//row-->
@@ -146,7 +161,7 @@
                                                 <option></option>
                                                 @foreach (App\Models\Province::all() as $province)
                                                     <option value="{{ $province->id }}"
-                                                        {{ $province->id == $user->regency?->province_id ? 'selected' : '' }}>
+                                                        {{ $province->id == $user->addressDomicile?->province_id ? 'selected' : '' }}>
                                                         {{ $province->name }}</option>
                                                 @endforeach
                                             </select>
@@ -165,7 +180,7 @@
                                                 data-placeholder="Pilih Kabupaten/Kota"
                                                 {{ $user->domicile_id ? '' : 'disabled' }}>
                                                 <option></option>
-                                                @foreach (App\Models\Regency::where('province_id', $user->regency?->province_id)->get() as $regency)
+                                                @foreach (App\Models\Regency::where('province_id', $user->addressDomicile?->province_id)->get() as $regency)
                                                     <option value="{{ $regency->id }}"
                                                         {{ $regency->id == $user->domicile_id ? 'selected' : '' }}>
                                                         {{ $regency->name }}</option>
@@ -208,7 +223,7 @@
                                                 <option></option>
                                                 @foreach (App\Models\Province::all() as $province)
                                                     <option value="{{ $province->id }}"
-                                                        {{ $province->id == $user->regencyNow?->province_id ? 'selected' : '' }}>
+                                                        {{ $province->id == $user->addressNow?->province_id ? 'selected' : '' }}>
                                                         {{ $province->name }}</option>
                                                 @endforeach
                                             </select>
@@ -219,21 +234,21 @@
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">
-                                            <label for="regency_id" class="form-label disabled"><strong>Kabupaten/Kota
+                                            <label for="address_now_id" class="form-label disabled"><strong>Kabupaten/Kota
                                                     Sekarang<span class="text-danger">*</span></strong>
                                             </label>
-                                            <select id="regency_id" name="regency_id"
-                                                class="form-select select2 @error('regency_id') is-invalid @enderror"
+                                            <select id="address_now_id" name="address_now_id"
+                                                class="form-select select2 @error('address_now_id') is-invalid @enderror"
                                                 data-placeholder="Pilih Kabupaten/Kota Sekarang"
-                                                {{ $user->regency_id ? '' : 'disabled' }}>
+                                                {{ $user->address_now_id ? '' : 'disabled' }}>
                                                 <option></option>
-                                                @foreach (App\Models\Regency::where('province_id', $user->regencyNow?->province_id)->get() as $regency)
+                                                @foreach (App\Models\Regency::where('province_id', $user->addressNow?->province_id)->get() as $regency)
                                                     <option value="{{ $regency->id }}"
-                                                        {{ $regency->id == $user->regency_id ? 'selected' : '' }}>
+                                                        {{ $regency->id == $user->address_now_id ? 'selected' : '' }}>
                                                         {{ $regency->name }}</option>
                                                 @endforeach
                                             </select>
-                                            <x-forms.error type="danger" :messages="$errors->get('regency_id')" />
+                                            <x-forms.error type="danger" :messages="$errors->get('address_now_id')" />
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
@@ -373,7 +388,7 @@
 
             let domicileID = $('#domicile_id').val();
             let domicile = $('#domicile').val();
-            let regencyID = $('#regency_id').val();
+            let regencyID = $('#address_now_id').val();
             let regency = $('#address_now').val();
 
             regency && domicileID == regencyID && domicile == regency ? $('#same_domicile').prop('checked',
@@ -413,15 +428,15 @@
             });
         })
         $('#province_now').on('change', function() {
-            let option = $("#regency_id > option");
+            let option = $("#address_now_id > option");
             for (let i = 1; i < option.length; i++) {
                 option[i].remove();
             }
-            $('#regency_id').prop('disabled', false);
-            $('#regency_id').prop('disabled', false);
+            $('#address_now_id').prop('disabled', false);
+            $('#address_now_id').prop('disabled', false);
             let filterRegency = regency.filter((r) => r.province_id == this.value)
             filterRegency.map(function(value) {
-                $('#regency_id').append((`<option value="${value.id}">${value.name}</option>`));
+                $('#address_now_id').append((`<option value="${value.id}">${value.name}</option>`));
             });
         })
 
@@ -431,25 +446,18 @@
                 $('#address_now').prop('readonly', true);
                 $('#province_now').val($('#province_domicile').val()).change();
                 // $('#province_now').prop('disabled', true);
-                $('#regency_id').val($('#domicile_id').val()).change();
-                // $('#regency_id').prop('disabled', true);
+                $('#address_now_id').val($('#domicile_id').val()).change();
+                // $('#address_now_id').prop('disabled', true);
             } else {
                 $('#address_now').val('');
                 $('#address_now').prop('readonly', false);
                 $('#province_now').val('').change();
                 $('#province_now').prop('disabled', false);
-                $('#regency_id').val('').change();
-                $('#regency_id').val() ? $('#regency_id').prop('disabled', false) : $('#regency_id').prop(
-                    'disabled', true)
-
+                $('#address_now_id').val('').change();
+                $('#address_now_id').val() ? $('#address_now_id').prop('disabled', false) : $('#address_now_id')
+                    .prop(
+                        'disabled', true)
             }
         });
-
-        let domicile = $('#domicile').val();
-        let domicile_id = $('#domicile_id').val();
-
-        if (domicile && domicile_id) {
-            console.log(true);
-        }
     </script>
 @endpush
