@@ -1,0 +1,13 @@
+.on-dev {
+    background-color: #15a362;
+    animation: color-on-dev 1s infinite;
+    animation-direction: alternate;
+}
+@keyframes color-on-dev {
+    from {
+        background-color: #15a362;
+    }
+    to {
+        background-color: rgb(79, 211, 145);
+    }
+}
