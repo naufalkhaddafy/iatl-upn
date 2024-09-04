@@ -76,7 +76,6 @@
                                     class="form-control confirm-password" placeholder="Konfirmasi password"
                                     required="required">
                                 <x-forms.error type="danger" :messages="$errors->get('password')" />
-
                             </div>
                             {{-- <div class="extra mb-3">
                                 <div class="form-check">
