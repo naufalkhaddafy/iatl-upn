@@ -41,40 +41,49 @@
                         <span class="nav-icon">
                             <i class="fa-regular fa-calendar-check"></i>
                         </span>
-                        <span class="nav-link-text">Agenda</span>
+                        <span class="nav-link-text d-flex justify-content-between align-content-center">
+                            <span>Agenda</span>
+                            <span class="badge align-content-center on-dev">DEV</span>
+                        </span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
 
                 <li class="nav-item ">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
-                        href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="#">
                         <span class="nav-icon">
                             <i class="fa-regular fa-comments "> </i>
                         </span>
-                        <span class="nav-link-text">Forum</span>
+                        <span class="nav-link-text d-flex justify-content-between align-content-center">
+                            <span>Forum</span>
+                            <span class="badge on-dev align-content-center">DEV</span>
+                        </span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
 
                 <li class="nav-item ">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
-                        href="{{ route('dashboard') }}">
+                    <a class="nav-link " href="#">
                         <span class="nav-icon">
                             <i class="fab fa-youtube-square"> </i>
                         </span>
-                        <span class="nav-link-text">Youtube</span>
+                        <span class="nav-link-text d-flex justify-content-between align-content-center">
+                            <span>Youtube</span>
+                            <span class="badge on-dev align-content-center">DEV</span>
+                        </span>
                     </a><!--//nav-link-->
                 </li><!--//nav-item-->
 
                 <li class="nav-item ">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                    <a class="nav-link {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
-                        href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="#">
                         <span class="nav-icon">
                             <i class="fa fa-file"> </i>
                         </span>
-                        <span class="nav-link-text">File Manager</span>
+                        <span class="nav-link-text d-flex justify-content-between align-content-center">
+                            <span>File Manager</span>
+                            <span class="badge on-dev align-content-center">DEV</span>
+                        </span>
                     </a><!--//nav-link-->
                 </li>
                 <li class="nav-item ">
@@ -82,7 +91,8 @@
                     <a class="nav-link {{ in_array(Route::currentRouteName(), ['news']) ? 'active' : '' }}"
                         href="{{ route('dashboard') }}">
                         <span class="nav-icon">
-                            <i class="fa fa-map-markerc"> </i>
+                            {{-- <i class="fa fa-map-markerc"> </i> --}}
+                            <i class="bi bi-geo-alt"></i>
                         </span>
                         <span class="nav-link-text">Sebaran</span>
                     </a><!--//nav-link-->
