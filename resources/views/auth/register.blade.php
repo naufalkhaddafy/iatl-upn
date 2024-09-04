@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Register | IATL UPN Veteran Jogja</title>
+    <title>Register | IATL UPNVYK </title>
 
     <!-- Meta -->
     <meta charset="utf-8">
@@ -105,7 +105,7 @@
 
                 <footer class="app-auth-footer">
                     <div class="container text-center py-3">
-                        <small class="copyright">Copyright 2024 &copy; Ikatan Alumni Teknik Lingkungan UPNYK </small>
+                        <small class="copyright">Copyright 2024 &copy; Ikatan Alumni Teknik Lingkungan UPNVYK </small>
                     </div>
                 </footer><!--//app-auth-footer-->
             </div><!--//flex-column-->

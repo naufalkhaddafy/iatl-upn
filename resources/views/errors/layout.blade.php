@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Error IAT UPN Veteran Jogja">
+    <meta name="description" content="Error IAT UPNVYK">
 
     <link rel="shortcut icon" href="{{ asset('image/logo-sm.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ asset('image/logo-sm.png') }} " type="image/x-icon">
@@ -46,7 +46,7 @@
 
     <footer class="app-footer">
         <div class="container text-center py-3">
-            <small class="copyright">Copyright 2024&copy; Ikatan Alumni Teknik Lingkungan UPNYK </small>
+            <small class="copyright">Copyright 2024&copy; Ikatan Alumni Teknik Lingkungan UPNVYK </small>
         </div>
     </footer>
 </body>

@@ -10,8 +10,8 @@
     - primary meta tags
   -->
     <title>IATL UPNVYK</title>
-    <meta name="title" content="IATL UPNYK">
-    <meta name="description" content=" Page official of IATL UPNYK">
+    <meta name="title" content="IATL UPNVYK">
+    <meta name="description" content=" Page official of IATL UPNVYK">
 
     <!--
     - favicon
@@ -565,7 +565,7 @@
                 <div class="container">
 
                     <h2 class="h2 section-title">
-                        Daftarkan diri anda untuk pendataan Alumni Teknik Lingkungan UPNYK
+                        Daftarkan diri anda untuk pendataan Alumni Teknik Lingkungan UPNVYK
                     </h2>
 
                     <a href="{{ route('user.register') }}" class="btn btn-primary">Join with us</a>
