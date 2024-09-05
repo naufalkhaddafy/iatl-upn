@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SebaranController;
 use App\Http\Controllers\ContentController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
@@ -51,6 +52,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/export/alumni/{type}', [UserController::class,'export'])->name('admin.export.alumni');
     //Web Settings
     Route::get('/web-settings',[ContentController::class, 'index'])->name('web.settings');
+
+    // Sebaran
+    Route::get('/sebaran/alumni',[SebaranController::class,'index'])->name('sebaran.alumni');
 });
 
 
