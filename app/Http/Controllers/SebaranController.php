@@ -10,8 +10,13 @@ class SebaranController extends Controller
 {
     public function index()
     {
-        $sebaran = Http::get('https://wilayah.id/api/provinces.json')['data'] ?? [];
+        $sebaran = Http::get('https://wilayah.id/api/provinces.json')['data'];
         $user = User::with('addressNow')->get();
-        return view('content.admin.sebaran.index', ['sebaran' => $sebaran, 'user' => $user]);
+
+        $provinceUser = $user->map(function($user){
+            return $user->addressNow?->province_id;
+        })->filter()->values()->unique()->toArray();
+
+        return view('content.admin.sebaran.index', ['sebaran' => $sebaran ?? [], 'provinceUser' => $provinceUser]);
     }
 }

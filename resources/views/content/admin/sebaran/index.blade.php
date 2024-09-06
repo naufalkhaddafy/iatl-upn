@@ -10,18 +10,23 @@
 @section('content')
     <div class="container-xl">
         <h1 class="app-page-title">Sebaran Alumni</h1>
-        {{-- @dump($user) --}}
         <div id="map" style="height: 400px;"></div>
     </div>
 @endsection
 @push('js')
     <script>
         let province = @json($sebaran);
+
+        let provinceUser = @json($provinceUser)
+
+        let listProvinceUser = province.filter(item => provinceUser.includes(parseInt(item.code, 10)));
+
+        // console.log(tesLocation)
         let map = L.map('map').setView([-1.1742548, 116.6769313], 4.5);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-        province.map(function(value) {
+        listProvinceUser.map(function(value) {
             let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
                 map);
 
