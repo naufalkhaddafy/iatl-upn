@@ -11,8 +11,64 @@
                 &copy; 2024 IATL UPNVYK <br> All rights reserved.
             </p>
 
-            <ul class="social-list">
+        </div>
 
+        <ul class="footer-list">
+
+            <li>
+                <p class="h4 footer-list-title">Hubungi Kami</p>
+            </li>
+
+            <li>
+                <address class="footer-text">
+                    Lorem ipsum dolor sit amet,
+                </address>
+            </li>
+
+            <li>
+                <a href="mailto:info@email.com" class="footer-link">info@email.com</a>
+            </li>
+
+            <li>
+                <a href="tel:001234567890" class="footer-link">08723123123</a>
+            </li>
+
+        </ul>
+
+        <ul class="footer-list">
+
+            <li>
+                <p class="h4 footer-list-title">IATL UPNVYK</p>
+            </li>
+
+            <li>
+                <a href="#" class="footer-link">About Us</a>
+            </li>
+
+            <li>
+                <a href="#" class="footer-link">Our Story</a>
+            </li>
+
+            <li>
+                <a href="#" class="footer-link">Projects</a>
+            </li>
+
+            {{-- <li>
+                <a href="#" class="footer-link">Terms of Use</a>
+            </li>
+
+            <li>
+                <a href="#" class="footer-link">Privacy Policy</a>
+            </li> --}}
+
+        </ul>
+
+        <ul class="footer-list">
+            <li>
+                <p class="h4 footer-list-title">Media Sosial</p>
+            </li>
+
+            <ul class="social-list">
                 <li>
                     <a href="#" class="social-link">
                         <ion-icon name="logo-facebook"></ion-icon>
@@ -22,12 +78,6 @@
                 <li>
                     <a href="#" class="social-link">
                         <ion-icon name="logo-twitter"></ion-icon>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#" class="social-link">
-                        <ion-icon name="logo-dribbble"></ion-icon>
                     </a>
                 </li>
 
@@ -44,60 +94,8 @@
                 </li>
 
             </ul>
-
-        </div>
-
-        <ul class="footer-list">
-
-            <li>
-                <p class="h4 footer-list-title">Get in Touch</p>
-            </li>
-
-            <li>
-                <address class="footer-text">
-                    Moonshine St. 14/05 Light City, London, United Kingdom
-                </address>
-            </li>
-
-            <li>
-                <a href="mailto:info@email.com" class="footer-link">info@email.com</a>
-            </li>
-
-            <li>
-                <a href="tel:001234567890" class="footer-link">00 (123) 456 78 90</a>
-            </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-            <li>
-                <p class="h4 footer-list-title">Learn More</p>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">About Us</a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">Our Story</a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">Projects</a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">Terms of Use</a>
-            </li>
-
-            <li>
-                <a href="#" class="footer-link">Privacy Policy</a>
-            </li>
-
-        </ul>
-
-        <div class="footer-list">
+    </div>
+    {{-- <div class="footer-list">
 
             <p class="h4 footer-list-title">Our Newsletter</p>
 
@@ -111,7 +109,7 @@
                 <button type="submit" class="submit-btn">Join</button>
             </form>
 
-        </div>
+        </div> --}}
 
     </div>
 </footer>
