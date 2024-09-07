@@ -20,6 +20,6 @@ class Regency extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'address_now_id','id');
     }
 }

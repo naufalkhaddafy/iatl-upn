@@ -14,19 +14,27 @@
 
                             <div>Portal Web Ikatan Alumni Teknik Lingkungan UPNVYK</div>
                         </div><!--//col-->
-                        {{-- <div class="col-12 col-lg-3">
-                            <a class="btn app-btn-primary"
-                                href="https://themes.3rdwavemedia.com/bootstrap-templates/admin-dashboard/portal-free-bootstrap-admin-dashboard-template-for-developers/"><svg
-                                    width="1em" height="1em" viewBox="0 0 16 16"
-                                    class="bi bi-file-earmark-arrow-down me-2" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M4 0h5.5v1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h1V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
-                                    <path d="M9.5 3V0L14 4.5h-3A1.5 1.5 0 0 1 9.5 3z" />
-                                    <path fill-rule="evenodd"
-                                        d="M8 6a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 10.293V6.5A.5.5 0 0 1 8 6z" />
-                                </svg>Free Download</a>
-                        </div><!--//col--> --}}
+                        <div class="item p-3 col-7">
+                            <div class="d-flex align-items-center">
+                                <div class="col">
+                                    <div class="title mb-1 ">Lengkapi Data Anda</div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;"
+                                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div><!--//col-->
+                                <div class="col-auto">
+                                    <a class="item-link-mask" href="{{ route('settings.profile') }}">
+                                        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-chevron-right"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        </svg>
+                                    </a>
+                                </div><!--//col-->
+                            </div><!--//row-->
+                        </div><!--//item-->
+
                     </div><!--//row-->
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div><!--//app-card-body-->
