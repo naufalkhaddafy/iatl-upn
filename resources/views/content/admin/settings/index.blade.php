@@ -54,25 +54,24 @@
                 <div class="app-card app-card-settings shadow-sm p-4">
 
                     <div class="app-card-body">
-                        <div class="mb-2"><strong>Current Plan:</strong> Pro</div>
-                        <div class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Active</span></div>
-                        <div class="mb-2"><strong>Expires:</strong> 2030-09-24</div>
-                        <div class="mb-4"><strong>Invoices:</strong> <a href="#">view</a></div>
-                        <div class="row justify-content-between">
-                            <div class="col-auto">
-                                <a class="btn app-btn-primary" href="#">Upgrade Plan</a>
+                        <form class="settings-form">
+                            <div class="mb-3">
+                                <label for="setting-input-1" class="form-label">Banner</label>
+                                <input type="text" class="form-control" id="setting-input-1" value="Lorem Ipsum Ltd."
+                                    required>
                             </div>
-                            <div class="col-auto">
-                                <a class="btn app-btn-secondary" href="#">Cancel Plan</a>
+                            <div class="mb-3">
+                                <label for="setting-input-2" class="form-label">Logo Website</label>
+                                <input type="file" class="form-control" id="setting-input-2" required>
                             </div>
-                        </div>
-
+                            <button type="submit" class="btn app-btn-primary">Simpan</button>
+                        </form>
                     </div><!--//app-card-body-->
 
                 </div><!--//app-card-->
             </div>
         </div><!--//row-->
-        <hr class="my-4">
+        {{-- <hr class="my-4">
         <div class="row g-4 settings-section">
             <div class="col-12 col-md-4">
                 <h3 class="section-title">Data &amp; Privacy</h3>
@@ -163,7 +162,7 @@
                 </div><!--//app-card-->
             </div>
         </div><!--//row-->
-        <hr class="my-4">
+        <hr class="my-4"> --}}
     </div>
 @endsection
 @push('js')
