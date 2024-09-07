@@ -40,18 +40,15 @@
                             <thead>
                                 <tr>
                                     <th class="cell">No.</th>
-                                    <th class="cell">Profile</th>
-                                    <th class="cell">Nim</th>
                                     <th class="cell">Nama</th>
                                     <th class="cell">Email</th>
-                                    <th class="cell">Status</th>
-                                    <th class="cell">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr id="alumni-data">
+                                    <th class="cell">No.HP</th>
+                                    <th class="cell">Lokasi</th>
 
                                 </tr>
+                            </thead>
+                            <tbody id="alumni-data">
+
                             </tbody>
                         </table>
                     </div><!--//table-responsive-->
@@ -106,16 +103,24 @@
                     $('#loading-spinner').removeClass('d-none');
                 },
                 success: function(data) {
-                    $('html, body').scrollTop($('#detailAlumni').offset().top);
+                    let option = $("#alumni-data > tr");
+                    for (let i = 1; i < option.length; i++) {
+                        option[i].remove();
+                    }
+                    let j = 1;
                     $('#loading-spinner').addClass('d-none');
+                    $('html, body').scrollTop($('#detailAlumni').offset().top);
                     $('#title-province').text(`Data Sebaran Alumni Provinsi ${data.province}`)
                     $("#detailAlumni").removeClass('d-none');
-                    data.users.map(function(index, user) {
+                    data.users.map(function(user) {
                         $('#alumni-data').append(
-                            `<td>${index+1}</td>
-                            <td>${user.name}</td>
-                            <td>${user.email}</td>
-                            <td>${user.number_phone}</td>
+                            `<tr>
+                                <td>${j++}</td>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td>${user.phone_number}</td>
+                                <td>${user.address_now.name}</td>
+                            </tr>
                             `
                         )
                     })

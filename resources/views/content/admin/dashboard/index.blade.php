@@ -14,7 +14,7 @@
 
                             <div>Portal Web Ikatan Alumni Teknik Lingkungan UPNVYK</div>
                         </div><!--//col-->
-                        <div class="item p-3 col-7">
+                        {{-- <div class="item p-3 col-7">
                             <div class="d-flex align-items-center">
                                 <div class="col">
                                     <div class="title mb-1 ">Lengkapi Data Anda</div>
@@ -33,7 +33,7 @@
                                     </a>
                                 </div><!--//col-->
                             </div><!--//row-->
-                        </div><!--//item-->
+                        </div><!--//item--> --}}
 
                     </div><!--//row-->
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
