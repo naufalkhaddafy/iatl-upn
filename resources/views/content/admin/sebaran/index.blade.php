@@ -96,6 +96,7 @@
         })
 
         function userByProvince(id) {
+            $('#detailAlumni'). addClass('d-none') 
             $.ajax({
                 type: 'GET',
                 url: `{{ url('/sebaran/alumni/${id}') }}`,
