@@ -104,7 +104,7 @@
                 },
                 success: function(data) {
                     let option = $("#alumni-data > tr");
-                    for (let i = 1; i < option.length; i++) {
+                    for (let i = 0; i < option.length; i++) {
                         option[i].remove();
                     }
                     let j = 1;
