@@ -96,7 +96,7 @@
         })
 
         function userByProvince(id) {
-            $('#detailAlumni'). addClass('d-none') 
+            $('#detailAlumni').addClass('d-none')
             $.ajax({
                 type: 'GET',
                 url: `{{ url('/sebaran/alumni/${id}') }}`,
@@ -116,11 +116,11 @@
                     data.users.map(function(user) {
                         $('#alumni-data').append(
                             `<tr>
-                                <td>${j++}</td>
-                                <td>${user.name}</td>
-                                <td>${user.email}</td>
-                                <td>${user.phone_number}</td>
-                                <td>${user.address_now.name}</td>
+                                <td class="cell">${j++}</td>
+                                <td class="cell">${user.name}</td>
+                                <td class="cell">${user.email}</td>
+                                <td class="cell">${user.phone_number}</td>
+                                <td class="cell">${user.address_now.name}</td>
                             </tr>
                             `
                         )
