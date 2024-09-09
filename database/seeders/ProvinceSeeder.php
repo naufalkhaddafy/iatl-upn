@@ -48,7 +48,10 @@ class ProvinceSeeder extends Seeder
             [82, "MALUKU UTARA"],
             [91, "PAPUA"],
             [92, "PAPUA BARAT"],
-            [94, "PAPUA"]
+            [93, "PAPUA SELATAN"],
+            [94, "PAPUA TENGAH"],
+            [95, "PAPUA PEGUNUNGAN"],
+            // [96, "PAPUA BARAT DAYA"],
         ];
 
         foreach ($data as $province) {
