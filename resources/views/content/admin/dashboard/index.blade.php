@@ -1,9 +1,14 @@
 @section('title', 'Dashboard')
 @extends('layout.admin.layout')
 @push('css')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 @endpush
 @section('content')
-    <div class="container-xl">
+    <div id="dasboard" class="container-xl">
         <h1 class="app-page-title">Dashboard</h1>
         <div class="app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
             <div class="inner">
@@ -42,56 +47,128 @@
             </div><!--//inner-->
         </div><!--//app-card-->
 
-        <div class="row g-4 mb-4">
-            <div class="col-6 col-lg-3">
-                <div class="app-card app-card-stat shadow-sm h-100">
-                    <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Alumni</h4>
-                        <div class="stats-figure">{{ count(App\Models\User::role('user')->get()) }}</div>
-                        <div class="stats-meta text-success">
-                            Open
-                        </div>
-                    </div><!--//app-card-body-->
-                    <a class="app-card-link-mask" href="{{ route('admin.index.alumni') }}"></a>
-                </div><!--//app-card-->
-            </div><!--//col-->
+        @if (auth()->user()->getRoleNames()[0] == 'admin')
+            <div class="row g-4 mb-4">
+                <div class="col-6 col-lg-3">
+                    <div class="app-card app-card-stat shadow-sm h-100">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type mb-1">Alumni</h4>
+                            <div class="stats-figure">{{ count(App\Models\User::role('user')->get()) }}</div>
+                            <div class="stats-meta text-success">
+                                Open
+                            </div>
+                        </div><!--//app-card-body-->
+                        <a class="app-card-link-mask" href="{{ route('admin.index.alumni') }}"></a>
+                    </div><!--//app-card-->
+                </div><!--//col-->
 
-            <div class="col-6 col-lg-3">
-                <div class="app-card app-card-stat shadow-sm h-100">
-                    <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">News</h4>
-                        <div class="stats-figure">{{ count(App\Models\News::all()) }}</div>
-                        <div class="stats-meta text-success">
-                            New
+                <div class="col-6 col-lg-3">
+                    <div class="app-card app-card-stat shadow-sm h-100">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type mb-1">News</h4>
+                            <div class="stats-figure">{{ count(App\Models\News::all()) }}</div>
+                            <div class="stats-meta text-success">
+                                New
+                            </div>
+                        </div><!--//app-card-body-->
+                        <a class="app-card-link-mask" href="{{ route('news.index') }}"></a>
+                    </div><!--//app-card-->
+                </div><!--//col-->
+                <div class="col-6 col-lg-3">
+                    <div class="app-card app-card-stat shadow-sm h-100">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type mb-1">Agenda</h4>
+                            <div class="stats-figure">23</div>
+                            <div class="stats-meta">
+                                Open</div>
+                        </div><!--//app-card-body-->
+                        <a class="app-card-link-mask" href="#"></a>
+                    </div><!--//app-card-->
+                </div><!--//col-->
+                <div class="col-6 col-lg-3">
+                    <div class="app-card app-card-stat shadow-sm h-100">
+                        <div class="app-card-body p-3 p-lg-4">
+                            <h4 class="stats-type mb-1">Pengajuan Alumni</h4>
+                            <div class="stats-figure">6</div>
+                            <div class="stats-meta">New</div>
+                        </div><!--//app-card-body-->
+                        <a class="app-card-link-mask" href="#"></a>
+                    </div><!--//app-card-->
+                </div><!--//col-->
+            </div><!--//row-->
+        @endif
+
+
+        <div class="app-card p-4 shadow-sm mb-4">
+            <div class="row">
+                <div class="col-12 col-lg-6 mb-4">
+                    <div class="row align-items-center gx-2 mb-4">
+                        <div class="col-auto"><span class="app-icon-holder"><x-bi-person /></span></div>
+                        <div class="col-auto">
+                            <h1 class="fs-5 app-card-title">
+                                Data Alumni
+                            </h1>
                         </div>
-                    </div><!--//app-card-body-->
-                    <a class="app-card-link-mask" href="{{ route('news.index') }}"></a>
-                </div><!--//app-card-->
-            </div><!--//col-->
-            <div class="col-6 col-lg-3">
-                <div class="app-card app-card-stat shadow-sm h-100">
-                    <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Agenda</h4>
-                        <div class="stats-figure">23</div>
-                        <div class="stats-meta">
-                            Open</div>
-                    </div><!--//app-card-body-->
-                    <a class="app-card-link-mask" href="#"></a>
-                </div><!--//app-card-->
-            </div><!--//col-->
-            <div class="col-6 col-lg-3">
-                <div class="app-card app-card-stat shadow-sm h-100">
-                    <div class="app-card-body p-3 p-lg-4">
-                        <h4 class="stats-type mb-1">Pengajuan Alumni</h4>
-                        <div class="stats-figure">6</div>
-                        <div class="stats-meta">New</div>
-                    </div><!--//app-card-body-->
-                    <a class="app-card-link-mask" href="#"></a>
-                </div><!--//app-card-->
-            </div><!--//col-->
-        </div><!--//row-->
+                    </div>
+                    <div class="p-4 border rounded">
+                        <h1 class="fs-6">{{ auth()->user()->name }} <span class="text-info"><x-bi-patch-check /></span>
+                        </h1>
+                        <div class="detail-profil ">
+                            <div class="pb-1"><x-bi-person-vcard /> {{ auth()->user()->nim }}</div>
+                            <div class="py-1"><x-bi-envelope-paper /> {{ auth()->user()->email ?? '-' }} </div>
+                            <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->phone_number ?? '-' }}
+                            </div>
+                            <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->address_now ?? '-' }}
+                            </div>
+                            <div class="pt-1"><x-bi-pin-map-fill /> {{ auth()->user()->addressNow?->name }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 mb-4">
+                    <div class="d-flex justify-content-between mb-4 align-items-center m-0">
+                        <div class="row align-items-center gx-2">
+                            <div class="col-auto"><span class="app-icon-holder"><x-bi-person-vcard /> </span></div>
+                            <div class="col-auto">
+                                <h1 class="fs-5 app-card-title">Kartu
+                                    Alumni
+                                </h1>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn app-btn-secondary">
+                                <x-bi-printer />
+                                Cetak
+                            </button>
+                        </div>
+                    </div>
+                    <div class="rounded text-center">
+                        <img src="{{ asset('image/blank-image.png') }}" height="200px" width="350px" class="rounded"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="py-4">
+                <div class="row align-items-center gx-2 mb-4">
+                    <div class="col-auto"><span class="app-icon-holder"><x-bi-pin-map /></span></div>
+                    <div class="col-auto">
+                        <h1 class="fs-5 app-card-title">
+                            Sebaran Alumni Terdekat
+                        </h1>
+                    </div>
+                </div>
+                <div>
+                    <div id="map" style="height: 400px; border-radius:15px" class=""></div>
+
+                </div>
+            </div>
+        </div>
     </div>
 
 @endsection
 @push('js')
+    <script>
+        let map = L.map('map').setView([-1.1742548, 116.6769313], 4.5);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    </script>
 @endpush

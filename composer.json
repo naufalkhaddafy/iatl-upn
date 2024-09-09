@@ -9,6 +9,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "blade-ui-kit/blade-icons": "^1.7",
+        "davidhsianturi/blade-bootstrap-icons": "^1.5",
         "guzzlehttp/guzzle": "^7.2",
         "itsgoingd/clockwork": "^5.2",
         "laravel/framework": "^11.7.0",
