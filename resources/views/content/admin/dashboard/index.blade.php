@@ -110,7 +110,7 @@
                             </h1>
                         </div>
                     </div>
-                    <div class="p-4 border rounded">
+                    <div class="p-4 border rounded" style="height: 230px;">
                         <h1 class="fs-6">{{ auth()->user()->name }} <span class="text-info"><x-bi-patch-check /></span>
                         </h1>
                         <div class="detail-profil ">
@@ -141,9 +141,33 @@
                             </button>
                         </div>
                     </div>
-                    <div class="rounded text-center">
-                        <img src="{{ asset('image/blank-image.png') }}" height="200px" width="350px" class="rounded"
-                            alt="">
+                    <div class="d-flex justify-content-center align-items-center" style="height: 230px;" id="alumni-card">
+                        <div class="position-relative d-inline-block">
+                            <img src="{{ asset('images/iatl-card.jpeg') }}" height="200px" width="350px"
+                                class="rounded shadow " alt="Kartu Alumni">
+                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="{{ auth()->user()->name }}"
+                                width="65rem" height="75rem" id="foto-card" class="position-absolute rounded"
+                                style="left: 6%; top:34%">
+                            <div class="name-card position-absolute" style="left: 29%; top: 30%;">
+                                <p>{{ auth()->user()->name }}</p>
+                            </div>
+                            <div class="name-card position-absolute" style="left: 50%; top: 40%; font-size:0.65rem">
+                                <p>{{ auth()->user()->nim }}</p>
+                            </div>
+                            <div class="name-card position-absolute" style="left: 50%; top: 45%; font-size:0.65rem">
+                                <p>{{ auth()->user()->email }}</p>
+                            </div>
+                            <div class="name-card position-absolute" style="left: 50%; top: 50%; font-size:0.65rem">
+                                <p>{{ auth()->user()->phone_number }}</p>
+                            </div>
+                            <div class="name-card position-absolute" style="left: 50%; top: 55%; font-size:0.60rem">
+                                <p>{{ auth()->user()->address_now }}, {{ auth()->user()->addressNow->name }}
+                                    {{ auth()->user()->addressNow->province->name }}
+                                </p>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
