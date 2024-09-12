@@ -72,11 +72,7 @@
                     </div><!--//auth-form-container-->
 
                 </div><!--//auth-body-->
-                <footer class="app-auth-footer">
-                    <div class="container text-center py-3">
-                        <small class="copyright">Copyright 2024 &copy; Ikatan Alumni Teknik Lingkungan UPNVYK </small>
-                    </div>
-                </footer><!--//app-auth-footer-->
+                @include('auth.footer')<!--//app-auth-footer-->
             </div><!--//flex-column-->
         </div><!--//auth-main-col-->
 
