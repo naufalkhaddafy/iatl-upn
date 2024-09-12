@@ -373,8 +373,6 @@ class RegencySeeder extends Seeder
             [6401, "KAB. PASER",  64],
             [6402, "KAB. KUTAI KARTANEGARA",  64],
             [6403, "KAB. BERAU",  64],
-            [6404, "KABUPATEN KUTAI TIMUR",  64],
-            [6405, "KABUPATEN BERAU",  64],
             [6407, "KAB. KUTAI BARAT",  64],
             [6408, "KAB. KUTAI TIMUR",  64],
             [6409, "KAB. PENAJAM PASER UTARA",  64],
