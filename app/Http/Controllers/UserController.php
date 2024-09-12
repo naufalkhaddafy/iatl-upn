@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         //
         // $users = User::with('roles')->where('name', 'user')->paginate(10);
-        $users = User::role('user')->latest()->paginate(10);
+        $users = User::role('user')->where('status','verified')->latest()->paginate(10);
 
         return view('content.admin.users.index', [
             'users' => $users,
@@ -148,5 +148,26 @@ class UserController extends Controller
 
     public function export($type){
         return Excel::download(new AlumniExport, 'Data Alumni.xlsx' );
+    }
+
+    public function verifikasiAlumni(){
+        $users = User::role('user')->where('status','pending')->orWhere('status','unverified')->latest()->paginate(10);
+
+        return view('content.admin.users.verifikasi', [
+            'users' => $users,
+            'page_meta' => [
+                'title' => 'Daftar Pengajuan Alumni',
+                'description' => 'Verifikasi data alumni untuk terdaftar di sistem',
+                'role' => 'pending',
+                // 'method' => 'post',
+                // 'url' => route('user.store'),
+            ],
+        ]);
+    }
+    public function verifikasiAlumniUpdate(User $user){
+        $user->status ='verified';
+        $user->save();
+        Alert::toast('Data Alumni berhasil di setujui','success');
+        return redirect()->route('admin.index.alumni');
     }
 }

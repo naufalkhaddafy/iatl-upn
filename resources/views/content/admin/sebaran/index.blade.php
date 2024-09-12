@@ -11,7 +11,34 @@
     <div class="container-xl">
         <h1 class="app-page-title">Sebaran Alumni</h1>
         <div class="app-card app-card-account shadow-sm p-4">
-            <div id="map" style="height: 400px; border-radius:15px" class=""></div>
+            @if (auth()->user()->status == 'verified')
+                <div id="map" style="height: 400px" class="rounded"></div>
+            @else
+                <div class="text-center">
+                    <div id="loading-spinner" class="d-flex justify-content-center align-center p-2" style="gap: 5px;">
+                        <div class="spinner-grow text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-secondary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-success" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-danger" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-warning" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-info" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <span
+                        class="p-1 text-secondary">{{ auth()->user()->status == 'unverified' ? 'Lengkapi Data Pribadi Anda' : 'Menunggu Verifikasi Admin..' }}</span>
+                </div>
+            @endif
             <div id="loading-spinner" class="d-none d-flex justify-content-center align-center p-5" style="gap: 5px;">
                 <div class="spinner-grow text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>

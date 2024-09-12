@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@iatl.com',
             'isPremium' => 1,
             'register_code' => 'admin',
+            'status' => 'verified',
             'password' => Hash::make('admin'),
         ]);
         $user = User::create([

@@ -89,103 +89,179 @@
                     <div class="app-card app-card-stat shadow-sm h-100">
                         <div class="app-card-body p-3 p-lg-4">
                             <h4 class="stats-type mb-1">Pengajuan Alumni</h4>
-                            <div class="stats-figure">6</div>
+                            <div class="stats-figure">
+                                {{ count(App\Models\User::role('user')->where('status', '!=', 'verified')->get()) }}</div>
                             <div class="stats-meta">New</div>
                         </div><!--//app-card-body-->
-                        <a class="app-card-link-mask" href="#"></a>
+                        <a class="app-card-link-mask" href="{{ route('admin.verifikasi.alumni') }}"></a>
                     </div><!--//app-card-->
                 </div><!--//col-->
             </div><!--//row-->
-        @endif
-
-
-        <div class="app-card p-4 shadow-sm mb-4">
-            <div class="row">
-                <div class="col-12 col-lg-6 mb-4">
-                    <div class="row align-items-center gx-2 mb-4">
-                        <div class="col-auto"><span class="app-icon-holder"><x-bi-person /></span></div>
-                        <div class="col-auto">
-                            <h1 class="fs-5 app-card-title">
-                                Data Alumni
-                            </h1>
-                        </div>
+        @elseif(auth()->user()->getRoleNames()[0] == 'user')
+            <div class="app-card p-4 shadow-sm mb-4">
+                @if (auth()->user()->status == 'unverified')
+                    <div class="alert alert-danger d-flex justify-content-between align-items-center flex-wrap"
+                        role="alert">
+                        <span class="fs-6"><x-bi-exclamation-circle-fill /> Lengkapi data pribadi anda untuk verifikasi
+                            data
+                            alumni</span>
+                        <a class="btn app-btn-primary " href="{{ route('settings.profile') }}">Lengkapi</a>
                     </div>
-                    <div class="p-4 border rounded" style="height: 230px;">
-                        <h1 class="fs-6">{{ auth()->user()->name }} <span class="text-info"><x-bi-patch-check /></span>
-                        </h1>
-                        <div class="detail-profil ">
-                            <div class="pb-1"><x-bi-person-vcard /> {{ auth()->user()->nim }}</div>
-                            <div class="py-1"><x-bi-envelope-paper /> {{ auth()->user()->email ?? '-' }} </div>
-                            <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->phone_number ?? '-' }}
-                            </div>
-                            <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->address_now ?? '-' }}
-                            </div>
-                            <div class="pt-1"><x-bi-pin-map-fill /> {{ auth()->user()->addressNow?->name }}</div>
-                        </div>
+                @elseif(auth()->user()->status == 'pending')
+                    <div class="alert alert-warning" role="alert">
+                        <span class="fs-6"><x-bi-exclamation-circle-fill /> Mohon ditunggu, proses verifikasi admin untuk
+                            mengakses fitur yang tersedia</span>
                     </div>
-                </div>
-                <div class="col-12 col-lg-6 mb-4">
-                    <div class="d-flex justify-content-between mb-4 align-items-center m-0">
-                        <div class="row align-items-center gx-2">
-                            <div class="col-auto"><span class="app-icon-holder"><x-bi-person-vcard /> </span></div>
+                @endif
+                <div class="row">
+                    <div class="col-12 col-lg-6 mb-4">
+                        <div class="row align-items-center gx-2 mb-4">
+                            <div class="col-auto"><span class="app-icon-holder"><x-bi-person /></span></div>
                             <div class="col-auto">
-                                <h1 class="fs-5 app-card-title">Kartu
-                                    Alumni
+                                <h1 class="fs-5 app-card-title">
+                                    Data Alumni
                                 </h1>
                             </div>
                         </div>
-                        <div>
-                            <button class="btn app-btn-secondary">
-                                <x-bi-printer />
-                                Cetak
-                            </button>
+                        <div class="p-4 border rounded" style="height: 230px;">
+                            <h1 class="fs-6">{{ auth()->user()->name }} <span
+                                    class="text-info"><x-bi-patch-check /></span>
+                            </h1>
+                            <div class="detail-profil ">
+                                <div class="pb-1"><x-bi-person-vcard /> {{ auth()->user()->nim }}</div>
+                                <div class="py-1"><x-bi-envelope-paper /> {{ auth()->user()->email ?? '-' }} </div>
+                                <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->phone_number ?? '-' }}
+                                </div>
+                                <div class="py-1"><x-bi-pin-map /> {{ auth()->user()->address_now ?? '-' }}
+                                </div>
+                                <div class="pt-1"><x-bi-pin-map-fill /> {{ auth()->user()->addressNow?->name }}</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center" style="height: 230px;" id="alumni-card">
-                        <div class="position-relative d-inline-block">
-                            <img src="{{ asset('images/iatl-card.jpeg') }}" height="200px" width="350px"
-                                class="rounded shadow " alt="Kartu Alumni">
-                            <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="{{ auth()->user()->name }}"
-                                width="65rem" height="75rem" id="foto-card" class="position-absolute rounded"
-                                style="left: 6%; top:34%">
-                            <div class="name-card position-absolute" style="left: 29%; top: 30%;">
-                                <p>{{ auth()->user()->name }}</p>
+                    <div class="col-12 col-lg-6 mb-4">
+                        <div class="d-flex justify-content-between mb-4 align-items-center m-0">
+                            <div class="row align-items-center gx-2">
+                                <div class="col-auto"><span class="app-icon-holder"><x-bi-person-vcard /> </span></div>
+                                <div class="col-auto">
+                                    <h1 class="fs-5 app-card-title">Kartu
+                                        Alumni
+                                    </h1>
+                                </div>
                             </div>
-                            <div class="name-card position-absolute" style="left: 50%; top: 40%; font-size:0.65rem">
-                                <p>{{ auth()->user()->nim }}</p>
+                            <div>
+                                <button class="btn app-btn-secondary">
+                                    <x-bi-printer />
+                                    Cetak
+                                </button>
                             </div>
-                            <div class="name-card position-absolute" style="left: 50%; top: 45%; font-size:0.65rem">
-                                <p>{{ auth()->user()->email }}</p>
-                            </div>
-                            <div class="name-card position-absolute" style="left: 50%; top: 50%; font-size:0.65rem">
-                                <p>{{ auth()->user()->phone_number }}</p>
-                            </div>
-                            <div class="name-card position-absolute" style="left: 50%; top: 55%; font-size:0.60rem">
-                                <p>{{ auth()->user()->address_now }}, {{ auth()->user()->addressNow->name }}
-                                    {{ auth()->user()->addressNow->province->name }}
-                                </p>
-                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center" style="height: 230px;"
+                            id="alumni-card">
+                            @if (auth()->user()->status == 'verified')
+                                <div class="position-relative d-inline-block">
+                                    <img src="{{ asset('images/iatl-card.jpeg') }}" height="200px" width="350px"
+                                        class="rounded shadow " alt="Kartu Alumni">
+                                    <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                                        alt="{{ auth()->user()->name }}" width="65rem" height="75rem" id="foto-card"
+                                        class="position-absolute rounded" style="left: 6%; top:34%">
+                                    <div class="name-card position-absolute" style="left: 29%; top: 30%;">
+                                        <p>{{ auth()->user()->name ?? '-' }}</p>
+                                    </div>
+                                    <div class="name-card position-absolute"
+                                        style="left: 50%; top: 40%; font-size:0.65rem">
+                                        <p>{{ auth()->user()->nim ?? '-' }}</p>
+                                    </div>
+                                    <div class="name-card position-absolute"
+                                        style="left: 50%; top: 45%; font-size:0.65rem">
+                                        <p>{{ auth()->user()->email ?? '-' }}</p>
+                                    </div>
+                                    <div class="name-card position-absolute"
+                                        style="left: 50%; top: 50%; font-size:0.65rem">
+                                        <p>{{ auth()->user()->phone_number ?? '-' }}</p>
+                                    </div>
+                                    <div class="name-card position-absolute"
+                                        style="left: 50%; top: 55%; font-size:0.60rem">
+                                        <p>{{ auth()->user()?->address_now }}, {{ auth()->user()->addressNow?->name }}
+                                            {{ auth()->user()->addressNow?->province->name }}
+                                        </p>
+                                    </div>
+
+                                </div>
+                            @else
+                                <div class="text-center">
+                                    <div id="loading-spinner" class="d-flex justify-content-center align-center p-2"
+                                        style="gap: 5px;">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-secondary" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-success" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-danger" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-warning" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                        <div class="spinner-grow text-info" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
+                                    <span
+                                        class="p-1 text-secondary">{{ auth()->user()->status == 'unverified' ? 'Lengkapi Data Pribadi Anda' : 'Menunggu Verifikasi Admin..' }}</span>
+                                </div>
+                            @endif
+
 
                         </div>
-
+                    </div>
+                </div>
+                <div class="py-4">
+                    <div class="row align-items-center gx-2 mb-4">
+                        <div class="col-auto"><span class="app-icon-holder"><x-bi-pin-map /></span></div>
+                        <div class="col-auto">
+                            <h1 class="fs-5 app-card-title">
+                                Sebaran Alumni Terdekat
+                            </h1>
+                        </div>
+                    </div>
+                    <div>
+                        @if (auth()->user()->status == 'verified')
+                            <div id="map" style="height: 400px;"  class="rounded"></div>
+                        @else
+                            <div class="text-center">
+                                <div id="loading-spinner" class="d-flex justify-content-center align-center p-2"
+                                    style="gap: 5px;">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-secondary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-success" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-danger" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-warning" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="spinner-grow text-info" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                                <span
+                                    class="p-1 text-secondary">{{ auth()->user()->status == 'unverified' ? 'Lengkapi Data Pribadi Anda' : 'Menunggu Verifikasi Admin..' }}</span>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-            <div class="py-4">
-                <div class="row align-items-center gx-2 mb-4">
-                    <div class="col-auto"><span class="app-icon-holder"><x-bi-pin-map /></span></div>
-                    <div class="col-auto">
-                        <h1 class="fs-5 app-card-title">
-                            Sebaran Alumni Terdekat
-                        </h1>
-                    </div>
-                </div>
-                <div>
-                    <div id="map" style="height: 400px; border-radius:15px" class=""></div>
-
-                </div>
-            </div>
-        </div>
+        @endif
     </div>
 
 @endsection

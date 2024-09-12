@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('company_address')->nullable();
             $table->string('position')->nullable();
             $table->string('password');
+            $table->enum('status',['pending','unverified','verified'])->default('unverified');
             $table->boolean('isPremium')->default(false);
             $table->date('premium_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();

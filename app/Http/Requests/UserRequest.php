@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'address_now' => [$this->method() !== 'POST' && $this->user?->getRoleNames()[0] !== 'admin' ? 'required' : 'nullable','max:255'],
             'domicile_id'=>[ $this->method() !== 'POST'  && $this->user?->getRoleNames()[0] !== 'admin' ? 'required' : 'nullable'],
             'address_now_id'=>[$this->method() !== 'POST'  && $this->user?->getRoleNames()[0] !== 'admin' ? 'required' : 'nullable'],
-            'image'=>'nullable|max:2000|mimes:png,jpg,jpeg',
+            'image'=>['nullable', 'max:2000','mimes:png,jpg,jpeg'],
             'motto'=>'nullable',
             'goal'=>'nullable',
             'company_name'=>'nullable',
