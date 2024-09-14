@@ -52,7 +52,7 @@
         -->
 
             <section class="section hero has-bg-image" aria-label="home"
-                style="background-image: url('{{ asset('landing_page') }}/assets/images/hero-bg.jpg')">
+                style="background-image: url('{{ asset('images') }}/landing-page/hero-bg.jpg')">
                 <div class="container">
 
                     <div class="hero-content">
