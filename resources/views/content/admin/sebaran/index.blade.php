@@ -100,7 +100,7 @@
             listProvinceUser.map(function(value) {
                 let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
                     map);
-                $.get(`{{ url('/sebaran/alumni/${value.code}/nearest') }}`, function(data) {
+                $.get(`{{ url('/sebaran/alumni/${value.code}') }}`, function(data) {
                     marker.bindPopup(
                             `<div class="text-center rounded">
                                 <div class="card-header rounded">
