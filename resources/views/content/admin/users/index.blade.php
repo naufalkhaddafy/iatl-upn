@@ -114,13 +114,9 @@
                                             <div class="d-flex" style="gap: 5px">
                                                 <a class="btn-sm app-btn-secondary"
                                                     href="{{ route('user.edit', $user->id) }}">View</a>
-                                                <form action="{{ route('user.destroy', $user->id) }}" method="post"
-                                                    enctype="multipart/form-data">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn-sm  app-btn-secondary-danger"
-                                                        href="{{ route('user.destroy', $user->id) }}">Delete</button>
-                                                </form>
+                                                <a type="submit" class="btn-sm  app-btn-secondary-danger"
+                                                    href="{{ route('user.destroy', $user->id) }}"
+                                                    data-confirm-delete="true">Delete</a>
                                             </div>
 
                                         </td>

@@ -23,6 +23,10 @@ class UserController extends Controller
         // $users = User::with('roles')->where('name', 'user')->paginate(10);
         $users = User::role('user')->where('status','verified')->latest()->paginate(10);
 
+        $title = 'Hapus Alumni!';
+        $text = "Apakah anda yakin menghapus data alumni?";
+        confirmDelete($title, $text);
+
         return view('content.admin.users.index', [
             'users' => $users,
             'page_meta' => [
