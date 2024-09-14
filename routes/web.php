@@ -63,5 +63,5 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', function () {
-    return view('layout.landing_page.layout', ['news' => News::with('user')->latest()->where('status', 'publish')->paginate(3)]);
+    return view('content.landing_page.home.index', ['news' => News::with('user')->latest()->where('status', 'publish')->paginate(3)]);
 })->name('root');
