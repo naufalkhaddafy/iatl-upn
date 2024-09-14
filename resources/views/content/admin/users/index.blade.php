@@ -118,7 +118,6 @@
                                                     href="{{ route('user.destroy', $user->id) }}"
                                                     data-confirm-delete="true">Delete</a>
                                             </div>
-
                                         </td>
                                     </tr>
                                 @endforeach

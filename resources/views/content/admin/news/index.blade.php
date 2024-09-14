@@ -75,7 +75,7 @@
                                 <th class="cell">Dibuat Oleh</th>
                                 <th class="cell">Date</th>
                                 <th class="cell">Status</th>
-                                <th class="cell"></th>
+                                <th class="cell">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,9 +115,7 @@
                                                                 style="width: 300px">
                                                         @endif
                                                     </div>
-                                                    {{-- <p class="summernote">
-                                                                {!! $news->description !!}
-                                                            </p> --}}
+
                                                 </x-slot>
                                                 <x-slot name="footer">
                                                     <button type="button" class="btn btn-secondary"
@@ -135,15 +133,13 @@
                                                 class="badge bg-{{ $news->status->value == 'publish' ? 'primary' : 'warning' }}">{{ $news->status->name }}</span>
                                         </td>
                                         <td class="cell">
-                                            <a class="btn-sm app-btn-secondary"
-                                                href="{{ route('news.edit', $news->id) }}">View</a>
-                                            <form action="{{ route('news.destroy', $news->id) }}" method="post"
-                                                enctype="multipart/form-data">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn-sm  app-btn-secondary"
-                                                    href="{{ route('user.destroy', $news->id) }}">Delete</button>
-                                            </form>
+                                            <div class="d-flex" style="gap: 5px">
+                                                <a class="btn-sm app-btn-secondary"
+                                                    href="{{ route('news.edit', $news->id) }}">View</a>
+                                                <a type="submit" class="btn-sm  app-btn-secondary"
+                                                    href="{{ route('news.destroy', $news->id) }}"
+                                                    data-confirm-delete="true">Delete</a>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

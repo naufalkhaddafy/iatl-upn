@@ -34,6 +34,10 @@ class NewsController extends Controller
             ->paginate($paginate)->withQueryString();
         }
 
+        $title = 'Hapus Berita!';
+        $text = "Apakah anda yakin menghapus data berita?";
+        confirmDelete($title, $text);
+
         return view('content.admin.news.index', ['newss' => $newss, 'search' => $request->search]);
     }
 
