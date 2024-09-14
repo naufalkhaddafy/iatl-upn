@@ -141,25 +141,25 @@
                                     <img src="{{ asset('images/iatl-card.jpeg') }}" height="200px" width="350px"
                                         class="rounded shadow " alt="Kartu Alumni">
                                     <img src="{{ asset('storage/' . auth()->user()->image) }}"
-                                        alt="{{ auth()->user()->name }}" width="65rem" height="75rem" id="foto-card"
-                                        class="position-absolute rounded" style="left: 6%; top:34%">
+                                        alt="{{ auth()->user()->name }}" width="65rem" height="76rem" id="foto-card"
+                                        class="position-absolute rounded" style="left: 6%; top:33%">
                                     <div class="name-card position-absolute" style="left: 29%; top: 30%;">
                                         <p>{{ auth()->user()->name ?? '-' }}</p>
                                     </div>
                                     <div class="name-card position-absolute"
-                                        style="left: 50%; top: 40%; font-size:0.65rem">
+                                        style="left: 50%; top:40%; font-size:0.65rem">
                                         <p>{{ auth()->user()->nim ?? '-' }}</p>
                                     </div>
                                     <div class="name-card position-absolute"
-                                        style="left: 50%; top: 45%; font-size:0.65rem">
+                                        style="left: 50%; top: 47%; font-size:0.65rem">
                                         <p>{{ auth()->user()->email ?? '-' }}</p>
                                     </div>
                                     <div class="name-card position-absolute"
-                                        style="left: 50%; top: 50%; font-size:0.65rem">
+                                        style="left: 50%; top: 54%; font-size:0.65rem">
                                         <p>{{ auth()->user()->phone_number ?? '-' }}</p>
                                     </div>
                                     <div class="name-card position-absolute"
-                                        style="left: 50%; top: 55%; font-size:0.60rem">
+                                        style="left: 50%; top: 61%; font-size:0.60rem">
                                         <p>{{ auth()->user()?->address_now }}, {{ auth()->user()->addressNow?->name }}
                                             {{ auth()->user()->addressNow?->province->name }}
                                         </p>
@@ -317,7 +317,7 @@
                             `<div class="text-center rounded">
                             <div class="card-header rounded">
                                 <div class="bg-info text-white bold p-2">
-                                    <b>Kabupate/Kota ${value.name}</b>
+                                    <b>${value.name}</b>
                                 </div>
                             <div class="card-body p-2">
                                 <div class="">Total Sebaran Alumni:</div>
@@ -349,7 +349,7 @@
                     }
                     let j = 1;
                     $('#loading-spinner').addClass('d-none');
-                    $('#title-province').text(`Data Sebaran Alumni Provinsi ${data.province}`)
+                    $('#title-province').text(`Data Sebaran Alumni ${data.regency}`)
                     $("#detailAlumni").removeClass('d-none');
                     data.users.map(function(user) {
                         $('#alumni-data').append(
