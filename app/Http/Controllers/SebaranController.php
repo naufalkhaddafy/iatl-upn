@@ -11,8 +11,8 @@ class SebaranController extends Controller
 {
     public function index()
     {
-        $sebaran = Http::get('https://wilayah.id/api/provinces.json')['data'];
-        $user = User::with('addressNow')->get();
+        $sebaran = Http::get('https://wilayah.id/api/provinces.json')['data'] ?? [];
+        $user = User::with('addressNow')->where('status','verified')->get();
 
         $provinceUser = $user
             ->map(function ($user) {
@@ -28,9 +28,9 @@ class SebaranController extends Controller
 
     public function show($id)
     {
-        $users = User::with('addressNow')->get();
+        $users = User::with('addressNow')->where('status','verified')->get();
         $province = Province::find($id);
-        $tes = $users
+        $user = $users
             ->filter(function ($user) use ($id) {
                 return $user->addressNow?->province_id == $id;
             })
@@ -39,8 +39,8 @@ class SebaranController extends Controller
 
         return response()->json([
             'province' => $province->name,
-            'total' => count($tes),
-            'users' => $tes,
+            'total' => count($user),
+            'users' => $user,
         ]);
     }
 }

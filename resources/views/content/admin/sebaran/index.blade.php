@@ -100,7 +100,7 @@
             listProvinceUser.map(function(value) {
                 let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
                     map);
-                $.get(`{{ url('/sebaran/alumni/${value.code}') }}`, function(data) {
+                $.get(`{{ url('/sebaran/alumni/${value.code}/nearest') }}`, function(data) {
                     marker.bindPopup(
                             `<div class="text-center rounded">
                                 <div class="card-header rounded">
@@ -137,7 +137,6 @@
                     }
                     let j = 1;
                     $('#loading-spinner').addClass('d-none');
-                    $('html, body').scrollTop($('#detailAlumni').offset().top);
                     $('#title-province').text(`Data Sebaran Alumni Provinsi ${data.province}`)
                     $("#detailAlumni").removeClass('d-none');
                     data.users.map(function(user) {
@@ -152,6 +151,7 @@
                             `
                         )
                     })
+                    $('html, body').scrollTop($('#detailAlumni').offset().top);
                 }
             })
         }

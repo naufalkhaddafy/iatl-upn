@@ -59,6 +59,7 @@ Route::middleware('auth')->group(function () {
     // Sebaran
     Route::get('/sebaran/alumni', [SebaranController::class, 'index'])->name('sebaran.alumni');
     Route::get('/sebaran/alumni/{id}', [SebaranController::class, 'show'])->name('sebaran.alumni.detail');
+    Route::get('/sebaran/alumni/regency/{id}', [DashboardController::class, 'showNearest'])->name('sebaran.alumni.nearest');
 });
 
 Route::get('/', function () {

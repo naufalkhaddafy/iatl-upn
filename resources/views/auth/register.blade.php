@@ -57,7 +57,7 @@
                             </div>
                             <div class="phone_number mb-3">
                                 <label class="sr-only" for="phone_number">NO. HP</label>
-                                <input id="phone_number" name="phone_number" type="text"
+                                <input id="phone_number" name="phone_number" type="number"
                                     class="form-control phone_number  @error('phone_number') is-invalid @enderror"
                                     placeholder="No. HP" required="required" value="{{ old('phone_number') }}">
                                 <x-forms.error type="danger" :messages="$errors->get('phone_number')" />

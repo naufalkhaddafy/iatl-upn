@@ -5,19 +5,44 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Regency;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // $userProvince = auth()->user()->addressNow?->province_id;
-        // $sebaran = Http::get('https://wilayah.id/api/regencies/' . $userProvince . '.json')['data'];
-        // $user = User::with('addressNow')->get();
-        // $sebaranByUserLogin= $user->filter(function($user) use ($userProvince){
-        //     return $user->addressNow?->province_id == $userProvince;
-        // })->values()->toArray();
+        $userProvince = auth()->user()->addressNow?->province_id;
+        $regencies = Http::get('https://wilayah.id/api/regencies/' . $userProvince . '.json')['data'] ?? [];
+        $user = User::with('addressNow')->where('status', 'verified')->get();
+        $sebaranByUserLogin = $user
+            ->filter(function ($user) use ($userProvince) {
+                return $user->addressNow?->province_id == $userProvince;
+            })
+            ->values()
+            ->toArray();
+        $addressNow = collect($sebaranByUserLogin)->pluck('address_now_id')->unique()->toArray();
+        return view('content.admin.dashboard.index', [
+            'regencies' => $regencies,
+            'alumniNearest' => $addressNow,
+        ]);
+    }
 
-        // dd($sebaranByUserLogin);
-        return view('content.admin.dashboard.index');
+    public function showNearest($id)
+    {
+        $regency = Regency::findOrFail($id);
+        $user = User::with('addressNow')->where('status', 'verified')->get();
+
+        $sebaranByUserLogin = $user
+            ->filter(function ($user) use ($id) {
+                return $user->address_now_id == $id;
+            })
+            ->values()
+            ->toArray();
+
+        return response()->json([
+            'regency'=> $regency->name,
+            'total' => count($sebaranByUserLogin),
+            'users' => $sebaranByUserLogin,
+        ]);
     }
 }

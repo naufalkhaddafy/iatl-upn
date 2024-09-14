@@ -75,6 +75,31 @@
                         </a><!--//nav-link-->
                     </li><!--//nav-item-->
 
+                    <li class="nav-item ">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <a class="nav-link " href="#">
+                            <span class="nav-icon">
+                                <x-bi-youtube />
+                            </span>
+                            <span class="nav-link-text d-flex justify-content-between align-content-center">
+                                <span>Youtube</span>
+                                <span class="badge on-dev align-content-center">DEV</span>
+                            </span>
+                        </a><!--//nav-link-->
+                    </li><!--//nav-item-->
+
+                    <li class="nav-item ">
+                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+                        <a class="nav-link" href="#">
+                            <span class="nav-icon">
+                                <x-bi-file-earmark-zip />
+                            </span>
+                            <span class="nav-link-text d-flex justify-content-between align-content-center">
+                                <span>File Manager</span>
+                                <span class="badge on-dev align-content-center">DEV</span>
+                            </span>
+                        </a><!--//nav-link-->
+                    </li>
                     <li class="nav-item has-submenu">
                         <a class="nav-link submenu-toggle {{ in_array(Route::currentRouteName(), ['user.index']) ? 'active' : '' }}"
                             href="#" data-bs-toggle="collapse" data-bs-target="#users"
@@ -113,32 +138,6 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
-
-                    <li class="nav-item ">
-                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link " href="#">
-                            <span class="nav-icon">
-                                <x-bi-youtube />
-                            </span>
-                            <span class="nav-link-text d-flex justify-content-between align-content-center">
-                                <span>Youtube</span>
-                                <span class="badge on-dev align-content-center">DEV</span>
-                            </span>
-                        </a><!--//nav-link-->
-                    </li><!--//nav-item-->
-
-                    <li class="nav-item ">
-                        <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                        <a class="nav-link" href="#">
-                            <span class="nav-icon">
-                                <x-bi-file-earmark-zip />
-                            </span>
-                            <span class="nav-link-text d-flex justify-content-between align-content-center">
-                                <span>File Manager</span>
-                                <span class="badge on-dev align-content-center">DEV</span>
-                            </span>
-                        </a><!--//nav-link-->
                     </li>
 
                     <li class="nav-item">
