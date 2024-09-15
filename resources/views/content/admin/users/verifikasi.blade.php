@@ -1,6 +1,8 @@
 @section('title', $page_meta['title'])
 @extends('layout.admin.layout')
 @push('css')
+    <link href="https://cdn.datatables.net/2.1.6/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css" rel="stylesheet">
 @endpush
 @section('content')
 
@@ -14,48 +16,47 @@
                 <div class="page-utilities">
                     <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                         <div class="col-auto">
-                            <form class="table-search-form row gx-1 align-items-center" action="{{ route('news.index') }}"
-                                method="get">
-                                <div class="col-auto">
-                                    <input type="text" id="search-news" name="search" class="form-control search-orders"
-                                        placeholder="Search" value="">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn app-btn-secondary">Search</button>
-                                </div>
-                            </form>
 
-                        </div><!--//col-->
+                            <div class="col-auto">
+                                <input type="text" id="search-alumni" name="search" class="form-control search-orders"
+                                    placeholder="Search">
+                            </div>
+                        </div>
+                        <!--//col-->
                         <div class="col-auto">
-
                             <select id="paginate" class="form-select w-auto">
-                                <option value="5">5
-                                </option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-
+                                <option value="10" {{ Request()->paginate == 10 ? 'selected' : '' }}>10</option>
+                                <option value="20" {{ Request()->paginate == 20 ? 'selected' : '' }}>20</option>
+                                <option value="50" {{ Request()->paginate == 50 ? 'selected' : '' }}>50</option>
+                                <option value="100" {{ Request()->paginate == 50 ? 'selected' : '' }}>100</option>
                             </select>
                         </div>
-                    </div><!--//row-->
-                </div><!--//table-utilities-->
-            </div><!--//col-auto-->
-        </div><!--//row-->
+                    </div>
+                    <!--//row-->
+                </div>
+                <!--//table-utilities-->
+            </div>
+            <!--//col-auto-->
+        </div>
+        <!--//row-->
 
         <nav id="orders-table-tab" class="orders-table-tab app-nav-tabs nav shadow-sm flex-column flex-sm-row mb-4">
-            <a class="flex-sm-fill text-sm-center nav-link active   " id="statusAll" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">All</a>
-            <a class="flex-sm-fill text-sm-center nav-link " id="statusPublish" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">Pending</a>
-            <a class="flex-sm-fill text-sm-center nav-link " id="statusArchived" data-bs-toggle="tab" href="#"
-                role="tab" aria-controls="orders-all" aria-selected="true">Unverified</a>
+            <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == null ? 'active' : '' }}" id="statusAll"
+                data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all" aria-selected="true">All</a>
+            <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == 'pending' ? 'active' : '' }}"
+                id="statusPublish" data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all"
+                aria-selected="true">Pending</a>
+            <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == 'unverified' ? 'active' : '' }}"
+                id="statusArchived" data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all"
+                aria-selected="true">Unverified</a>
+
+
         </nav>
 
         <div class="app-card app-card-orders-table shadow-sm mb-4">
             <div class="app-card-body">
                 <div class="table-responsive">
-                    <table class="table app-table-hover mb-0 text-left">
+                    <table id="tbl_list" class="table app-table-hover mb-0 w-100">
                         <thead>
                             <tr>
                                 <th class="cell">No.</th>
@@ -77,8 +78,9 @@
                                                 data-bs-target="#previewThumbnail{{ $user->id }}"
                                                 style="cursor: pointer;">
                                                 @if ($user->image == null)
-                                                    <img src="{{ asset('image/blank-user.png') }}" alt="{{ $user->name }}"
-                                                        class="img-thumbnail" style="width:40px; height:40px">
+                                                    <img src="{{ asset('image/blank-user.png') }}"
+                                                        alt="{{ $user->name }}" class="img-thumbnail"
+                                                        style="width:40px; height:40px">
                                                 @else
                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                         alt="{{ $user->name }}" class="img-thumbnail"
@@ -102,8 +104,8 @@
                                                         method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('put')
-                                                        <button type="submit" class="btn-sm  app-btn-secondary"
-                                                            href="{{ route('user.destroy', $user->id) }}">Approved</button>
+                                                        <button type="submit"
+                                                            class="btn-sm  app-btn-secondary">Approved</button>
                                                     </form>
                                                 @endif
                                             </div>
@@ -117,15 +119,44 @@
                             @endif
                         </tbody>
                     </table>
-                </div><!--//table-responsive-->
+                </div>
+                <!--//table-responsive-->
 
-            </div><!--//app-card-body-->
-        </div><!--//app-card-->
+            </div>
+            <!--//app-card-body-->
+        </div>
+        <!--//app-card-->
         <nav class="app-pagination">
             {{ $users->links() }}
-        </nav><!--//app-pagination-->
+        </nav>
+        <!--//app-pagination-->
 
-    </div><!--//container-fluid-->
+    </div>
+    <!--//container-fluid-->
 @endsection
 @push('js')
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // const params = new URLSearchParams(window.location.search);
+            // let query = window.location.search
+            // let paginate = params.get('paginate');
+
+            let table = $('#tbl_list').DataTable({
+                responsive: true,
+            });
+
+            $('#search-alumni').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+
+            const baseUrl = `{{ url('/verifikasi/alumni') }}`
+
+            // $("#paginate").on('change', function(e) {
+            //     const limit = e.target.value;
+            //     endpoint = `${baseUrl}?paginate=${limit}`
+            //     window.location.replace(endpoint);
+            // })
+        });
+    </script>
 @endpush
