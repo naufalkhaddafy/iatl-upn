@@ -14,16 +14,10 @@
                 <div class="page-utilities">
                     <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                         <div class="col-auto">
-                            <form class="table-search-form row gx-1 align-items-center" action="{{ route('news.index') }}"
-                                method="get">
-                                <div class="col-auto">
-                                    <input type="text" id="search-news" name="search" class="form-control search-orders"
-                                        placeholder="Search" value="">
-                                </div>
-                                <div class="col-auto">
-                                    <button type="submit" class="btn app-btn-secondary">Search</button>
-                                </div>
-                            </form>
+                            <div class="col-auto">
+                                <input type="text" id="search-alumni-verified" name="search"
+                                    class="form-control search-orders" placeholder="Search">
+                            </div>
 
                         </div><!--//col-->
                         <div class="col-auto">
@@ -73,7 +67,7 @@
         <div class="app-card app-card-orders-table shadow-sm mb-4">
             <div class="app-card-body">
                 <div class="table-responsive">
-                    <table class="table app-table-hover mb-0 text-left">
+                    <table id="tbl_list" class="table app-table-hover mb-0 text-left">
                         <thead>
                             <tr>
                                 <th class="cell">No.</th>
@@ -139,4 +133,17 @@
     </div><!--//container-fluid-->
 @endsection
 @push('js')
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            let table = $('#tbl_list').DataTable({
+                responsive: true,
+            });
+
+            $('#search-alumni-verified').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+            const baseUrl = `{{ url('/verifikasi/alumni') }}`
+        });
+    </script>
 @endpush

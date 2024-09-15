@@ -1,8 +1,6 @@
 @section('title', $page_meta['title'])
 @extends('layout.admin.layout')
 @push('css')
-    <link href="https://cdn.datatables.net/2.1.6/css/dataTables.bootstrap5.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/3.0.3/css/responsive.bootstrap5.css" rel="stylesheet">
 @endpush
 @section('content')
 
