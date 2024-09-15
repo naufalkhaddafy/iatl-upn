@@ -169,9 +169,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class, 
+        Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ])->toArray(),
 
     /*

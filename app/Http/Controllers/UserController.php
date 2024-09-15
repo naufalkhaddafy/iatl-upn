@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -154,8 +155,10 @@ class UserController extends Controller
         return Excel::download(new AlumniExport, 'Data Alumni.xlsx' );
     }
 
-    public function verifikasiAlumni(){
-        $users = User::role('user')->where('status','pending')->orWhere('status','unverified')->latest()->paginate(10);
+    public function verifikasiAlumni(Request $request){
+        $paginate = $request->query('paginate') ?? 10;
+        $users = User::query()->role('user')->where('status','pending')->orWhere('status','unverified')->latest()->paginate($paginate)->withQueryString();
+
 
         return view('content.admin.users.verifikasi', [
             'users' => $users,
