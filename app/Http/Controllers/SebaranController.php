@@ -34,6 +34,7 @@ class SebaranController extends Controller
             ->filter(function ($user) use ($id) {
                 return $user->addressNow?->province_id == $id;
             })
+            ->sortBy(['generation','name'])
             ->values()
             ->toArray();
 

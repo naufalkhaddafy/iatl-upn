@@ -68,10 +68,10 @@
                                 <tr>
                                     <th class="cell">No.</th>
                                     <th class="cell">Nama</th>
+                                    <th class="cell">Angkatan</th>
                                     <th class="cell">Email</th>
                                     <th class="cell">No.HP</th>
                                     <th class="cell">Lokasi</th>
-
                                 </tr>
                             </thead>
                             <tbody id="alumni-data">
@@ -102,7 +102,7 @@
                     map);
                 $.get(`{{ url('/sebaran/alumni/${value.code}') }}`, function(data) {
                     marker.bindPopup(
-                            `<div class="text-center rounded">
+                        `<div class="text-center rounded">
                                 <div class="card-header rounded">
                                     <div class="bg-info text-white bold p-2">
                                         <b>Provinsi ${value.name}</b>
@@ -116,8 +116,7 @@
                                 </div>
                             </div>
                             `
-                        )
-                        .openPopup();
+                    );
                 })
             });
         })
@@ -144,6 +143,7 @@
                             `<tr>
                                 <td class="cell">${j++}</td>
                                 <td class="cell">${user.name}</td>
+                                <td class="cell">${user.generation}</td>
                                 <td class="cell">${user.email}</td>
                                 <td class="cell">${user.phone_number}</td>
                                 <td class="cell">${user.address_now.name}</td>
