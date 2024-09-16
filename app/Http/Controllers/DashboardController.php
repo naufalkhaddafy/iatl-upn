@@ -36,7 +36,7 @@ class DashboardController extends Controller
             ->filter(function ($user) use ($id) {
                 return $user->address_now_id == $id;
             })
-            ->sortBy('generation')
+            ->sortBy(['generation','name'])
             ->values()
             ->toArray();
 
