@@ -22,10 +22,10 @@ class UserController extends Controller
     {
         //
         // $users = User::with('roles')->where('name', 'user')->paginate(10);
-        $users = User::role('user')->where('status','verified')->latest()->paginate(10);
+        $users = User::role('user')->where('status', 'verified')->latest()->paginate(10);
 
         $title = 'Hapus Alumni!';
-        $text = "Apakah anda yakin menghapus data alumni?";
+        $text = 'Apakah anda yakin menghapus data alumni?';
         confirmDelete($title, $text);
 
         return view('content.admin.users.index', [
@@ -33,7 +33,7 @@ class UserController extends Controller
             'page_meta' => [
                 'title' => 'Daftar Alumni',
                 'description' => 'Data Alumni yang terdaftar di sistem',
-            'role' => 'Alumni',
+                'role' => 'Alumni',
                 // 'method' => 'post',
                 // 'url' => route('user.store'),
             ],
@@ -79,7 +79,7 @@ class UserController extends Controller
         $register_code = $request->register_code = 'REG-' . date('YmdHis') . $request->nim;
 
         $image = $request->file('image');
-        $user = User::create([...$request->validated(), 'register_code'=>$register_code ,'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
+        $user = User::create([...$request->validated(), 'register_code' => $register_code, 'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
         $user->assignRole('user');
 
         Alert::toast('Data alumni berhasil ditambahkan', 'success');
@@ -123,14 +123,13 @@ class UserController extends Controller
             if (Storage::exists(!$user->image)) {
                 Storage::delete($user->image);
             }
-            $userUpdate = $user->update([...$request->validated(), 'image' => $image->storeAs('images/users/'. $user->register_code .'.'. $image->getClientOriginalExtension()  )]);
-
+            $userUpdate = $user->update([...$request->validated(), 'image' => $image->storeAs('images/users/' . $user->register_code . '.' . $image->getClientOriginalExtension())]);
         } else {
             $rmImage = $request->deleteImage;
-            if($rmImage){
+            if ($rmImage) {
                 Storage::delete($user->image);
-                $userUpdate = $user->update([...$request->validated(),'image'=> null]);
-            }else{
+                $userUpdate = $user->update([...$request->validated(), 'image' => null]);
+            } else {
                 $userUpdate = $user->update($request->validated());
             }
         }
@@ -144,21 +143,22 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if (Storage::exists(!$user->image)) {
-             Storage::delete($user->image);
+            Storage::delete($user->image);
         }
         $user->delete();
         Alert::toast('Data alumni berhasil dihapus', 'success');
         return redirect()->back();
     }
 
-    public function export($type){
-        return Excel::download(new AlumniExport, 'Data Alumni.xlsx' );
+    public function export($type)
+    {
+        return Excel::download(new AlumniExport(), 'Data Alumni Per Tanggal ' . now()->format('d-m-Y') . '.' . $type);
     }
 
-    public function verifikasiAlumni(Request $request){
+    public function verifikasiAlumni(Request $request)
+    {
         $paginate = $request->query('paginate') ?? 10;
-        $users = User::query()->role('user')->where('status','pending')->orWhere('status','unverified')->latest()->paginate($paginate)->withQueryString();
-
+        $users = User::query()->role('user')->where('status', 'pending')->orWhere('status', 'unverified')->latest()->paginate($paginate)->withQueryString();
 
         return view('content.admin.users.verifikasi', [
             'users' => $users,
@@ -171,10 +171,11 @@ class UserController extends Controller
             ],
         ]);
     }
-    public function verifikasiAlumniUpdate(User $user){
-        $user->status ='verified';
+    public function verifikasiAlumniUpdate(User $user)
+    {
+        $user->status = 'verified';
         $user->save();
-        Alert::toast('Data Alumni berhasil di setujui','success');
+        Alert::toast('Data Alumni berhasil di setujui', 'success');
         return redirect()->route('admin.index.alumni');
     }
 }

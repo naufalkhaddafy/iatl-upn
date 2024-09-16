@@ -15,7 +15,7 @@ class AlumniExport implements FromView
     {
         //
         return view('exports.alumni-export', [
-            'allAlumni' => User::role('user')->where('status','verified')->latest()->get(),
+            'allAlumni' => User::role('user')->orderBy('generation', 'asc')->orderBy('name', 'asc') ->get(),
         ]);
     }
 }
