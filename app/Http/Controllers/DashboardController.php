@@ -36,11 +36,12 @@ class DashboardController extends Controller
             ->filter(function ($user) use ($id) {
                 return $user->address_now_id == $id;
             })
+            ->sortBy('generation')
             ->values()
             ->toArray();
 
         return response()->json([
-            'regency'=> $regency->name,
+            'regency' => $regency->name,
             'total' => count($sebaranByUserLogin),
             'users' => $sebaranByUserLogin,
         ]);

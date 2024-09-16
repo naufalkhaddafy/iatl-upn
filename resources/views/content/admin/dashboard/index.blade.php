@@ -102,18 +102,33 @@
                                 </h1>
                             </div>
                         </div>
-                        <div class="p-4 border rounded" style="height: 230px;">
+                        <div class="p-4 border rounded" style="min-height: 230px; height: auto;">
                             <h1 class="fs-6">{{ auth()->user()->name }} <span
                                     class="text-info"><x-bi-patch-check /></span>
                             </h1>
-                            <div class="detail-profil ">
-                                <div class="pb-1"><x-bi-person-vcard /> {{ auth()->user()->nim }}</div>
-                                <div class="py-1"><x-bi-envelope-paper /> {{ auth()->user()->email ?? '-' }} </div>
-                                <div class="py-1"><x-bi-telephone-outbound /> {{ auth()->user()->phone_number ?? '-' }}
+                            <div class="detail-profil">
+                                <div class="py-1 d-flex" style="gap: 10px">
+                                    <div> <x-bi-person-vcard /></div>
+                                    <div class="text-justify">{{ auth()->user()?->nim }}</div>
                                 </div>
-                                <div class="py-1"><x-bi-pin-map /> {{ auth()->user()->address_now ?? '-' }}
+                                <div class="py-1 d-flex" style="gap: 10px">
+                                    <div><x-bi-calendar2-date /></div>
+                                    <div class="text-justify">{{ auth()->user()->generation ?? '-' }}</div>
                                 </div>
-                                <div class="pt-1"><x-bi-pin-map-fill /> {{ auth()->user()->addressNow?->name }}</div>
+                                <div class="py-1 d-flex" style="gap: 10px">
+                                    <div> <x-bi-envelope-paper /> </div>
+                                    <div class="text-justify">{{ auth()->user()->email ?? '-' }}</div>
+                                </div>
+                                <div class="py-1 d-flex" style="gap: 10px">
+                                    <div> <x-bi-telephone-outbound /> </div>
+                                    <div class="text-justify">{{ auth()->user()->phone_number ?? '-' }}</div>
+                                </div>
+                                <div class="pt-1 d-flex" style="gap: 10px">
+                                    <div><x-bi-pin-map-fill /></div>
+                                    <div class="text-justify">
+                                        {{ auth()->user()->address_now ?? '-' }},{{ auth()->user()->addressNow?->name }},
+                                        {{ auth()->user()->addressNow?->province->name }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -140,9 +155,16 @@
                                 <div class="position-relative d-inline-block">
                                     <img src="{{ asset('images/iatl-card.jpeg') }}" height="200px" width="350px"
                                         class="rounded shadow " alt="Kartu Alumni">
-                                    <img src="{{ asset('storage/' . auth()->user()->image) }}"
-                                        alt="{{ auth()->user()->name }}" width="65rem" height="76rem" id="foto-card"
-                                        class="position-absolute rounded" style="left: 6%; top:33%">
+                                    @if (auth()->user()->image)
+                                        <img src="{{ asset('storage/' . auth()->user()->image) }}"
+                                            alt="{{ auth()->user()->name }}" width="67rem" height="76rem"
+                                            id="foto-card" class="position-absolute rounded" style="left: 5.5%; top:33%">
+                                    @else
+                                        <img src="{{ asset('image/blank-user.png') }}" alt="{{ auth()->user()->name }}"
+                                            width="67rem" height="76rem" id="foto-card"
+                                            class="position-absolute rounded" style="left: 5.5%; top:33%">
+                                    @endif
+
                                     <div class="name-card position-absolute" style="left: 29%; top: 30%;">
                                         <p>{{ auth()->user()->name ?? '-' }}</p>
                                     </div>
@@ -268,6 +290,7 @@
                                         <tr>
                                             <th class="cell">No.</th>
                                             <th class="cell">Nama</th>
+                                            <th class="cell">Angkatan</th>
                                             <th class="cell">Email</th>
                                             <th class="cell">No.HP</th>
                                             <th class="cell">Lokasi</th>
@@ -321,7 +344,6 @@
                 let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
                     map);
                 let codeRegency = value.code.replace('.', '');
-
                 $.get(`{{ url('/sebaran/alumni/regency/${codeRegency}') }}`, function(data) {
                     marker.bindPopup(
                         `<div class="text-center rounded">
@@ -338,7 +360,8 @@
                             </div>
                         </div>
                         `
-                    );
+                    ).openPopup();
+
                 })
             });
         })
@@ -365,6 +388,7 @@
                             `<tr>
                                 <td class="cell">${j++}</td>
                                 <td class="cell">${user.name}</td>
+                                <td class="cell">${user.generation}</td>
                                 <td class="cell">${user.email}</td>
                                 <td class="cell">${user.phone_number}</td>
                                 <td class="cell">${user.address_now.name}</td>
