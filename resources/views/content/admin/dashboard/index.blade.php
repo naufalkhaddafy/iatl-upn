@@ -293,20 +293,30 @@
             let regencies = @json($regencies);
             let alumniNearest = @json($alumniNearest);
 
+            // console.log(alumniNearest);
+
+            let alumniNearestArr = Object.values(alumniNearest)
+
+            // console.log(alumniNearestArr);
+            // console.log(typeof alumniNearestArr);
+
             function insertDotInMiddle(number) {
                 let str = number.toString();
                 let middleIndex = Math.floor(str.length / 2);
                 return str.slice(0, middleIndex) + '.' + str.slice(middleIndex);
             }
-            let addDotEveryRegencyCode = alumniNearest.map(function(data) {
+
+            let addDotEveryRegencyCode = alumniNearestArr.map(function(data) {
                 return insertDotInMiddle(data)
             })
+
 
             let sebaranNearest = regencies.filter(item => Object.values(addDotEveryRegencyCode).includes(item
                 .code));
 
             let map = L.map('map').setView([-1.1742548, 116.6769313], 4.5);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
             sebaranNearest.map(function(value) {
                 let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
                     map);
@@ -314,7 +324,7 @@
 
                 $.get(`{{ url('/sebaran/alumni/regency/${codeRegency}') }}`, function(data) {
                     marker.bindPopup(
-                            `<div class="text-center rounded">
+                        `<div class="text-center rounded">
                             <div class="card-header rounded">
                                 <div class="bg-info text-white bold p-2">
                                     <b>${value.name}</b>
@@ -328,8 +338,7 @@
                             </div>
                         </div>
                         `
-                        )
-                        .openPopup();
+                    );
                 })
             });
         })
