@@ -22,9 +22,8 @@
                         </div><!--//col-->
                         <div class="col-auto">
 
-                            <select id="paginate" class="form-select w-auto">
-                                <option value="5">5
-                                </option>
+                            <select id="select-length" class="form-select w-auto">
+
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
@@ -83,7 +82,7 @@
                             @if (count($users) > 0)
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td class="cell">{{ $loop->iteration + $users->firstItem() - 1 }}</td>
+                                        <td class="cell">{{ $loop->iteration }}</td>
                                         <td class="cell">
                                             <div data-bs-toggle="modal"
                                                 data-bs-target="#previewThumbnail{{ $user->id }}"
@@ -126,8 +125,7 @@
 
             </div><!--//app-card-body-->
         </div><!--//app-card-->
-        <nav class="app-pagination">
-            {{ $users->links() }}
+        <nav class="app-pagination text-center">
         </nav><!--//app-pagination-->
 
     </div><!--//container-fluid-->
@@ -143,7 +141,14 @@
             $('#search-alumni-verified').on('keyup', function() {
                 table.search(this.value).draw();
             });
-            const baseUrl = `{{ url('/verifikasi/alumni') }}`
+
+            $('#select-length').change(function() {
+                var selectedLength = $(this).val();
+                table.page.len(selectedLength).draw();
+            });
+
+            $('.dataTables_info').appendTo('.app-pagination');
+            $('.dataTables_paginate').appendTo('.app-pagination');
         });
     </script>
 @endpush

@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         //
         // $users = User::with('roles')->where('name', 'user')->paginate(10);
-        $users = User::role('user')->where('status', 'verified')->latest()->paginate(10);
+        $users = User::role('user')->where('status', 'verified')->latest()->get();
 
         $title = 'Hapus Alumni!';
         $text = 'Apakah anda yakin menghapus data alumni?';
@@ -155,10 +155,10 @@ class UserController extends Controller
         return Excel::download(new AlumniExport(), 'Data Alumni Per Tanggal ' . now()->format('d-m-Y') . '.' . $type);
     }
 
-    public function verifikasiAlumni(Request $request)
+    public function verifikasiAlumni()
     {
-        $paginate = $request->query('paginate') ?? 10;
-        $users = User::query()->role('user')->where('status', 'pending')->orWhere('status', 'unverified')->latest()->paginate($paginate)->withQueryString();
+        // $paginate = $request->query('paginate') ?? 10;
+        $users = User::query()->role('user')->where('status', 'pending')->orWhere('status', 'unverified')->latest()->get();
 
         return view('content.admin.users.verifikasi', [
             'users' => $users,

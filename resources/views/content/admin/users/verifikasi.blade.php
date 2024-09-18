@@ -22,11 +22,11 @@
                         </div>
                         <!--//col-->
                         <div class="col-auto">
-                            <select id="paginate" class="form-select w-auto">
-                                <option value="10" {{ Request()->paginate == 10 ? 'selected' : '' }}>10</option>
-                                <option value="20" {{ Request()->paginate == 20 ? 'selected' : '' }}>20</option>
-                                <option value="50" {{ Request()->paginate == 50 ? 'selected' : '' }}>50</option>
-                                <option value="100" {{ Request()->paginate == 50 ? 'selected' : '' }}>100</option>
+                            <select id="select-length" class="form-select w-auto">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
                             </select>
                         </div>
                     </div>
@@ -70,15 +70,14 @@
                             @if (count($users) > 0)
                                 @foreach ($users as $user)
                                     <tr>
-                                        <td class="cell">{{ $loop->iteration + $users->firstItem() - 1 }}</td>
+                                        <td class="cell">{{ $loop->iteration }}</td>
                                         <td class="cell">
                                             <div data-bs-toggle="modal"
                                                 data-bs-target="#previewThumbnail{{ $user->id }}"
                                                 style="cursor: pointer;">
                                                 @if ($user->image == null)
-                                                    <img src="{{ asset('image/blank-user.png') }}"
-                                                        alt="{{ $user->name }}" class="img-thumbnail"
-                                                        style="width:40px; height:40px">
+                                                    <img src="{{ asset('image/blank-user.png') }}" alt="{{ $user->name }}"
+                                                        class="img-thumbnail" style="width:40px; height:40px">
                                                 @else
                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                         alt="{{ $user->name }}" class="img-thumbnail"
@@ -124,8 +123,8 @@
             <!--//app-card-body-->
         </div>
         <!--//app-card-->
-        <nav class="app-pagination">
-            {{ $users->links() }}
+        <nav class="app-pagination text-center">
+
         </nav>
         <!--//app-pagination-->
 
@@ -134,11 +133,9 @@
 @endsection
 @push('js')
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
-            // const params = new URLSearchParams(window.location.search);
-            // let query = window.location.search
-            // let paginate = params.get('paginate');
 
             let table = $('#tbl_list').DataTable({
                 responsive: true,
@@ -148,13 +145,13 @@
                 table.search(this.value).draw();
             });
 
-            const baseUrl = `{{ url('/verifikasi/alumni') }}`
+            $('#select-length').change(function() {
+                var selectedLength = $(this).val();
+                table.page.len(selectedLength).draw(); // Update the DataTable length
+            });
 
-            // $("#paginate").on('change', function(e) {
-            //     const limit = e.target.value;
-            //     endpoint = `${baseUrl}?paginate=${limit}`
-            //     window.location.replace(endpoint);
-            // })
+            $('.dataTables_info').appendTo('.app-pagination');
+            $('.dataTables_paginate').appendTo('.app-pagination');
         });
     </script>
 @endpush
