@@ -47,10 +47,11 @@ Route::middleware('auth')->group(function () {
         Route::resource('/news', NewsController::class);
         //Users
         Route::resource('/user', UserController::class);
+        Route::get('/list-admin', [UserController::class, 'indexAdmin'])->name('admin.index.admin');
         Route::get('/list-alumni', [UserController::class, 'indexAlumni'])->name('admin.index.alumni');
         Route::get('/verifikasi/alumni', [UserController::class, 'verifikasiAlumni'])->name('admin.verifikasi.alumni');
         Route::put('/verifikasi/alumni/{user}', [UserController::class, 'verifikasiAlumniUpdate'])->name('admin.verifikasi.alumni.update');
-        Route::get('/list-admin', [UserController::class, 'indexAdmin'])->name('admin.index.admin');
+        Route::patch('/alumni/approved-all',[UserController::class, 'approvedAll'])->name('admin.approved.all');
         Route::get('/admin/export/alumni/{type}', [UserController::class, 'export'])->name('admin.export.alumni');
         //Web Settings
         Route::get('/web-settings', [ContentController::class, 'index'])->name('web.settings');

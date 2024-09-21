@@ -5,7 +5,6 @@
 @section('content')
 
     <div class="container-xl">
-
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
                 <h1 class="app-page-title mb-0">{{ $page_meta['title'] }}</h1>
@@ -29,6 +28,24 @@
                                 <option value="100">100</option>
                             </select>
                         </div>
+                        <div class="col-auto d-none btn app-btn-secondary" id="total-approved-all">
+                        </div>
+                        <div class="col-auto d-none" id="approved-all">
+                            <form action="{{ route('admin.approved.all') }}" method="post" enctype="multipart/form">
+                                @csrf
+                                @method('patch')
+                                <div id="data-selected-hidden">
+
+                                </div>
+                                <div id="data-selected-hidden">
+
+                                </div>
+                                <button class="btn app-btn-primary" type="submit">
+                                    Approved All
+                                </button>
+                            </form>
+                        </div>
+
                     </div>
                     <!--//row-->
                 </div>
@@ -47,8 +64,6 @@
             <a class="flex-sm-fill text-sm-center nav-link {{ request()->status == 'unverified' ? 'active' : '' }}"
                 id="statusArchived" data-bs-toggle="tab" href="#" role="tab" aria-controls="orders-all"
                 aria-selected="true">Unverified</a>
-
-
         </nav>
 
         <div class="app-card app-card-orders-table shadow-sm mb-4">
@@ -57,6 +72,10 @@
                     <table id="tbl_list" class="table app-table-hover mb-0 w-100">
                         <thead>
                             <tr>
+                                <th class="cell">
+                                    <input class="form-check-input" type="checkbox" name="all-pending" value="all-pending"
+                                        id="select-all-pending">
+                                </th>
                                 <th class="cell">No.</th>
                                 <th class="cell">Profile</th>
                                 <th class="cell">Nim</th>
@@ -70,14 +89,20 @@
                             @if (count($users) > 0)
                                 @foreach ($users as $user)
                                     <tr>
+                                        <td class="cell">
+                                            <input class="form-check-input" type="checkbox" name=""
+                                                value="{{ $user->id }}"
+                                                {{ $user->status == 'unverified' ? 'disabled' : '' }}>
+                                        </td>
                                         <td class="cell">{{ $loop->iteration }}</td>
                                         <td class="cell">
                                             <div data-bs-toggle="modal"
                                                 data-bs-target="#previewThumbnail{{ $user->id }}"
                                                 style="cursor: pointer;">
                                                 @if ($user->image == null)
-                                                    <img src="{{ asset('image/blank-user.png') }}" alt="{{ $user->name }}"
-                                                        class="img-thumbnail" style="width:40px; height:40px">
+                                                    <img src="{{ asset('image/blank-user.png') }}"
+                                                        alt="{{ $user->name }}" class="img-thumbnail"
+                                                        style="width:40px; height:40px">
                                                 @else
                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                         alt="{{ $user->name }}" class="img-thumbnail"
@@ -97,12 +122,13 @@
                                                     href="{{ route('user.edit', $user->id) }}">View
                                                 </a>
                                                 @if ($user->status == 'pending')
-                                                    <form action="{{ route('admin.verifikasi.alumni.update', $user->id) }}"
+                                                    <form
+                                                        action="{{ route('admin.verifikasi.alumni.update', $user->id) }}"
                                                         method="post" enctype="multipart/form-data">
                                                         @csrf
                                                         @method('put')
                                                         <button type="submit"
-                                                            class="btn-sm  app-btn-secondary">Approved</button>
+                                                            class="btn-sm app-btn-secondary">Approved</button>
                                                     </form>
                                                 @endif
                                             </div>
@@ -118,13 +144,11 @@
                     </table>
                 </div>
                 <!--//table-responsive-->
-
             </div>
             <!--//app-card-body-->
         </div>
         <!--//app-card-->
         <nav class="app-pagination text-center">
-
         </nav>
         <!--//app-pagination-->
 
@@ -137,6 +161,9 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+
+            let checkedValues = [];
+
             let table = $('#tbl_list').DataTable({
                 responsive: true,
             });
@@ -147,11 +174,59 @@
 
             $('#select-length').change(function() {
                 var selectedLength = $(this).val();
-                table.page.len(selectedLength).draw(); // Update the DataTable length
+                table.page.len(selectedLength).draw();
             });
 
             $('.dataTables_info').appendTo('.app-pagination');
             $('.dataTables_paginate').appendTo('.app-pagination');
+
+
+            $('#select-all-pending').change(function() {
+                const isChecked = this.checked;
+                table.rows().every(function() {
+                    const checkbox = $(this.node()).find(
+                        'td input[type="checkbox"]:not(:disabled)');
+                    checkbox.prop('checked', isChecked).change();
+                });
+            });
+
+            table.rows().every(function() {
+                const checkbox = $(this.node()).find(
+                    'td input[type="checkbox"]:not(:disabled)').change(function() {
+
+                    const value = $(this).val();
+                    const isChecked = this.checked;
+                    // const $row = $(this).closest('tr');
+
+                    if (isChecked) {
+                        if (!checkedValues.includes(value)) {
+                            checkedValues.push(value);
+                            // $row.addClass('bg-success');
+                        }
+                    } else {
+                        checkedValues = checkedValues.filter(val => val !== value);
+                        // $row.removeClass('bg-success');
+                    }
+
+                    $('#approved-all').toggleClass('d-none', checkedValues.length < 2);
+                    $('#total-approved-all').toggleClass('d-none', checkedValues
+                        .length < 1).text(
+                        'Total di pilih : ' + checkedValues
+                        .length);
+
+                    rencentToInput(checkedValues);
+                })
+            });
+
+            function rencentToInput(values) {
+                const logContainer = $('#data-selected-hidden');
+                logContainer.empty();
+
+                values.forEach(function(element, index) {
+                    logContainer.append(`<input type="hidden" name="user[${index}]" value="${element}" />`)
+                });
+            }
+
         });
     </script>
 @endpush

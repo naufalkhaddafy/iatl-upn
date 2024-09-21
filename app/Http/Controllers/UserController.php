@@ -157,8 +157,7 @@ class UserController extends Controller
 
     public function verifikasiAlumni()
     {
-        // $paginate = $request->query('paginate') ?? 10;
-        $users = User::query()->role('user')->where('status', 'pending')->orWhere('status', 'unverified')->latest()->get();
+        $users = User::query()->role('user')->where('status','!=','verified')->orderBy('status', 'asc')->latest()->get();
 
         return view('content.admin.users.verifikasi', [
             'users' => $users,
@@ -175,6 +174,14 @@ class UserController extends Controller
     {
         $user->status = 'verified';
         $user->save();
+        Alert::toast('Data Alumni berhasil di setujui', 'success');
+        return redirect()->route('admin.index.alumni');
+    }
+
+    public function approvedAll(){
+        $userId = Request()->user;
+        User::whereIn('id', $userId)->update(['status' => 'verified']);
+
         Alert::toast('Data Alumni berhasil di setujui', 'success');
         return redirect()->route('admin.index.alumni');
     }

@@ -18,17 +18,13 @@
                                 <input type="text" id="search-alumni-verified" name="search"
                                     class="form-control search-orders" placeholder="Search">
                             </div>
-
                         </div><!--//col-->
                         <div class="col-auto">
-
                             <select id="select-length" class="form-select w-auto">
-
                                 <option value="10">10</option>
                                 <option value="20">20</option>
                                 <option value="50">50</option>
                                 <option value="100">100</option>
-
                             </select>
                         </div>
                         <div class="col-auto">
