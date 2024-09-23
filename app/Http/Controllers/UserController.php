@@ -61,7 +61,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $register_code = $request->register_code = 'REG-' . date('YmdHis') . $request->nim;
+        $register_code = $request->register_code = 'REG-' . date('YmdHis') . Str::random(3);
 
         $image = $request->file('image');
         $user = User::create([...$request->validated(), 'register_code' => $register_code, 'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
