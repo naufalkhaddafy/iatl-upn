@@ -333,6 +333,14 @@
                                         </div><!--//col-->
                                     </div><!--//row-->
                                 </div><!--//item-->
+                                @if ($page_meta['method'] == 'put')
+                                    <div class="item pt-3 pb-2">
+                                        <label class="text-danger font-bold"><strong>Silahkan masukan Password jika ingin
+                                                mengganti
+                                                Password !!!</strong></label>
+                                    </div><!--//item-->
+                                @endif
+
                                 <div class="item py-2">
                                     <div class="row justify-content-between align-items-center">
                                         <div class="col">

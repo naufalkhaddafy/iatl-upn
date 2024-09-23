@@ -18,7 +18,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function indexAlumni()
+    public function index()
     {
         //
         // $users = User::with('roles')->where('name', 'user')->paginate(10);
@@ -40,21 +40,6 @@ class UserController extends Controller
         ]);
     }
 
-    public function indexAdmin()
-    {
-        $users = User::role('admin')->latest()->paginate(10);
-
-        return view('content.admin.users.index', [
-            'users' => $users,
-            'page_meta' => [
-                'title' => 'Daftar Admin',
-                'description' => 'Data Admin yang terdaftar di sistem',
-                'role' => 'Admin',
-                // 'method' => 'post',
-                // 'url' => route('user.store'),
-            ],
-        ]);
-    }
     /**
      * Show the form for creating a new resource.
      */
@@ -119,20 +104,28 @@ class UserController extends Controller
     {
         $image = $request->file('image');
 
+        $userData = $request->validated();
+
         if ($image) {
-            if (Storage::exists(!$user->image)) {
+            if ($user->image && Storage::exists($user->image)) {
                 Storage::delete($user->image);
             }
-            $userUpdate = $user->update([...$request->validated(), 'image' => $image->storeAs('images/users/' . $user->register_code . '.' . $image->getClientOriginalExtension())]);
-        } else {
-            $rmImage = $request->deleteImage;
-            if ($rmImage) {
+            $userData['image'] = $image->storeAs('images/users/' . $user->register_code . '.' . $image->getClientOriginalExtension());
+        } elseif ($request->deleteImage) {
+            if ($user->image && Storage::exists($user->image)) {
                 Storage::delete($user->image);
-                $userUpdate = $user->update([...$request->validated(), 'image' => null]);
-            } else {
-                $userUpdate = $user->update($request->validated());
             }
+            $userData['image'] = null;
         }
+
+        if ($request->filled('password')) {
+            $userData['password'] = bcrypt($request->password);
+        } else {
+            unset($userData['password']);
+        }
+
+        $user->update($userData);
+
         Alert::toast('Berhasil Merubah Data', 'success');
         return back();
     }
@@ -157,7 +150,7 @@ class UserController extends Controller
 
     public function verifikasiAlumni()
     {
-        $users = User::query()->role('user')->where('status','!=','verified')->orderBy('status', 'asc')->latest()->get();
+        $users = User::query()->role('user')->where('status', '!=', 'verified')->orderBy('status', 'asc')->latest()->get();
 
         return view('content.admin.users.verifikasi', [
             'users' => $users,
@@ -178,7 +171,8 @@ class UserController extends Controller
         return redirect()->route('admin.index.alumni');
     }
 
-    public function approvedAll(){
+    public function approvedAll()
+    {
         $userId = Request()->user;
         User::whereIn('id', $userId)->update(['status' => 'verified']);
 
