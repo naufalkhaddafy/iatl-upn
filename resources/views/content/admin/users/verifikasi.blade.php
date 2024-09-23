@@ -106,7 +106,7 @@
                                                 @else
                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                         alt="{{ $user->name }}" class="img-thumbnail"
-                                                        style="width:70px; height:40px">
+                                                        style="width:40px; height:40px">
                                                 @endif
                                             </div>
                                         </td>
