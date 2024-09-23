@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SebaranController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
@@ -43,12 +44,19 @@ Route::middleware('auth')->group(function () {
         ->name('dashboard')
         ->middleware('auth');
     Route::group(['middleware' => ['role:admin']], function () {
+        //Admin
+        Route::get('/list-admin', [AdminController::class, 'index'])->name('admin.index.admin');
+        Route::get('/admin/create', [AdminController::class, 'create'])->name('admin.form.admin');
+        Route::post('/admin/create', [AdminController::class, 'store'])->name('admin.store.admin');
+        Route::get('/admin/{user}/edit', [AdminController::class, 'edit'])->name('admin.edit.admin');
+        Route::put('/admin/{user}/update', [AdminController::class, 'update'])->name('admin.update.admin');
+        Route::delete('/admin/{user}/delete', [AdminController::class, 'destroy'])->name('admin.destroy.admin');
+
         //News
         Route::resource('/news', NewsController::class);
         //Users
         Route::resource('/user', UserController::class);
-        Route::get('/list-admin', [UserController::class, 'indexAdmin'])->name('admin.index.admin');
-        Route::get('/list-alumni', [UserController::class, 'indexAlumni'])->name('admin.index.alumni');
+        Route::get('/list-alumni', [UserController::class, 'index'])->name('admin.index.alumni');
         Route::get('/verifikasi/alumni', [UserController::class, 'verifikasiAlumni'])->name('admin.verifikasi.alumni');
         Route::put('/verifikasi/alumni/{user}', [UserController::class, 'verifikasiAlumniUpdate'])->name('admin.verifikasi.alumni.update');
         Route::patch('/alumni/approved-all',[UserController::class, 'approvedAll'])->name('admin.approved.all');
