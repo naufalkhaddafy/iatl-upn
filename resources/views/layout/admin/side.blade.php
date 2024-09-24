@@ -149,7 +149,6 @@
                             </span>
                             <span class="nav-link-text d-flex justify-content-between align-content-center">
                                 <span>Admin Settings</span>
-                                <span class="badge on-dev align-content-center">DEV</span>
                             </span>
                         </a><!--//nav-link-->
                     </li><!--//nav-item-->
