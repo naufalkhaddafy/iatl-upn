@@ -28,6 +28,7 @@ class AdminRequest extends FormRequest
             'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($this->user?->id)],
             'password' => [$this->method() !== 'POST' ? 'nullable' : 'required', 'min:5', 'confirmed'],
             'phone_number' => ['nullable', 'digits_between:7,15', 'numeric'],
+            'image' => ['nullable', 'max:2000', 'mimes:png,jpg,jpeg'],
         ];
     }
 }
