@@ -162,4 +162,23 @@
 
 @endsection
 @push('js')
+    <script>
+        $('#image').on('change', function() {
+            $('#deleteImage').val(null)
+            file = this.files[0];
+            if (file) {
+                let reader = new FileReader();
+                reader.onload = function(event) {
+                    $("#imgPreview").removeClass('d-none').attr("src", event.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        })
+
+        $('#deleteImagePreview').on('click', function() {
+            $('#imgPreview').attr("src", '{{ asset('image/blank-user.png') }}')
+            $('#deleteImage').val(true)
+            $('#image').val('');
+        })
+    </script>
 @endpush

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\AdminRequest;
 use App\Models\User;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,8 +19,8 @@ class AdminController extends Controller
     {
         $users = User::role('admin')->latest()->paginate(10);
 
-        $title = 'Hapus Alumni!';
-        $text = 'Apakah anda yakin menghapus data alumni?';
+        $title = 'Hapus Admin!';
+        $text = 'Apakah anda yakin menghapus data admin?';
         confirmDelete($title, $text);
 
         return view('content.admin.admin.index', [
@@ -54,16 +54,11 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
         $register_code = $request->register_code = 'REG-' . date('YmdHis') . 'Admin';
-        $validate = $request->validate([
-            'name' => 'required',
-            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($request?->id)],
-            'password' => 'required|min:5|confirmed',
-            'phone_number' => ['nullable', 'digits_between:7,15', 'numeric'],
-        ]);
         $image = $request->file('image');
+        $validate = $request->validated();
         $user = User::create([...$validate, 'isPremium' => true, 'premium_at' => now(), 'status' => 'verified', 'register_code' => $register_code, 'image' => $image?->storeAs('images/users', $register_code . '.' . $image->getClientOriginalExtension())]);
         $user->assignRole('admin');
 
@@ -98,9 +93,34 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminRequest $request, User $user)
     {
-        //
+        $image = $request->file('image');
+
+        $userData = $request->validated();
+
+        if ($image) {
+            if ($user->image && Storage::exists($user->image)) {
+                Storage::delete($user->image);
+            }
+            $userData['image'] = $image->storeAs('images/users/' . $user->register_code . '.' . $image->getClientOriginalExtension());
+        } elseif ($request->deleteImage) {
+            if ($user->image && Storage::exists($user->image)) {
+                Storage::delete($user->image);
+            }
+            $userData['image'] = null;
+        }
+
+        if ($request->filled('password')) {
+            $userData['password'] = bcrypt($request->password);
+        } else {
+            unset($userData['password']);
+        }
+
+        $user->update($userData);
+
+        Alert::toast('Berhasil Merubah Data', 'success');
+        return back();
     }
 
     /**
