@@ -34,7 +34,8 @@
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg">
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg">
 
-    @vite(['resources/sass/landing.scss'])
+    @vite(['resources/sass/landing.scss', 'resources/js/app.js'])
+    @vite(['resources/js/layout/landing.js'])
 
 </head>
 
@@ -70,7 +71,7 @@
     <!--
       - custom js link
     -->
-    <script src="{{ asset('landing_page') }}/assets/js/script.js"></script>
+    {{-- <script src="{{ asset('landing_page') }}/assets/js/script.js"></script> --}}
 
     <!--
       - ionicon
