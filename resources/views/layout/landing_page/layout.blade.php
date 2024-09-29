@@ -26,13 +26,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
-    <!--
+    {{-- <!--
     - preload images
   -->
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-bg.jpg">
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-1.jpg">
     <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg">
-    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg">
+    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg"> --}}
 
     @vite(['resources/sass/landing.scss', 'resources/js/app.js'])
 
@@ -67,14 +67,11 @@
       - #FOOTER
     -->
     @include('layout.landing_page.footer')
-    <!--
-      - custom js link
-    -->
-    {{-- <script src="{{ asset('landing_page') }}/assets/js/script.js"></script> --}}
+
 
     <!--
       - ionicon
-    -->
+    -->-
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
