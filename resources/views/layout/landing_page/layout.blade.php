@@ -26,14 +26,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
-    {{-- <!--
-    - preload images
-  -->
-    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-bg.jpg">
-    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-1.jpg">
-    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg">
-    <link rel="preload" as="image" href="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg"> --}}
-
     @vite(['resources/sass/landing.scss', 'resources/js/app.js'])
 
 </head>
