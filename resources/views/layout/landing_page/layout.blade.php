@@ -9,7 +9,7 @@
     <!--
     - primary meta tags
   -->
-    <title>IATL UPNVYK</title>
+    <title>@yield('title') IATL UPNVYK</title>
     <meta name="title" content="IATL UPNVYK">
     <meta name="description" content="Official Page of IATL UPNVYK">
 
@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
 
     @vite(['resources/sass/landing.scss', 'resources/js/app.js'])
-
+    @stack('css')
 </head>
 
 <body>
@@ -47,7 +47,7 @@
                         Daftarkan diri anda untuk pendataan Alumni Teknik Lingkungan UPNVYK
                     </h2>
 
-                    <a href="{{ route('user.register') }}" class="btn btn-primary">Join with us</a>
+                    <a href="{{ route('user.register') }}" class="btn btn-primary">Register Now</a>
 
                 </div>
             </section>
@@ -63,10 +63,11 @@
 
     <!--
       - ionicon
-    -->-
+    -->
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+    @stack('js')
 </body>
 
 </html>

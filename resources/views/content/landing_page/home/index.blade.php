@@ -1,8 +1,5 @@
 @extends('layout.landing_page.layout')
 @section('content-landing-page')
-    <!--
-                          - #HERO
-                        -->
     <section class="section hero has-bg-image" aria-label="home"
         style="background-image: url('{{ asset('images') }}/landing-page/hero-bg.jpg')">
         <div class="container">
@@ -110,7 +107,7 @@
                                 </p>
                                 <ul class="card-meta-list">
                                     <li class="card-meta-item">
-                                        <ion-icon name="document-text-outline" aria-hidden="true"></ion-icon>
+                                        <x-bi-person />
                                         <span class="meta-text">{{ $value->user->name }}</span>
                                     </li>
                                     <li class="card-meta-item">
@@ -124,7 +121,6 @@
                     </li>
                 @endforeach
             </ul>
-
         </div>
     </section>
 @endsection

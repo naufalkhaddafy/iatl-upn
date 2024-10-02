@@ -390,6 +390,52 @@ body.nav-active {
     padding-block: 6px;
 }
 
+.navbar-link.dropdown {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+    align-items: center;
+    i {
+        font-size: 1px;
+    }
+}
+
+.dropdown-menu {
+    display: none;
+    background-color: white;
+    color: dimgray;
+    position: absolute;
+    padding: 0.5rem 1rem;
+    box-shadow: 2px 2px 2px #52955c;
+    border-radius: 8px;
+    font-weight: var(--fw-700);
+    font-size: var(--fs-8);
+    z-index: 10;
+    li {
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+    li:hover {
+        background-color: #52955c;
+        color: white;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+}
+
+.navbar-list li:hover .dropdown-menu {
+    display: block;
+}
+
+.arrow {
+    transition: transform 0.3s;
+}
+
+.navbar-list li:hover .arrow {
+    transform: rotate(180deg);
+}
+
 .contact-link {
     transition: var(--transition-1);
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SebaranController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -71,6 +72,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/sebaran/alumni/regency/{id}', [DashboardController::class, 'showNearest'])->name('sebaran.alumni.nearest');
 });
 
-Route::get('/', function () {
-    return view('content.landing_page.home.index', ['news' => News::with('user')->latest()->where('status', 'publish')->paginate(3)]);
-})->name('root');
+Route::get('/', [LandingPageController::class, 'home'])->name('root');
+Route::get('/berita', [LandingPageController::class, 'news'])->name('landing.page.news');
+
