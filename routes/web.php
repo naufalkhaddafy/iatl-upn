@@ -9,7 +9,8 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\SebaranController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\LandingPage\LandingPageController;
+use App\Http\Controllers\LandingPage\LandingNewsController;
 use Illuminate\Support\Facades\Route;
 use App\Models\News;
 
@@ -74,4 +75,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/', [LandingPageController::class, 'home'])->name('root');
 Route::get('/berita', [LandingPageController::class, 'news'])->name('landing.page.news');
+Route::get('/berita/detail/{slug}', [LandingNewsController::class, 'show'])->name('landing.page.news.show');
 
