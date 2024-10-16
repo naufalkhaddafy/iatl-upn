@@ -11,7 +11,7 @@ class SebaranController extends Controller
 {
     public function index()
     {
-        $sebaran = Http::get('https://wilayah.id/api/provinces.json')['data'] ?? [];
+        $sebaran = json_decode(file_get_contents(public_path('/json/provinces.json'))) ?? [];
         $user = User::with('addressNow')->where('status','verified')->get();
 
         $provinceUser = $user

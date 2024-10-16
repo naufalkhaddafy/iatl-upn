@@ -91,16 +91,17 @@
 
             let provinceUser = @json($provinceUser)
 
-            let listProvinceUser = province.filter(item => Object.values(provinceUser).includes(parseInt(item.code,
+            let listProvinceUser = province.filter(item => Object.values(provinceUser).includes(parseInt(item.id,
                 10)));
+
             let map = L.map('map').setView([-1.1742548, 116.6769313], 4.5);
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
             listProvinceUser.map(function(value) {
-                let marker = L.marker([value.coordinates.lat, value.coordinates.lng]).addTo(
+                let marker = L.marker([value.latitude, value.longitude]).addTo(
                     map);
-                $.get(`{{ url('/sebaran/alumni/${value.code}') }}`, function(data) {
+                $.get(`{{ url('/sebaran/alumni/${value.id}') }}`, function(data) {
                     marker.bindPopup(
                         `<div class="text-center rounded">
                                 <div class="card-header rounded">
@@ -112,7 +113,7 @@
                                     <div class="fs-6 text-danger"><b>${data.total}</b></div>
                                 </div>
                                 <div class="card-footer">
-                                    <button class="btn btn-success btn-sm text-white" onclick="userByProvince(${value.code}) "><i class="fa-solid fa-magnifying-glass"></i> Tampilkan</button>
+                                    <button class="btn btn-success btn-sm text-white" onclick="userByProvince(${value.id}) "><i class="fa-solid fa-magnifying-glass"></i> Tampilkan</button>
                                 </div>
                             </div>
                             `
