@@ -8,9 +8,9 @@
     </section>
     <section class="min-h-100" style="height: 100vw">
         <div class="container">
-            <p class="section-subtitle" id="project-label">Berita </p>
+            <p class="section-subtitle" id="project-label">Berita</p>
             <h2 class="h2 section-title">
-                Lihat beberapa blog yang menarik dari kami.
+                Coming Soon
             </h2>
         </div>
     </section>

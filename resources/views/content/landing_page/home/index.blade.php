@@ -144,7 +144,7 @@
                 Ikuti agenda menarik dari kami
             </h2>
 
-            <ul class="grid-list">
+            {{-- <ul class="grid-list">
 
                 <li>
                     <div class="service-card">
@@ -238,7 +238,7 @@
                     </div>
                 </li>
 
-            </ul>
+            </ul> --}}
 
         </div>
     </section>
