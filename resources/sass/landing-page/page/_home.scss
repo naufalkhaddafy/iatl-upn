@@ -1,0 +1,29 @@
+#news {
+    .button-action {
+        width: auto;
+        margin-top: 70px;
+        display: flex;
+        justify-content: center;
+    }
+    .responsive-content {
+        text-align: justify;
+        width: auto;
+        line-height: 1.5;
+        box-sizing: border-box;
+        overflow-wrap: break-word;
+    }
+
+    .btn-text {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 4px;
+        margin-block-start: 10px;
+        color: var(--primary);
+        font-weight: var(--fw-700);
+        transition: var(--transition-1);
+    }
+    .btn-text:is(:hover, :focus-visible) {
+        opacity: 0.9;
+    }
+}

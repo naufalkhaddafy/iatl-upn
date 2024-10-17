@@ -35,8 +35,7 @@
                     <a href="#" class="navbar-link">Projects</a>
                 </li> --}}
                 <li>
-                    <a href="{{ route('landing.page.news') }}"
-                        class="navbar-link {{ Request::routeIs('landing.page.news') ? 'active' : '' }}">Blog</a>
+                    <a href="{{ route('landing.page.news') }}" class="navbar-link ">News</a>
                 </li>
                 <li>
                     <a href="#" class="navbar-link">Kontak</a>
@@ -77,7 +76,7 @@
             </ul>
         </nav>
 
-        <a href="{{ route('user.login') }}" class="btn btn-outline">Sign In</a>
+        <a href="{{ route('user.login') }}" class="btn btn-primary">Sign In</a>
 
         <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
             <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>

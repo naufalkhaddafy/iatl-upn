@@ -12,7 +12,8 @@ class DashboardController extends Controller
     public function index()
     {
         $userProvince = auth()->user()->addressNow?->province_id;
-        $regencies = Http::get('https://wilayah.id/api/regencies/' . $userProvince . '.json')['data'] ?? [];
+        $regencies = json_decode(file_get_contents(public_path('/json/regencies.json'))) ?? [];
+
         $user = User::with('addressNow')->where('status', 'verified')->get();
         $sebaranByUserLogin = $user
             ->filter(function ($user) use ($userProvince) {

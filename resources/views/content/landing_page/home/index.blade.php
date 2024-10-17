@@ -34,8 +34,8 @@
                         <li class="slider-item">
 
                             <figure class="img-holder" style="--width: 575; --height: 550;">
-                                <img src="{{ asset('landing_page') }}/assets/images/hero-slide-1.jpg" width="575"
-                                    height="550" alt="" class="img-cover">
+                                <img src="{{ asset('image') }}/logo-sm.png" width="575" height="550" alt=""
+                                    class="img-cover">
                             </figure>
 
                         </li>
@@ -44,8 +44,8 @@
 
                             <div class="hero-card">
                                 <figure class="img-holder" style="--width: 575; --height: 550;">
-                                    <img src="{{ asset('landing_page') }}/assets/images/hero-slide-2.jpg" width="575"
-                                        height="550" alt="hero banner" class="img-cover">
+                                    <img src="{{ asset('image') }}/logo-white.png" width="575" height="550"
+                                        alt="hero banner" class="img-cover">
                                 </figure>
                                 <button class="play-btn" aria-label="play landing_page intro">
                                     <ion-icon name="play" aria-hidden="true"></ion-icon>
@@ -54,8 +54,8 @@
                         </li>
                         <li class="slider-item">
                             <figure class="img-holder" style="--width: 575; --height: 550;">
-                                <img src="{{ asset('landing_page') }}/assets/images/hero-slide-3.jpg" width="575"
-                                    height="550" alt="" class="img-cover">
+                                <img src="{{ asset('image') }}/logo.png" width="575" height="550" alt=""
+                                    class="img-cover">
                             </figure>
 
                         </li>
@@ -76,7 +76,7 @@
         </div>
     </section>
 
-    <section class="section project" aria-labelledby="project-label">
+    <section id="news" class="section service" aria-labelledby="project-label">
         <div class="container">
 
             <p class="section-subtitle" id="project-label">Berita Terkini</p>
@@ -88,7 +88,6 @@
             <ul class="grid-list">
                 @foreach ($news as $value)
                     <li>
-
                         <div class="project-card">
                             @if ($value->image)
                                 <figure class="card-banner img-holder" style="--width: 560; --height: 350;">
@@ -96,15 +95,11 @@
                                         loading="lazy" alt="{{ $value->title }}" class="img-cover">
                                 </figure>
                             @endif
+
                             <div class="card-content">
                                 <h3 class="h3">
-                                    <a href="{{ route('news.show', $value->id) }}"
-                                        class="card-title">{{ $value->title }}</a>
+                                    <div class="card-title">{{ $value->title }}</div>
                                 </h3>
-
-                                <p class="card-text">
-                                    {!! $value->description !!}
-                                </p>
                                 <ul class="card-meta-list">
                                     <li class="card-meta-item">
                                         <x-bi-person />
@@ -116,11 +111,135 @@
                                             datetime="">{{ $value->created_at->diffForHumans() }}</time>
                                     </li>
                                 </ul>
+
+                                <p class="card-text responsive-content">
+                                    {!! \Illuminate\Support\Str::limit($value->description, 100, '...') !!}
+                                </p>
+
+                                <a href="{{ route('landing.page.news.show', $value->slug) }}" class="btn-text">
+                                    <span class="span">Baca Selengkapnya</span>
+
+                                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                                </a>
                             </div>
-                        </div>
+                            </a>
                     </li>
                 @endforeach
             </ul>
+
+            <div class="button-action">
+                <a class="btn btn-secondary" href="{{ route('landing.page.news') }}">Lihat Berita
+                    Lainnya</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="section project" aria-labelledby="service-label">
+        <div class="container">
+
+            <p class="section-subtitle" id="service-label">Agenda</p>
+
+            <h2 class="h2 section-title">
+                Ikuti agenda menarik dari kami
+            </h2>
+
+            <ul class="grid-list">
+
+                <li>
+                    <div class="service-card">
+
+                        <div class="card-icon">
+                            <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <h3 class="h4 card-title">24/7 Support</h3>
+
+                        <p class="card-text">
+                            Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras
+                            justo.
+                        </p>
+
+                        <a href="#" class="btn-text">
+                            <span class="span">Learn More</span>
+
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li>
+                    <div class="service-card">
+
+                        <div class="card-icon">
+                            <ion-icon name="shield-checkmark-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <h3 class="h4 card-title">Secure Payments</h3>
+
+                        <p class="card-text">
+                            Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras
+                            justo.
+                        </p>
+
+                        <a href="#" class="btn-text">
+                            <span class="span">Learn More</span>
+
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li>
+                    <div class="service-card">
+
+                        <div class="card-icon">
+                            <ion-icon name="cloud-download-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <h3 class="h4 card-title">Daily Updates</h3>
+
+                        <p class="card-text">
+                            Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras
+                            justo.
+                        </p>
+
+                        <a href="#" class="btn-text">
+                            <span class="span">Learn More</span>
+
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </a>
+
+                    </div>
+                </li>
+
+                <li>
+                    <div class="service-card">
+
+                        <div class="card-icon">
+                            <ion-icon name="pie-chart-outline" aria-hidden="true"></ion-icon>
+                        </div>
+
+                        <h3 class="h4 card-title">Market Research</h3>
+
+                        <p class="card-text">
+                            Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus cras
+                            justo.
+                        </p>
+
+                        <a href="#" class="btn-text">
+                            <span class="span">Learn More</span>
+
+                            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                        </a>
+
+                    </div>
+                </li>
+
+            </ul>
+
         </div>
     </section>
 @endsection
