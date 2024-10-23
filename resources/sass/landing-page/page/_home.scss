@@ -27,3 +27,65 @@
         opacity: 0.9;
     }
 }
+
+#sebaran {
+    #map {
+        border-radius: 12px;
+        height: 500px;
+        z-index: 1;
+    }
+
+    background-color: var(--cultured);
+    :is(.section-subtitle, .section-title) {
+        text-align: center;
+    }
+    .section-title {
+        margin-block-end: 50px;
+    }
+}
+
+#social_media {
+    .instagram {
+        margin: 0 auto;
+        background-color: transparent;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.card-location {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px solid var(--primary);
+    h4 {
+        background-color: var(--primary);
+        height: auto;
+        color: white;
+        font-size: 1.5rem;
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    h5 {
+        padding: 1rem;
+        font-size: 1.5rem;
+        color: red !important;
+    }
+    a {
+        background-color: white;
+        border: 2px solid var(--primary);
+        color: var(--primary) !important;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        border-radius: 50px;
+        font-weight: bold;
+    }
+    a:hover {
+        background-color: var(--primary);
+        color: white !important;
+    }
+}
