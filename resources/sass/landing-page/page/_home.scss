@@ -89,3 +89,44 @@
         color: white !important;
     }
 }
+
+#profile {
+    .container {
+        display: grid;
+        gap: 50px;
+        align-items: center;
+    }
+    .section-title {
+        margin-block: 25px 30px;
+    }
+    
+    .section-text {
+        margin-block: 25px 30px;
+    }
+
+    .feature-list {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+    }
+
+    .feature-card {
+        display: flex;
+        align-items: start;
+        gap: 10px;
+
+        .card-icon {
+            background-color: var(--lavender-web);
+            font-size: 1.4rem;
+            padding: 4px;
+            border-radius: var(--radius-circle);
+        }
+        .card-icon ion-icon {
+            --ionicon-stroke-width: 40px;
+        }
+        span {
+            text-align: justify;
+        }
+    }
+}

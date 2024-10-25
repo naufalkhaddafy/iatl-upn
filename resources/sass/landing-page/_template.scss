@@ -681,41 +681,6 @@ body.nav-active {
 }
 
 /*-----------------------------------*\
-  #FEATURES
-\*-----------------------------------*/
-
-.feature .container {
-    display: grid;
-    gap: 50px;
-}
-
-.feature .section-text {
-    margin-block: 25px 30px;
-}
-
-.feature-list {
-    display: grid;
-    gap: 15px;
-}
-
-.feature-card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.feature-card .card-icon {
-    background-color: var(--lavender-web);
-    font-size: 1.4rem;
-    padding: 4px;
-    border-radius: var(--radius-circle);
-}
-
-.feature-card .card-icon ion-icon {
-    --ionicon-stroke-width: 40px;
-}
-
-/*-----------------------------------*\
   #STATS
 \*-----------------------------------*/
 
@@ -936,11 +901,6 @@ body.nav-active {
    * FEATURE
    */
 
-    .feature .container {
-        grid-template-columns: 0.7fr 1fr;
-        align-items: center;
-    }
-
     .feature-banner {
         order: 1;
     }
@@ -1049,24 +1009,14 @@ body.nav-active {
     }
 
     /**
-   * CTA
+   * Profile
    */
 
-    .cta .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    #profile {
+        .container {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-
-    .cta .btn {
-        min-width: max-content;
-    }
-
-    .cta .section-title {
-        max-width: 30ch;
-        margin-block-end: 0;
-    }
-
     /**
    * FOOTER
    */
@@ -1146,13 +1096,5 @@ body.nav-active {
 
     .container {
         max-width: 1320px;
-    }
-
-    /**
-   * FEATURE
-   */
-
-    .feature-list {
-        grid-template-columns: 1fr 1fr;
     }
 }

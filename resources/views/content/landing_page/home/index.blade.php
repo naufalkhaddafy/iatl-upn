@@ -83,7 +83,117 @@
 
         </div>
     </section>
+    <section id="profile" class="section" aria-labelledby="profile-label">
+        <div class="container">
+            <div class="feature-content">
 
+                <p class="section-subtitle" id="feautre-label">Our Vision & Mission</p>
+
+                <h2 class="h2 section-title">
+                    Visi
+                </h2>
+
+                <p class="section-text">
+                    Wadah Komunikasi Alumni Teknik Lingkungan UPN "Veteran" Yogyakarta.
+                </p>
+
+                <h2 class="h2 section-title">
+                    Misi
+                </h2>
+
+                <ul class="feature-list">
+
+                    <li>
+                        <div class="feature-card">
+
+                            <div class="card-icon">
+                                <ion-icon name="checkmark" aria-hidden="true"></ion-icon>
+                            </div>
+
+                            <span class="span">
+                                Mempererat tali silaturahmi dan membina kekeluargaan antar Anggota Alumni Teknik Lingkungan
+                                UPN “Veteran” Yogyakarta.
+                            </span>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="feature-card">
+
+                            <div class="card-icon">
+                                <ion-icon name="checkmark" aria-hidden="true"></ion-icon>
+                            </div>
+
+                            <span class="span">
+                                Menjalankan usaha-usaha dan aktif memberikaan bantuan baik spiritual maupun material yang
+                                diperlukan oleh Anggota dan Almamater Jurusan Teknik Lingkungan demi kemajuan dan
+                                tercapainya segala tujuan dan kesejahteraan Alumni
+                            </span>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="feature-card">
+
+                            <div class="card-icon">
+                                <ion-icon name="checkmark" aria-hidden="true"></ion-icon>
+                            </div>
+
+                            <span class="span">
+                                Membantu membina dan meningkatkan kegiatan kemahasiswaan di lingkungan Jurusan Teknik
+                                Lingkungan UPN “Veteran” Yogyakarta
+                            </span>
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="feature-card">
+
+                            <div class="card-icon">
+                                <ion-icon name="checkmark" aria-hidden="true"></ion-icon>
+                            </div>
+
+                            <span class="span">
+                                Membantu meningkatkan peran Almamater UPN “Veteran” Yogyakarta dalam melaksanakan Tri Dharma
+                                Perguruan Tinggi
+                            </span>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="feature-card">
+
+                            <div class="card-icon">
+                                <ion-icon name="checkmark" aria-hidden="true"></ion-icon>
+                            </div>
+
+                            <span class="span">
+                                Membina dan memelihara kerjasama dengan Pemerintah, Swasta, organisasi Profesi dan
+                                Organisasi Kemasyarakatan Mendorong para anggotanya untuk mengembangkan dan menerapkan ilmu
+                                pengetahuan serta keahlianya yang dimanfaatkan sebesar-besarnya bagi masyarakat, bangsa dan
+                                Negara pada khususnya dan umat manusia pada umumnya.
+                            </span>
+
+                        </div>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <div class="feature-banner">
+
+                <iframe width="100%" height="531" src="https://www.youtube.com/embed/E-tKU7iKuQU"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+            </div>
+        </div>
+    </section>
     {{-- <section id="news" class="section service" aria-labelledby="project-label">
         <div class="container">
 
@@ -176,8 +286,8 @@
                             </div>
                             <div style="padding: 19% 0;"></div>
                             <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px"
-                                    height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg"
-                                    xmlns:xlink="https://www.w3.org/1999/xlink">
+                                    height="50px" viewBox="0 0 60 60" version="1.1"
+                                    xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                         <g transform="translate(-511.000000, -20.000000)" fill="#000000">
                                             <g>
