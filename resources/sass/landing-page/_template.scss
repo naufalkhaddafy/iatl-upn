@@ -1017,6 +1017,24 @@ body.nav-active {
             grid-template-columns: repeat(2, 1fr);
         }
     }
+
+    /**
+   * CTA
+   */
+
+    .cta .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cta .btn {
+        min-width: max-content;
+    }
+    .cta .section-title {
+        max-width: 30ch;
+        margin-block-end: 0;
+    }
+
     /**
    * FOOTER
    */
